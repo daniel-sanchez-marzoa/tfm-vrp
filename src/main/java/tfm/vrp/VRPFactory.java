@@ -1,6 +1,7 @@
 package tfm.vrp;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.io.StreamTokenizer;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
 public class VRPFactory {
-	public VRP produce(String file) throws FileNotFoundException {
+	public static VRP produce(File file) throws FileNotFoundException {
 		// TODO check if the order of the methods affects the reading because of
 		// token.nextToken
 		StreamTokenizer token = getTokens(file);
@@ -30,15 +31,15 @@ public class VRPFactory {
 		}
 	}
 
-	private double[][] getDistanceMatrix(StreamTokenizer token, int matrixSize) throws IOException {
+	private static double[][] getDistanceMatrix(StreamTokenizer token, int matrixSize) throws IOException {
 		double[][] distanceMatrix = new double[matrixSize][matrixSize];
 
-		// Find the string SECTION
+		// Find the string NODE_COORD_SECTION
 		boolean found = false;
 		token.nextToken();
 		while (!found) {
 			if ((token.sval != null) &&
-					((token.sval.compareTo("SECTION") == 0)))
+					((token.sval.compareTo("NODE_COORD_SECTION") == 0)))
 				found = true;
 			else
 				token.nextToken();
@@ -71,7 +72,7 @@ public class VRPFactory {
 		return distanceMatrix;
 	}
 
-	private int getNumberOfCities(StreamTokenizer token) throws IOException {
+	private static int getNumberOfCities(StreamTokenizer token) throws IOException {
 		boolean found = false;
 		token.nextToken();
 
@@ -88,7 +89,7 @@ public class VRPFactory {
 		return (int) token.nval;
 	}
 
-	private int getDepot(StreamTokenizer token) throws IOException {
+	private static int getDepot(StreamTokenizer token) throws IOException {
 		boolean found = false;
 		token.nextToken();
 
@@ -105,7 +106,7 @@ public class VRPFactory {
 		return (int) token.nval;
 	}
 
-	private int getNumberOfVehicles(StreamTokenizer token) throws IOException {
+	private static int getNumberOfVehicles(StreamTokenizer token) throws IOException {
 		boolean found = false;
 		token.nextToken();
 
@@ -122,15 +123,14 @@ public class VRPFactory {
 		return (int) token.nval;
 	}
 
-	private StreamTokenizer getTokens(String file) throws FileNotFoundException {
-		InputStream in = getClass().getResourceAsStream(file);
-
-		if (in == null)
-			in = new FileInputStream(file);
+	private static StreamTokenizer getTokens(File file) throws FileNotFoundException {
+		InputStream in = new FileInputStream(file);
 
 		InputStreamReader isr = new InputStreamReader(in);
 		BufferedReader br = new BufferedReader(isr);
 		StreamTokenizer token = new StreamTokenizer(br);
+		token.wordChars('_', '_');
+
 		return token;
 	}
 }

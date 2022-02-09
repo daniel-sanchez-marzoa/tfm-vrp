@@ -1,5 +1,5 @@
 NAME: kroA100
-TYPE: TSP
+TYPE: VRP
 COMMENT: 100-city problem A (Krolak/Felts/Nelson)
 DIMENSION: 100
 DEPOT: 1

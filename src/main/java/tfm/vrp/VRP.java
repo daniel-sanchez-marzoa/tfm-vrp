@@ -39,8 +39,8 @@ public class VRP extends AbstractIntegerPermutationProblem {
 
 		for (List<Integer> route : routes) {
 			for (int i = 0; i < (route.size() - 1); i++) {
-				int x = solution.variables().get(i);
-				int y = solution.variables().get(i + 1);
+				int x = route.get(i);
+				int y = route.get(i + 1);
 
 				fitness1 += distanceMatrix[x][y];
 			}
@@ -53,6 +53,7 @@ public class VRP extends AbstractIntegerPermutationProblem {
 
 	private List<List<Integer>> separateSolutionIntoRoutes(PermutationSolution<Integer> solution) {
 		List<List<Integer>> routes = new ArrayList<>();
+		routes.add(new ArrayList<>());
 
 		for (Integer solutionVariable : solution.variables()) {
 			if (isDelimeter(solutionVariable))
