@@ -17,6 +17,14 @@
 			"mainClass": "tfm.App",
 			"projectName": "tfm-vrp",
 			"args": "-vrp resources/vrpInstances/square.vrp"
+		},
+		{
+			"type": "java",
+			"name": "Default VRP - kroaA100",
+			"request": "launch",
+			"mainClass": "tfm.App",
+			"projectName": "tfm-vrp",
+			"args": "-vrp resources/vrpInstances/kroA100.vrp"
 		}
 	]
 }

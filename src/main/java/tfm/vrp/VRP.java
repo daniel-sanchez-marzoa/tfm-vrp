@@ -22,8 +22,8 @@ public class VRP extends AbstractIntegerPermutationProblem {
 		this.depot = depot;
 		this.numberOfVehicles = numberOfVehicles;
 
-		setNumberOfVariables(numberOfCities);
-		setNumberOfObjectives(1);
+		setNumberOfVariables(numberOfCities + numberOfVehicles - 1);
+		setNumberOfObjectives(2);
 		setName("VRP");
 	}
 
@@ -47,6 +47,7 @@ public class VRP extends AbstractIntegerPermutationProblem {
 		}
 
 		solution.objectives()[0] = fitness1;
+		solution.objectives()[1] = routes.size();
 
 		return solution;
 	}
@@ -62,10 +63,18 @@ public class VRP extends AbstractIntegerPermutationProblem {
 				routes.get(routes.size() - 1).add(solutionVariable);
 		}
 
+		List<List<Integer>> emptyRoutes = new ArrayList<>();
+
 		for (List<Integer> route : routes) {
-			route.add(0, depot);
-			route.add(depot);
+			if (route.isEmpty())
+				emptyRoutes.add(route);
+			else {
+				route.add(0, depot);
+				route.add(depot);
+			}
 		}
+
+		routes.removeAll(emptyRoutes);
 
 		return routes;
 	}
