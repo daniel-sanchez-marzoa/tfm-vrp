@@ -25,6 +25,14 @@
 			"mainClass": "tfm.App",
 			"projectName": "tfm-vrp",
 			"args": "-vrp resources/vrpInstances/kroA100.vrp"
+		},
+		{
+			"type": "java",
+			"name": "Experiment - test",
+			"request": "launch",
+			"mainClass": "tfm.App",
+			"projectName": "tfm-vrp",
+			"args": "-vrpe resources/experiments/experiment1/ngsaii-experiment.txt"
 		}
 	]
 }

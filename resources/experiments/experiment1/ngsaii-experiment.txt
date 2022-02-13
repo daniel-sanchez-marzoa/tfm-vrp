@@ -1,0 +1,8 @@
+STUDY_NAME: test
+EXPERIMENT_BASE_DIRECTORY: testExperiment
+PROBLEMS_DIRECTORY: resources/experiments/experiment1/problems
+ALGORITHMS_DIRECTORY: resources/experiments/experiment1/algorithms
+NUMBER_OF_INDEPENDENT_RUNS: 25
+CORES: 4
+EOF
+

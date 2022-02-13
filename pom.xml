@@ -56,6 +56,11 @@
 			<artifactId>jmetal-exec</artifactId>
 			<version>5.9</version>
 		</dependency>
+		<dependency>
+			<groupId>org.uma.jmetal</groupId>
+			<artifactId>jmetal-lab</artifactId>
+			<version>5.11</version>
+		</dependency>
 		<!-- Utilities -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>

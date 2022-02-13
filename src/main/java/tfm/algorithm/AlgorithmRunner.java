@@ -1,4 +1,4 @@
-package tfm;
+package tfm.algorithm;
 
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.util.errorchecking.JMetalException;
