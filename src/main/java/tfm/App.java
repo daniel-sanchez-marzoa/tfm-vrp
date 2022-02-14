@@ -28,10 +28,15 @@ public final class App {
 						.produce((File) cmd.getParsedOptionValue("vrpe"));
 
 				runner.runExperiment();
-			} else {
+			} else if (cmd.hasOption("vrp")) {
 				VRPRunner runner = setupVRPRunner(options, args);
 
 				runner.runVRP();
+			} else {
+				String header = "VRP problem solver using jMetal\n\n";
+				String footer = "";
+
+				new HelpFormatter().printHelp("tfm-vrp", header, options, footer, true);
 			}
 
 		} catch (IOException | ParseException e) {
@@ -133,6 +138,7 @@ public final class App {
 				.desc("Probability of applying mutation operation to an individual. Default = 1/number_of_variables_in_solution")
 				.type(Float.class)
 				.build());
+
 		return options;
 	}
 }
