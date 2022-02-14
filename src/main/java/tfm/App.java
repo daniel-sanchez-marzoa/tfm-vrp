@@ -39,6 +39,14 @@ public final class App {
 		}
 	}
 
+	/**
+	 * Reads the parameters passed in the command-line to setup a runner for a VRP
+	 * problem
+	 * 
+	 * @param options options of the VRP problem and used algorithm
+	 * @param args    arguments passed in the command-line for the given options
+	 * @return a runner for the VRP problem
+	 */
 	private static VRPRunner setupVRPRunner(Options options, String[] args) {
 		try {
 			CommandLineParser parser = new DefaultParser();
@@ -70,6 +78,11 @@ public final class App {
 		return null;
 	}
 
+	/**
+	 * get the avaiable command-line options for the current application
+	 * 
+	 * @return the avaiable command-line options
+	 */
 	private static Options getProgramOptions() {
 		Options options = new Options();
 

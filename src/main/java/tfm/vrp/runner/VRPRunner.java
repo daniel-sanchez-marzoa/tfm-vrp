@@ -26,6 +26,9 @@ import lombok.RequiredArgsConstructor;
 import tfm.algorithm.AlgorithmRunner;
 import tfm.vrp.VRPFactory;
 
+/**
+ * This class executes a jMetal algorithm against a single problem.
+ */
 @Data
 @RequiredArgsConstructor
 public class VRPRunner {

@@ -32,6 +32,10 @@ import lombok.RequiredArgsConstructor;
 import tfm.algorithm.AlgorithmFactory;
 import tfm.vrp.VRPFactory;
 
+/**
+ * This class executes jMetal experiments, running multiple algorithms against
+ * multiple problems and comparing the results
+ */
 @Data
 @RequiredArgsConstructor
 public class VRPExperimentRunner {
@@ -42,6 +46,33 @@ public class VRPExperimentRunner {
 	private final File algorithmsDirectory;
 	private int cores = 1;
 
+	/**
+	 * Runs a jMetal experiment. These experiments execute multiple algorithms
+	 * against multiple problems and calculates a number of metrics to compare the
+	 * results.
+	 * <br>
+	 * <br>
+	 * These results are stored in a directory with the following subdirectories:
+	 * <ul>
+	 * <li><b>referenceFronts</b>: contains the reference fronts that will be used
+	 * to
+	 * calculate the metrics.
+	 * <li><b>[experimentName]</b>: folder containing the results of the experiment
+	 * <ul>
+	 * <li><b>data</b>: folder containing a folder for each algorithm and inside of
+	 * it a
+	 * folder for each problem, containing the result of each run and the best
+	 * results for each metric
+	 * <li><b>html</b>: html files presenting the results
+	 * <li><b>latex</b>: latex files presenting the results
+	 * <li><b>R</b>: R files presenting the result
+	 * <li><b>QualityIndicatorSummary.csv</b>: csv file containing a summary of the
+	 * results
+	 * </ul>
+	 * </ul>
+	 * 
+	 * @throws IOException
+	 */
 	public void runExperiment() throws IOException {
 		if (experimentBaseDirectory.exists())
 			FileUtils.deleteDirectory(experimentBaseDirectory);
@@ -51,6 +82,29 @@ public class VRPExperimentRunner {
 		List<ExperimentAlgorithm<PermutationSolution<Integer>, List<PermutationSolution<Integer>>>> algorithms = getAlgorithms(
 				problems);
 
+		Experiment<PermutationSolution<Integer>, List<PermutationSolution<Integer>>> experiment = getExperiment(
+				problems, algorithms);
+
+		// Execute the algorithm
+		new ExecuteAlgorithms<>(experiment).run();
+		new GenerateReferenceParetoSetAndFrontFromDoubleSolutions(experiment).run();
+		new ComputeQualityIndicators<>(experiment).run();
+
+		// Generate Latex tables
+		new GenerateLatexTablesWithStatistics(experiment).run();
+		new GenerateFriedmanHolmTestTables<>(experiment).run();
+
+		// Generate R files
+		new GenerateWilcoxonTestTablesWithR<>(experiment).run();
+		new GenerateBoxplotsWithR<>(experiment).setRows(2).setColumns(3).run();
+
+		// Generate HTML
+		new GenerateHtmlPages<>(experiment, StudyVisualizer.TYPE_OF_FRONT_TO_SHOW.MEDIAN).run();
+	}
+
+	private Experiment<PermutationSolution<Integer>, List<PermutationSolution<Integer>>> getExperiment(
+			List<ExperimentProblem<PermutationSolution<Integer>>> problems,
+			List<ExperimentAlgorithm<PermutationSolution<Integer>, List<PermutationSolution<Integer>>>> algorithms) {
 		Experiment<PermutationSolution<Integer>, List<PermutationSolution<Integer>>> experiment = new ExperimentBuilder<PermutationSolution<Integer>, List<PermutationSolution<Integer>>>(
 				studyName)
 						.setExperimentBaseDirectory(experimentBaseDirectory.getAbsolutePath())
@@ -59,7 +113,7 @@ public class VRPExperimentRunner {
 						.setOutputParetoFrontFileName("FUN")
 						.setOutputParetoSetFileName("VAR")
 						.setReferenceFrontDirectory(
-								new File(experimentBaseDirectory, "referenceFront").getAbsolutePath())
+								new File(experimentBaseDirectory, "referenceFronts").getAbsolutePath())
 						.setIndicatorList(List.of(
 								new Epsilon(),
 								new Spread(),
@@ -69,19 +123,7 @@ public class VRPExperimentRunner {
 						.setIndependentRuns(numberOfIndependentRuns)
 						.setNumberOfCores(cores)
 						.build();
-
-		new ExecuteAlgorithms<>(experiment).run();
-		new GenerateReferenceParetoSetAndFrontFromDoubleSolutions(experiment).run();
-		new ComputeQualityIndicators<>(experiment).run();
-
-		// Generate Latex tables and R files
-		new GenerateLatexTablesWithStatistics(experiment).run();
-		new GenerateFriedmanHolmTestTables<>(experiment).run();
-		new GenerateWilcoxonTestTablesWithR<>(experiment).run();
-		new GenerateBoxplotsWithR<>(experiment).setRows(2).setColumns(3).run();
-
-		// Generate HTML
-		new GenerateHtmlPages<>(experiment, StudyVisualizer.TYPE_OF_FRONT_TO_SHOW.MEDIAN).run();
+		return experiment;
 	}
 
 	private List<ExperimentProblem<PermutationSolution<Integer>>> getProblems() throws FileNotFoundException {

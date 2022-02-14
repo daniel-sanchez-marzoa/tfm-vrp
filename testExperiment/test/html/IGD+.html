@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>IGD+</title>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script><style>
+html { min-width: 1024px; } 
+ h1 {text-align: center} 
+.component { margin : 1em auto 2em auto; width : 90%}
+h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }table { margin: auto; }th,td { border:1px solid black; text-align: center; padding: 15px }caption { display: table-caption; text-align: center; margin: 10px; font-size: 1.5em; }.best { background-color: #41e05c; } .secondBest { background-color: #a3e6ae; } table { margin: auto; }th,td { border:1px solid black; text-align: center; padding: 15px }caption { display: table-caption; text-align: center; margin: 10px; font-size: 1.5em; }.horizontal { display: flex; justify-content: space-evenly; align-items: center;}.fas { flex-shrink: 0; margin: 1px; color: #6b6b6b} table { margin: auto; }th,td { border:1px solid black; text-align: center; padding: 15px }caption { display: table-caption; text-align: center; margin: 10px; font-size: 1.5em; }h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }.svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} </style>
+</head>
+<body>
+<h1>IGD+</h1><div class='component'>
+<div class='grid-container'>
+<div class='grid-item'>
+<div>
+<table>
+<caption>Median values</caption>
+<tr><th></th><th>ngsaii2</th><th>ngsaii1</th></tr>
+<tr><th>VRP</th><td  class='best'>1,34464E0</td><td  class='secondBest'>1,54474E0</td></tr>
+</table>
+</div>
+</div>
+<div class='grid-item'>
+<div>
+<table>
+<caption>Wilcoxon Test</caption>
+<tr><th></th><th>ngsaii1</th></tr>
+<tr><th>ngsaii2</th><td><div class='horizontal'><i class='fas fa-equals'></i></div></td></tr>
+</table>
+</div>
+</div>
+<div class='grid-item'>
+<div>
+<table>
+<caption>Friedman ranking and Holm test</caption>
+<tr><th>Algorithm</th><th>Ranking</th><th>p-value</th><th>Holm</th><th>Hypothesis</th></tr>
+<tr><td>ngsaii2</td><td>1</td><td>0E0</td><td>0</td><td>-</td></tr>
+<tr><td>ngsaii1</td><td>2</td><td>1,537E-12</td><td>0,05</td><td>Rejected</td></tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class='component'>
+<h2>VRP</h2>
+<div class='grid-container'>
+<div class='grid-item'>
+<div id='1611370750' class='js-plotly-plot'></div>    <script>
+        var target_1611370750 = document.getElementById('1611370750');
+        var layout = {
+    title: 'VRP',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii2","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1","ngsaii1"],
+y: [1.2953449103329562, 1.3446416417644707, 1.1844102332691344, 1.8055659597614582, 1.1417501702643147, 1.1052835387124569, 1.5166743211919878, 1.5071967174800203, 1.4687800087105072, 1.273494301129694, 1.6407006002056561, 0.5, 0.8540000950660575, 2.187628736250638, 1.5922503371619259, 1.6875358358304473, 1.3051470442182371, 0.5, 0.8366984126984127, 1.6523528796336406, 1.3170826122730621, 1.5966627522292416, 1.3634907523934467, 1.1302922149776622, 1.9208628771022336, 0.5980317460317461, 1.3675243875894905, 1.5447410188941069, 1.4062203124782648, 1.9732026142478833, 1.7595611875375168, 1.6140536928664728, 1.1729632063964015, 1.6548845522546527, 1.2086628273617372, 0.8356190476190476, 1.7204706758635941, 1.2667054024618087, 1.6220373575052798, 0.859753126283098, 1.0073548976367181, 1.82698231641865, 1.6813020681201505, 1.774580196919967, 1.5494048683007835, 1.4320263167019276, 1.201554335819885, 1.8564897007686878, 1.63313832448573, 0.9098412698412699],
+xaxis: 'x',
+yaxis: 'y',
+type: 'box',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1611370750, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1033638868' class='js-plotly-plot'></div>    <script>
+        var target_1033638868 = document.getElementById('1033638868');
+        var layout = {
+    title: 'ngsaii2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["162466","170355"],
+y: ["9","7"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1033638868, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1814827940' class='js-plotly-plot'></div>    <script>
+        var target_1814827940 = document.getElementById('1814827940');
+        var layout = {
+    title: 'ngsaii1',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["165328","170939","168051"],
+y: ["9","7","8"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1814827940, data, layout);            </script>
+</div>
+</div>
+</div>
+</body>
+</html>
