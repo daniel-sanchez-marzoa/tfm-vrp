@@ -74,24 +74,24 @@ latexTail <- function() {
 
 ### START OF SCRIPT 
 # Constants
-problemList <-c("VRP") 
-algorithmList <-c("ngsaii2", "ngsaii1") 
-tabularString <-c("lc") 
-latexTableFirstLine <-c("\\hline  & ngsaii1\\\\ ") 
+problemList <-c("kroA100.vrp", "a280.vrp", "ali535.vrp", "att48.vrp", "att532.vrp", "eil101.vrp", "euclidA300.vrp", "euclidB300.vrp", "kroA100 copy.vrp", "kroB100.vrp", "pr124.vrp") 
+algorithmList <-c("ngsaii2", "ngsaii1", "ngsaii3", "ngsaii4", "ngsaii5", "ngsaii6", "ngsaii7", "ngsaii8", "ngsaii9", "ngsaii10", "ngsaii11") 
+tabularString <-c("lcccccccccc") 
+latexTableFirstLine <-c("\\hline  & ngsaii1 & ngsaii3 & ngsaii4 & ngsaii5 & ngsaii6 & ngsaii7 & ngsaii8 & ngsaii9 & ngsaii10 & ngsaii11\\\\ ") 
 indicator<-"GD"
 
  # Step 1.  Writes the latex header
 latexHeader()
-tabularString <-c("| l | c | ") 
+tabularString <-c("| l | ccccccccccc | ccccccccccc | ccccccccccc | ccccccccccc | ccccccccccc | ccccccccccc | ccccccccccc | ccccccccccc | ccccccccccc | ccccccccccc | ") 
 
-latexTableFirstLine <-c("\\hline \\multicolumn{1}{|c|}{} & \\multicolumn{1}{c|}{ngsaii1} \\\\") 
+latexTableFirstLine <-c("\\hline \\multicolumn{1}{|c|}{} & \\multicolumn{11}{c|}{ngsaii1} & \\multicolumn{11}{c|}{ngsaii3} & \\multicolumn{11}{c|}{ngsaii4} & \\multicolumn{11}{c|}{ngsaii5} & \\multicolumn{11}{c|}{ngsaii6} & \\multicolumn{11}{c|}{ngsaii7} & \\multicolumn{11}{c|}{ngsaii8} & \\multicolumn{11}{c|}{ngsaii9} & \\multicolumn{11}{c|}{ngsaii10} & \\multicolumn{11}{c|}{ngsaii11} \\\\") 
 
 # Step 3. Problem loop 
-latexTableHeader("VRP ", tabularString, latexTableFirstLine)
+latexTableHeader("kroA100.vrp a280.vrp ali535.vrp att48.vrp att532.vrp eil101.vrp euclidA300.vrp euclidB300.vrp kroA100 copy.vrp kroB100.vrp pr124.vrp ", tabularString, latexTableFirstLine)
 
 indx = 0
 for (i in algorithmList) {
-  if (i != "ngsaii1") {
+  if (i != "ngsaii11") {
     write(i , "GD.Wilcoxon.tex", append=TRUE)
     write(" & ", "GD.Wilcoxon.tex", append=TRUE)
 
@@ -105,8 +105,8 @@ for (i in algorithmList) {
           else {
             write("  ", "GD.Wilcoxon.tex", append=TRUE)
           } 
-          if (problem == "VRP") {
-            if (j == "ngsaii1") {
+          if (problem == "pr124.vrp") {
+            if (j == "ngsaii11") {
               write(" \\\\ ", "GD.Wilcoxon.tex", append=TRUE)
             } 
             else {

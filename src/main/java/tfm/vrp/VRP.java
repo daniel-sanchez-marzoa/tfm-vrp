@@ -16,7 +16,8 @@ public class VRP extends AbstractIntegerPermutationProblem {
 	private int depot;
 	private int numberOfVehicles;
 
-	public VRP(int numberOfCities, double[][] distanceMatrix, int depot, int numberOfVehicles) throws IOException {
+	public VRP(String name, int numberOfCities, double[][] distanceMatrix, int depot, int numberOfVehicles)
+			throws IOException {
 		this.numberOfCities = numberOfCities;
 		this.distanceMatrix = distanceMatrix;
 		this.depot = depot;
@@ -24,7 +25,7 @@ public class VRP extends AbstractIntegerPermutationProblem {
 
 		setNumberOfVariables(numberOfCities + numberOfVehicles - 1);
 		setNumberOfObjectives(2);
-		setName("VRP");
+		setName(name);
 	}
 
 	@Override

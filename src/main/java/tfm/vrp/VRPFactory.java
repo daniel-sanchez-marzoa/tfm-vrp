@@ -12,12 +12,13 @@ import tfm.utils.FileUtils;
 public class VRPFactory {
 	public static VRP produce(File file) throws FileNotFoundException {
 		try {
+			String name = getName(file);
 			int numberOfCities = getNumberOfCities(file);
 			int depot = getDepot(file);
 			int numberOfVehicles = getNumberOfVehicles(file);
 			double[][] distanceMatrix = getDistanceMatrix(file, numberOfCities);
 
-			return new VRP(numberOfCities, distanceMatrix, depot, numberOfVehicles);
+			return new VRP(file.getName(), numberOfCities, distanceMatrix, depot, numberOfVehicles);
 		} catch (Exception e) {
 			new JMetalException("VRPFactory.produce(file): error when reading data file " + e);
 
@@ -83,6 +84,24 @@ public class VRPFactory {
 		token.nextToken();
 
 		return (int) token.nval;
+	}
+
+	private static String getName(File file) throws IOException {
+		StreamTokenizer token = FileUtils.getTokens(file);
+		boolean found = false;
+		token.nextToken();
+
+		while (!found) {
+			if ((token.sval != null) && ((token.sval.compareTo("NAME") == 0)))
+				found = true;
+			else
+				token.nextToken();
+		}
+
+		token.nextToken();
+		token.nextToken();
+
+		return token.sval;
 	}
 
 	private static int getDepot(File file) throws IOException {

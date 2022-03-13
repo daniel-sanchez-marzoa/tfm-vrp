@@ -11,7 +11,15 @@ import org.uma.jmetal.lab.experiment.util.ExperimentProblem;
 import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
+import tfm.algorithm.espea.ESPEAFactory;
+import tfm.algorithm.gwasfga.GWASFGAFactory;
+import tfm.algorithm.mocell.MOCellFactory;
+import tfm.algorithm.mombi.MOMBIFactory;
 import tfm.algorithm.ngsaii.NGSAIIFactory;
+import tfm.algorithm.pesa2.PESA2Factory;
+import tfm.algorithm.smsemoa.SMSEMOAFactory;
+import tfm.algorithm.spea2.SPEA2Factory;
+import tfm.algorithm.wasfga.WASFGAFactory;
 import tfm.utils.FileUtils;
 
 public class AlgorithmFactory {
@@ -21,8 +29,72 @@ public class AlgorithmFactory {
 		try {
 			switch (getAlgorithmType(file)) {
 				case NGSAII:
-					return new ExperimentAlgorithm<>(NGSAIIFactory.produce(file, experimentProblem.getProblem()),
-							getAlgorithmName(file), experimentProblem, run);
+					return new ExperimentAlgorithm<>(NGSAIIFactory.produce(
+							file,
+							experimentProblem.getProblem()),
+							getAlgorithmName(file),
+							experimentProblem,
+							run);
+				case ESPEA:
+					return new ExperimentAlgorithm<>(ESPEAFactory.produce(
+							file,
+							experimentProblem.getProblem()),
+							getAlgorithmName(file),
+							experimentProblem,
+							run);
+				case WASFGA:
+					// TODO check parameters of WASFGA
+					return new ExperimentAlgorithm<>(WASFGAFactory.produce(
+							file,
+							experimentProblem.getProblem()),
+							getAlgorithmName(file),
+							experimentProblem,
+							run);
+				case MOCell:
+					return new ExperimentAlgorithm<>(MOCellFactory.produce(
+							file,
+							experimentProblem.getProblem()),
+							getAlgorithmName(file),
+							experimentProblem,
+							run);
+				case MOMBI:
+					// TODO check parameters of MOMBI
+					return new ExperimentAlgorithm<>(MOMBIFactory.produce(
+							file,
+							experimentProblem.getProblem()),
+							getAlgorithmName(file),
+							experimentProblem,
+							run);
+				case PESA2:
+					// TODO check parameters of PESA2
+					return new ExperimentAlgorithm<>(PESA2Factory.produce(
+							file,
+							experimentProblem.getProblem()),
+							getAlgorithmName(file),
+							experimentProblem,
+							run);
+				case SMSEMOA:
+					return new ExperimentAlgorithm<>(SMSEMOAFactory.produce(
+							file,
+							experimentProblem.getProblem()),
+							getAlgorithmName(file),
+							experimentProblem,
+							run);
+				case SPEA2:
+					return new ExperimentAlgorithm<>(SPEA2Factory.produce(
+							file,
+							experimentProblem.getProblem()),
+							getAlgorithmName(file),
+							experimentProblem,
+							run);
+				case GWASFGA:
+					// TODO check parameters of PESA2
+					return new ExperimentAlgorithm<>(GWASFGAFactory.produce(
+							file,
+							experimentProblem.getProblem()),
+							getAlgorithmName(file),
+							experimentProblem,
+							run);
 				default:
 					new JMetalException(
 							"AlgorithmFactory.produce(file): unrecognized algorithm type. Check parameter ALGORITHM_TYPE to ensure it has one of the following values: "

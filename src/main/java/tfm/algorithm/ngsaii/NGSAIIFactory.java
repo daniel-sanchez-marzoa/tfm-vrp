@@ -22,11 +22,11 @@ public class NGSAIIFactory {
 		try {
 			return new NSGAIIBuilder<PermutationSolution<Integer>>(
 					problem, CrossoverFactory.produce(file), MutationFactory.produce(file), getPopulationSize(file))
-							.setSelectionOperator(SelectionFactory.produce(file))
-							.setMaxEvaluations(getMaxEvaluations(file))
-							.build();
+					.setSelectionOperator(SelectionFactory.produce(file))
+					.setMaxEvaluations(getMaxEvaluations(file))
+					.build();
 		} catch (Exception e) {
-			new JMetalException("VRPFactory.produce(file): error when reading data file " + e);
+			new JMetalException("NGSAIIFactory.produce(file): error when reading data file " + e);
 
 			return null;
 		}
