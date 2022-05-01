@@ -18,7 +18,7 @@ public class VRPFactory {
 			int numberOfVehicles = getNumberOfVehicles(file);
 			double[][] distanceMatrix = getDistanceMatrix(file, numberOfCities);
 
-			return new VRP(file.getName(), numberOfCities, distanceMatrix, depot, numberOfVehicles);
+			return new VRP(name, numberOfCities, distanceMatrix, depot, numberOfVehicles);
 		} catch (Exception e) {
 			new JMetalException("VRPFactory.produce(file): error when reading data file " + e);
 

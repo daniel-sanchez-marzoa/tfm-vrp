@@ -88,7 +88,6 @@ public class AlgorithmFactory {
 							experimentProblem,
 							run);
 				case GWASFGA:
-					// TODO check parameters of PESA2
 					return new ExperimentAlgorithm<>(GWASFGAFactory.produce(
 							file,
 							experimentProblem.getProblem()),

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
+import org.uma.jmetal.lab.visualization.plot.impl.Plot2D;
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
 import org.uma.jmetal.operator.crossover.impl.PMXCrossover;
 import org.uma.jmetal.operator.mutation.MutationOperator;
@@ -62,9 +63,9 @@ public class VRPRunner {
 
 		algorithm = new NSGAIIBuilder<PermutationSolution<Integer>>(
 				problem, crossover, mutation, populationSize)
-						.setSelectionOperator(selection)
-						.setMaxEvaluations(maxEvaluations)
-						.build();
+				.setSelectionOperator(selection)
+				.setMaxEvaluations(maxEvaluations)
+				.build();
 
 		return algorithm;
 	}
@@ -72,6 +73,11 @@ public class VRPRunner {
 	private void saveResults(Algorithm<List<PermutationSolution<Integer>>> algorithm, AlgorithmRunner algorithmRunner) {
 		List<PermutationSolution<Integer>> population = algorithm.getResult();
 		long computingTime = algorithmRunner.getComputingTime();
+
+		double[][] a = new double[][] { { 1, 2 }, { 2, 2 } };
+
+		Plot2D plot = new Plot2D(a, algorithm.getName());
+		plot.plot();
 
 		new SolutionListOutput(population)
 				.setVarFileOutputContext(new DefaultFileOutputContext("VAR.tsv"))

@@ -16,7 +16,7 @@
 			"request": "launch",
 			"mainClass": "tfm.App",
 			"projectName": "tfm-vrp",
-			"args": "-vrp resources/vrpInstances/square.vrp"
+			"args": "-vrp resources/problems/vrpInstances/square.vrp"
 		},
 		{
 			"type": "java",
@@ -24,7 +24,7 @@
 			"request": "launch",
 			"mainClass": "tfm.App",
 			"projectName": "tfm-vrp",
-			"args": "-vrp resources/vrpInstances/kroA100.vrp"
+			"args": "-vrp resources/problems/vrpInstances/kroA100.vrp"
 		},
 		{
 			"type": "java",
@@ -33,6 +33,14 @@
 			"mainClass": "tfm.App",
 			"projectName": "tfm-vrp",
 			"args": "-vrpe resources/experiments/experiment1/ngsaii-experiment.txt"
+		},
+		{
+			"type": "java",
+			"name": "Experiment - multiple algorithms",
+			"request": "launch",
+			"mainClass": "tfm.App",
+			"projectName": "tfm-vrp",
+			"args": "-vrpe resources/experiments/experiment2/multiple-algorithm-experiment.txt"
 		}
 	]
 }

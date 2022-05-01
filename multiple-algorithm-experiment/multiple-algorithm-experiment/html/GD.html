@@ -1,0 +1,2311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>GD</title>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script><style>
+html { min-width: 1024px; } 
+ h1 {text-align: center} 
+.component { margin : 1em auto 2em auto; width : 90%}
+h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }table { margin: auto; }th,td { border:1px solid black; text-align: center; padding: 15px }caption { display: table-caption; text-align: center; margin: 10px; font-size: 1.5em; }.best { background-color: #41e05c; } .secondBest { background-color: #a3e6ae; } table { margin: auto; }th,td { border:1px solid black; text-align: center; padding: 15px }caption { display: table-caption; text-align: center; margin: 10px; font-size: 1.5em; }.horizontal { display: flex; justify-content: space-evenly; align-items: center;}.fas { flex-shrink: 0; margin: 1px; color: #6b6b6b} table { margin: auto; }th,td { border:1px solid black; text-align: center; padding: 15px }caption { display: table-caption; text-align: center; margin: 10px; font-size: 1.5em; }h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }.svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }.svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }.svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }.svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }.svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }.svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }.svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }.svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }.svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }.svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} h2 { text-align: center; }.grid-container { display: flex; flex-direction: row; flex-wrap: wrap; flex-shrink: 0; justify-content: space-evenly; align-items: center; }.grid-container .grid-item { margin: 15px; }.svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} .svg-container { width: 80%, margin: auto} </style>
+</head>
+<body>
+<h1>GD</h1><div class='component'>
+<div class='grid-container'>
+<div class='grid-item'>
+<div>
+<table>
+<caption>Median values</caption>
+<tr><th></th><th>ESPEA</th><th>NGSAII</th><th>MOCell</th><th>PESA2</th><th>SMSEMOA</th><th>SPEA2</th><th>GWASFGA</th></tr>
+<tr><th>a280.vrp</th><td >7,92089E-1</td><td >6,60419E-1</td><td >1,21904E0</td><td  class='secondBest'>1,83291E-1</td><td >2,69923E-1</td><td  class='best'>1,78252E-1</td><td >1,25348E0</td></tr>
+<tr><th>ali535.vrp</th><td >1,54565E-1</td><td >1,13797E-1</td><td >6,63585E-2</td><td  class='secondBest'>3,74237E-2</td><td >4,34568E-2</td><td  class='best'>1,54928E-2</td><td >1,32519E-1</td></tr>
+<tr><th>att48.vrp</th><td >6,90889E0</td><td >4,10419E0</td><td >2,82433E0</td><td >1,22531E0</td><td  class='secondBest'>6,51417E-1</td><td  class='best'>0E0</td><td >5,07834E0</td></tr>
+<tr><th>att532.vrp</th><td >1,58015E-1</td><td >5,93583E-2</td><td >1,6677E-1</td><td  class='secondBest'>1,24332E-2</td><td  class='best'>7,51638E-3</td><td >2,23612E-2</td><td >1,29031E-1</td></tr>
+<tr><th>eil101.vrp</th><td  class='best'>5,66038E-2</td><td >1,30326E0</td><td >2,62155E0</td><td >3,14627E-1</td><td  class='secondBest'>2,16966E-1</td><td >2,36207E-1</td><td >1,46442E0</td></tr>
+<tr><th>euclidA300.vrp</th><td >1,43188E0</td><td >1,30541E0</td><td >4,07622E-1</td><td  class='secondBest'>1,8028E-1</td><td >2,06946E-1</td><td  class='best'>0E0</td><td >5,40834E-1</td></tr>
+<tr><th>euclidB300.vrp</th><td  class='best'>0E0</td><td >2,55316E0</td><td >1,89563E0</td><td >4,34111E-1</td><td  class='secondBest'>2,77419E-1</td><td >5,40881E-1</td><td >2,62423E0</td></tr>
+<tr><th>kroA100 copy.vrp</th><td >7,26338E-1</td><td  class='best'>0E0</td><td >7,06218E-1</td><td >5,8583E-2</td><td  class='secondBest'>5,77081E-2</td><td >8,9091E-2</td><td >5,94903E-1</td></tr>
+<tr><th>kroA100.vrp</th><td >3,9942E-1</td><td >7,23221E-1</td><td >2,40567E0</td><td  class='secondBest'>1,61902E-1</td><td  class='best'>1,40958E-1</td><td >2,19217E-1</td><td >3,75917E-1</td></tr>
+<tr><th>kroB100.vrp</th><td >4,26368E-1</td><td >3,04445E-1</td><td >4,39163E-1</td><td  class='secondBest'>3,21743E-2</td><td  class='best'>0E0</td><td >5,83841E-2</td><td >4,21514E-1</td></tr>
+<tr><th>pr124.vrp</th><td >6,2032E-1</td><td >3,20169E-1</td><td >6,90125E-1</td><td  class='secondBest'>6,72263E-2</td><td >8,67981E-2</td><td  class='best'>2,17383E-2</td><td >2,74597E-1</td></tr>
+</table>
+</div>
+</div>
+<div class='grid-item'>
+<div>
+<table>
+<caption>Wilcoxon Test</caption>
+<tr><th></th><th>NGSAII</th><th>MOCell</th><th>PESA2</th><th>SMSEMOA</th><th>SPEA2</th><th>GWASFGA</th></tr>
+<tr><th>ESPEA</th><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i></div></td></tr>
+<tr><th>NGSAII</th><td><div class='horizontal'></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i></div></td></tr>
+<tr><th>MOCell</th><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'></div></td><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i></div></td></tr>
+<tr><th>PESA2</th><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td><td><div class='horizontal'></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td></tr>
+<tr><th>SMSEMOA</th><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'></div></td><td><div class='horizontal'><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td></tr>
+<tr><th>SPEA2</th><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='far fa-arrow-alt-circle-down'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td><td><div class='horizontal'></div></td><td><div class='horizontal'><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i><i class='fas fa-arrow-alt-circle-up'></i></div></td></tr>
+</table>
+</div>
+</div>
+<div class='grid-item'>
+<div>
+<table>
+<caption>Friedman ranking and Holm test</caption>
+<tr><th>Algorithm</th><th>Ranking</th><th>p-value</th><th>Holm</th><th>Hypothesis</th></tr>
+<tr><td>SMSEMOA</td><td>2,091</td><td>0E0</td><td>0</td><td>-</td></tr>
+<tr><td>SPEA2</td><td>2,273</td><td>6,015E-1</td><td>0,05</td><td>Accepted</td></tr>
+<tr><td>PESA2</td><td>2,455</td><td>2,963E-1</td><td>0,025</td><td>Accepted</td></tr>
+<tr><td>NGSAII</td><td>4,636</td><td>2,646E-13</td><td>0,017</td><td>Rejected</td></tr>
+<tr><td>ESPEA</td><td>5,273</td><td>6,299E-20</td><td>0,013</td><td>Rejected</td></tr>
+<tr><td>GWASFGA</td><td>5,455</td><td>4,402E-22</td><td>0,01</td><td>Rejected</td></tr>
+<tr><td>MOCell</td><td>5,818</td><td>9,563E-27</td><td>0,008</td><td>Rejected</td></tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class='component'>
+<h2>a280.vrp</h2>
+<div class='grid-container'>
+<div class='grid-item'>
+<div id='821405353' class='js-plotly-plot'></div>    <script>
+        var target_821405353 = document.getElementById('821405353');
+        var layout = {
+    title: 'a280.vrp',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["ESPEA","NGSAII","MOCell","PESA2","SMSEMOA","SPEA2","GWASFGA"],
+y: [0.792088594260246, 0.660418754236807, 1.2190431519699811, 0.18329130356652834, 0.2699225749415565, 0.1782518261318937, 1.2534751527109427],
+xaxis: 'x',
+yaxis: 'y',
+type: 'box',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_821405353, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='79919994' class='js-plotly-plot'></div>    <script>
+        var target_79919994 = document.getElementById('79919994');
+        var layout = {
+    title: 'ESPEA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["39697","41758","39431","42365"],
+y: ["37","36","40","35"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_79919994, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='979550269' class='js-plotly-plot'></div>    <script>
+        var target_979550269 = document.getElementById('979550269');
+        var layout = {
+    title: 'NGSAII',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["40211","39937"],
+y: ["35","39"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_979550269, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='2052223912' class='js-plotly-plot'></div>    <script>
+        var target_2052223912 = document.getElementById('2052223912');
+        var layout = {
+    title: 'MOCell',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["42690","39025"],
+y: ["35","37"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_2052223912, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1807176311' class='js-plotly-plot'></div>    <script>
+        var target_1807176311 = document.getElementById('1807176311');
+        var layout = {
+    title: 'PESA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["39584","39584","39584","39584","39584","39584","39584","40416","39584","40416","39584","40416","40416","39584","40416","39584","40416","39584","40416","40416","39584","40416","39584","39584","39584","40416","39584","40416","39584","40325","40416","40325","39584","40325","40416","40325","40416","40325","40416","40325","40416","40325","40416","39584","40325","39584","40325","39584","40325","40416","40325","39584","40325","39584","40325","40416","40325","39584","40416","40325","39584","40325","39584","40325","39584","40325","39584","40325","39584","40325","39584","40416","40325","40416","40325","40416","40325","40416","39584","40325","40416","40325","40416","40325","40416","40325","39584","40325","40416","40325","40416","40325","40416","40325","40416","40325","40416","40325","40416","40325"],
+y: ["42","42","42","42","42","42","42","37","42","37","42","37","37","42","37","42","37","42","37","37","42","37","42","42","42","37","42","37","42","39","37","39","42","39","37","39","37","39","37","39","37","39","37","42","39","42","39","42","39","37","39","42","39","42","39","37","39","42","37","39","42","39","42","39","42","39","42","39","42","39","42","37","39","37","39","37","39","37","42","39","37","39","37","39","37","39","42","39","37","39","37","39","37","39","37","39","37","39","37","39"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1807176311, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='58890976' class='js-plotly-plot'></div>    <script>
+        var target_58890976 = document.getElementById('58890976');
+        var layout = {
+    title: 'SMSEMOA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["42373","39726","39664","40269","41319","41962","39664","39664","39726","39664","39664","39726","39664","41962","41319","39664","41962","41962","39664","41319","39726","39664","41319","39664","41319","39726","39726","39726","39664","39726","40269","39664","41962","39664","41962","41962","39664","39726","39726","41962","41962","40269","41319","41962","41962","41319","39726","39726","39726","39726","39726","39726","39726","39726","39726","39726","39726","41319","39726","39726","40269","39664","39726","39664","39726","41962","41319","41319","41319","40269","39726","41319","41962","41319","41962","39664","41319","39726","39726","40269","41319","39726","39664","39664","41319","39664","41319","40269","39664","41962","41319","41962","39726","39664","41319","39726","41962","39726","39726","39726"],
+y: ["38","42","43","41","40","39","43","43","42","43","43","42","43","39","40","43","39","39","43","40","42","43","40","43","40","42","42","42","43","42","41","43","39","43","39","39","43","42","42","39","39","41","40","39","39","40","42","42","42","42","42","42","42","42","42","42","42","40","42","42","41","43","42","43","42","39","40","40","40","41","42","40","39","40","39","43","40","42","42","41","40","42","43","43","40","43","40","41","43","39","40","39","42","43","40","42","39","42","42","42"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_58890976, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1149407114' class='js-plotly-plot'></div>    <script>
+        var target_1149407114 = document.getElementById('1149407114');
+        var layout = {
+    title: 'SPEA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["40091","40091","40091","40091","40091","40091","40091","40091","40091","39370","39370","39370","39370","40091","40091","39370","40091","39370","39370","40091","39370","40091","40091","39370","40091","40091","40091","40091","40091","40091","40091","39370","40091","39370","40091","39370","39370","39370","40091","39370","39370","40091","39370","40091","40091","39370","40091","39370","39370","40091","40091","39370","39370","39370","39370","39370","40091","39370","39370","40091","39370","40091","40091","39370","40091","39370","39370","40091","39370","39370","40091","39370","39370","39370","39370","39370","39370","40091","40091","39370","39370","39370","40091","40091","39370","39370","39370","40091","40091","39370","40091","40091","40091","40091","40091","39370","39370","39370","39370","40091"],
+y: ["35","35","35","35","35","35","35","35","35","42","42","42","42","35","35","42","35","42","42","35","42","35","35","42","35","35","35","35","35","35","35","42","35","42","35","42","42","42","35","42","42","35","42","35","35","42","35","42","42","35","35","42","42","42","42","42","35","42","42","35","42","35","35","42","35","42","42","35","42","42","35","42","42","42","42","42","42","35","35","42","42","42","35","35","42","42","42","35","35","42","35","35","35","35","35","42","42","42","42","35"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1149407114, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1306794776' class='js-plotly-plot'></div>    <script>
+        var target_1306794776 = document.getElementById('1306794776');
+        var layout = {
+    title: 'GWASFGA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["39450","42675"],
+y: ["37","36"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1306794776, data, layout);            </script>
+</div>
+</div>
+</div>
+<div class='component'>
+<h2>ali535.vrp</h2>
+<div class='grid-container'>
+<div class='grid-item'>
+<div id='1648582287' class='js-plotly-plot'></div>    <script>
+        var target_1648582287 = document.getElementById('1648582287');
+        var layout = {
+    title: 'ali535.vrp',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["ESPEA","NGSAII","MOCell","PESA2","SMSEMOA","SPEA2","GWASFGA"],
+y: [0.15456470187313506, 0.11379737930729084, 0.06635848493886072, 0.03742368137658079, 0.04345678064956919, 0.015492782073832097, 0.13251897487979103],
+xaxis: 'x',
+yaxis: 'y',
+type: 'box',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1648582287, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='660595601' class='js-plotly-plot'></div>    <script>
+        var target_660595601 = document.getElementById('660595601');
+        var layout = {
+    title: 'ESPEA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["39799","39301","41187"],
+y: ["42","44","41"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_660595601, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='837246258' class='js-plotly-plot'></div>    <script>
+        var target_837246258 = document.getElementById('837246258');
+        var layout = {
+    title: 'NGSAII',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["38870","41449","39429","40726"],
+y: ["45","40","43","41"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_837246258, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='798622176' class='js-plotly-plot'></div>    <script>
+        var target_798622176 = document.getElementById('798622176');
+        var layout = {
+    title: 'MOCell',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["38357","39587"],
+y: ["44","42"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_798622176, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1467515534' class='js-plotly-plot'></div>    <script>
+        var target_1467515534 = document.getElementById('1467515534');
+        var layout = {
+    title: 'PESA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["39877","39877","39263","39263","39877","39263","40384","40384","39877","40384","40224","39316","39877","40224","39316","39877","40384","39316","40224","40384","40224","39316","40224","39316","40384","39877","40224","39316","39263","40224","39877","40384","39877","40224","39263","40384","39877","40224","40384","39263","39877","39263","40384","39316","39263","40384","40384","39263","39263","40384","39877","39263","39263","40384","39263","40224","39877","39316","39877","40384","40224","39316","40224","39316","39263","40224","40384","39316","39877","40384","39316","39263","40224","39316","40224","39263","39316","39877","40224","39263","40384","39877","39316","39263","39316","39877","40224","40384","40384","39316","39263","39316","39263","39316","40224","40224","39877","39316","40224","39316"],
+y: ["44","44","46","46","44","46","40","40","44","40","43","45","44","43","45","44","40","45","43","40","43","45","43","45","40","44","43","45","46","43","44","40","44","43","46","40","44","43","40","46","44","46","40","45","46","40","40","46","46","40","44","46","46","40","46","43","44","45","44","40","43","45","43","45","46","43","40","45","44","40","45","46","43","45","43","46","45","44","43","46","40","44","45","46","45","44","43","40","40","45","46","45","46","45","43","43","44","45","43","45"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1467515534, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='365056370' class='js-plotly-plot'></div>    <script>
+        var target_365056370 = document.getElementById('365056370');
+        var layout = {
+    title: 'SMSEMOA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["39617","41710","39200","38916","40342","39120","39617","39617","39200","39200","39200","38916","39200","38916","39200","39200","39120","38916","39200","39200","39200","39200","39617","38916","39120","38916","38916","41710","39200","38916","41710","39200","41710","41710","39200","39200","39617","39200","39120","39617","39120","39120","39617","41710","39200","38916","39200","39617","39617","41710","38916","38916","39617","38916","40342","39200","39200","39617","40342","41710","38916","40342","39200","39617","39120","38916","41710","39200","39200","38916","38916","38916","39200","39200","39200","39200","40342","41710","39617","39617","40342","38916","39617","39617","39200","39200","39200","38916","41710","39617","39617","39120","40342","38916","39200","39200","39200","39200","38916","41710"],
+y: ["43","39","44","48","42","45","43","43","44","44","44","48","44","48","44","44","45","48","44","44","44","44","43","48","45","48","48","39","44","48","39","44","39","39","44","44","43","44","45","43","45","45","43","39","44","48","44","43","43","39","48","48","43","48","42","44","44","43","42","39","48","42","44","43","45","48","39","44","44","48","48","48","44","44","44","44","42","39","43","43","42","48","43","43","44","44","44","48","39","43","43","45","42","48","44","44","44","44","48","39"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_365056370, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1530957282' class='js-plotly-plot'></div>    <script>
+        var target_1530957282 = document.getElementById('1530957282');
+        var layout = {
+    title: 'SPEA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["40684","40684","40684","40684","40684","40684","40684","39142","40684","39142","40684","40684","39142","39142","40684","39142","39142","39142","39142","40684","39142","39142","40684","39142","39142","39142","39142","39142","40684","39142","39142","39142","40684","39142","39142","40684","40684","39142","40684","40684","39142","40684","40684","39142","40684","39142","40684","40684","40684","39142","40684","39142","39142","40684","40684","39142","39142","39142","39142","40684","39142","40684","39142","40684","39142","40684","39142","39142","40684","40684","39142","40684","40684","40684","40684","40684","40684","40684","40684","39142","40684","40684","39142","39142","40684","40684","40684","39142","39142","39142","39142","40684","40684","39142","39142","39142","39142","39142","39142","40684"],
+y: ["41","41","41","41","41","41","41","42","41","42","41","41","42","42","41","42","42","42","42","41","42","42","41","42","42","42","42","42","41","42","42","42","41","42","42","41","41","42","41","41","42","41","41","42","41","42","41","41","41","42","41","42","42","41","41","42","42","42","42","41","42","41","42","41","42","41","42","42","41","41","42","41","41","41","41","41","41","41","41","42","41","41","42","42","41","41","41","42","42","42","42","41","41","42","42","42","42","42","42","41"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1530957282, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='647149117' class='js-plotly-plot'></div>    <script>
+        var target_647149117 = document.getElementById('647149117');
+        var layout = {
+    title: 'GWASFGA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["38860","40679"],
+y: ["45","40"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_647149117, data, layout);            </script>
+</div>
+</div>
+</div>
+<div class='component'>
+<h2>att48.vrp</h2>
+<div class='grid-container'>
+<div class='grid-item'>
+<div id='1327895536' class='js-plotly-plot'></div>    <script>
+        var target_1327895536 = document.getElementById('1327895536');
+        var layout = {
+    title: 'att48.vrp',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["ESPEA","NGSAII","MOCell","PESA2","SMSEMOA","SPEA2","GWASFGA"],
+y: [6.908889497671804, 4.104188141942207, 2.8243326129950628, 1.2253059901177286, 0.6514172927469825, 0.0, 5.0783446632326585],
+xaxis: 'x',
+yaxis: 'y',
+type: 'box',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1327895536, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='137533686' class='js-plotly-plot'></div>    <script>
+        var target_137533686 = document.getElementById('137533686');
+        var layout = {
+    title: 'ESPEA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["257469","279048","254549"],
+y: ["20","19","23"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_137533686, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1868578472' class='js-plotly-plot'></div>    <script>
+        var target_1868578472 = document.getElementById('1868578472');
+        var layout = {
+    title: 'NGSAII',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["239295","256362"],
+y: ["22","18"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1868578472, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='662666738' class='js-plotly-plot'></div>    <script>
+        var target_662666738 = document.getElementById('662666738');
+        var layout = {
+    title: 'MOCell',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["241055","249871"],
+y: ["20","18"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_662666738, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1058822936' class='js-plotly-plot'></div>    <script>
+        var target_1058822936 = document.getElementById('1058822936');
+        var layout = {
+    title: 'PESA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["260916","260916","260916","260916","260916","260916","260916","259833","260916","260916","259833","260916","259833","259833","260916","259833","259833","259833","259833","260916","260916","259833","260916","278220","264092","259833","260916","278220","259833","278220","264092","265678","260916","278220","278220","265678","264092","260916","259833","265678","260916","265678","260916","259833","278220","264092","265678","264092","278220","278220","265678","264092","264092","278220","260916","259833","265678","265678","278220","264092","259833","265678","278220","259833","264092","278220","264092","278220","265678","278220","265678","278220","264092","265678","264092","278220","259833","264092","265678","278220","264092","265678","265678","264092","278220","264092","265678","265678","264092","264092","265678","259833","264092","265678","259833","278220","265678","264092","259833","278220"],
+y: ["22","22","22","22","22","22","22","25","22","22","25","22","25","25","22","25","25","25","25","22","22","25","22","18","20","25","22","18","25","18","20","19","22","18","18","19","20","22","25","19","22","19","22","25","18","20","19","20","18","18","19","20","20","18","22","25","19","19","18","20","25","19","18","25","20","18","20","18","19","18","19","18","20","19","20","18","25","20","19","18","20","19","19","20","18","20","19","19","20","20","19","25","20","19","25","18","19","20","25","18"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1058822936, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='501608718' class='js-plotly-plot'></div>    <script>
+        var target_501608718 = document.getElementById('501608718');
+        var layout = {
+    title: 'SMSEMOA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["253784","234621","234621","253784","234621","234621","253784","253784","253784","253784","253784","253784","253784","234621","253784","253784","253784","253784","253784","234621","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","234621","253784","253784","253784","253784","234621","253784","253784","253784","253784","253784","234621","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","253784","234621","253784","253784","253784","253784","253784","234621","253784","253784","253784","253784","253784","253784","253784","253784","234621","253784","253784","253784","253784","253784","253784","253784"],
+y: ["19","20","20","19","20","20","19","19","19","19","19","19","19","20","19","19","19","19","19","20","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","20","19","19","19","19","20","19","19","19","19","19","20","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","19","20","19","19","19","19","19","20","19","19","19","19","19","19","19","19","20","19","19","19","19","19","19","19"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_501608718, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1021565792' class='js-plotly-plot'></div>    <script>
+        var target_1021565792 = document.getElementById('1021565792');
+        var layout = {
+    title: 'SPEA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043","237043"],
+y: ["17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17","17"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1021565792, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='2086068274' class='js-plotly-plot'></div>    <script>
+        var target_2086068274 = document.getElementById('2086068274');
+        var layout = {
+    title: 'GWASFGA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["253695","254245"],
+y: ["24","17"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_2086068274, data, layout);            </script>
+</div>
+</div>
+</div>
+<div class='component'>
+<h2>att532.vrp</h2>
+<div class='grid-container'>
+<div class='grid-item'>
+<div id='883020350' class='js-plotly-plot'></div>    <script>
+        var target_883020350 = document.getElementById('883020350');
+        var layout = {
+    title: 'att532.vrp',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["ESPEA","NGSAII","MOCell","PESA2","SMSEMOA","SPEA2","GWASFGA"],
+y: [0.15801537404207533, 0.05935832237428371, 0.16677036415840654, 0.01243321480508339, 0.007516380587657265, 0.022361166076357762, 0.12903093570504245],
+xaxis: 'x',
+yaxis: 'y',
+type: 'box',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_883020350, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='749981974' class='js-plotly-plot'></div>    <script>
+        var target_749981974 = document.getElementById('749981974');
+        var layout = {
+    title: 'ESPEA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["1721759","1719636","1804739","1807165"],
+y: ["43","46","42","41"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_749981974, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='500885972' class='js-plotly-plot'></div>    <script>
+        var target_500885972 = document.getElementById('500885972');
+        var layout = {
+    title: 'NGSAII',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["1769539","1712426","1724746"],
+y: ["41","45","43"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_500885972, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1731763415' class='js-plotly-plot'></div>    <script>
+        var target_1731763415 = document.getElementById('1731763415');
+        var layout = {
+    title: 'MOCell',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["1735231","1833928"],
+y: ["42","41"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1731763415, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='879311326' class='js-plotly-plot'></div>    <script>
+        var target_879311326 = document.getElementById('879311326');
+        var layout = {
+    title: 'PESA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["1768836","1768836","1768836","1741186","1741186","1768836","1741186","1741186","1768836","1768836","1768836","1768836","1741186","1835524","1741186","1768836","1835524","1741186","1711334","1768836","1711334","1768836","1741186","1835524","1711334","1741186","1768836","1768836","1711334","1835524","1768836","1835524","1741186","1711334","1835524","1768836","1741186","1768836","1711334","1741186","1711334","1741186","1835524","1711334","1768836","1741186","1768836","1711334","1711334","1741186","1768836","1768836","1741186","1741186","1711334","1835524","1741186","1768836","1711334","1835524","1741186","1711334","1741186","1711334","1768836","1835524","1711334","1835524","1711334","1835524","1711334","1835524","1741186","1835524","1768836","1741186","1835524","1835524","1711334","1835524","1711334","1835524","1741186","1741186","1768836","1835524","1711334","1835524","1741186","1835524","1711334","1835524","1768836","1711334","1835524","1835524","1711334","1711334","1835524","1768836"],
+y: ["40","40","40","44","44","40","44","44","40","40","40","40","44","39","44","40","39","44","45","40","45","40","44","39","45","44","40","40","45","39","40","39","44","45","39","40","44","40","45","44","45","44","39","45","40","44","40","45","45","44","40","40","44","44","45","39","44","40","45","39","44","45","44","45","40","39","45","39","45","39","45","39","44","39","40","44","39","39","45","39","45","39","44","44","40","39","45","39","44","39","45","39","40","45","39","39","45","45","39","40"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_879311326, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1850597818' class='js-plotly-plot'></div>    <script>
+        var target_1850597818 = document.getElementById('1850597818');
+        var layout = {
+    title: 'SMSEMOA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["1699814","1748105","1757987","1746419","1749142","1749142","1757987","1748105","1748105","1749142","1746419","1746419","1749142","1699814","1746419","1748105","1748105","1699814","1699814","1748105","1748105","1749142","1699814","1748105","1748105","1699814","1699814","1749142","1748105","1748105","1699814","1699814","1699814","1749142","1699814","1748105","1749142","1746419","1699814","1699814","1748105","1699814","1748105","1749142","1699814","1699814","1749142","1699814","1748105","1749142","1699814","1699814","1748105","1699814","1748105","1699814","1749142","1699814","1749142","1749142","1748105","1748105","1699814","1749142","1749142","1757987","1749142","1749142","1699814","1699814","1699814","1699814","1748105","1748105","1749142","1757987","1699814","1699814","1748105","1749142","1699814","1748105","1749142","1748105","1748105","1699814","1699814","1699814","1757987","1699814","1749142","1749142","1699814","1757987","1748105","1748105","1699814","1748105","1748105","1749142"],
+y: ["45","42","40","44","41","41","40","42","42","41","44","44","41","45","44","42","42","45","45","42","42","41","45","42","42","45","45","41","42","42","45","45","45","41","45","42","41","44","45","45","42","45","42","41","45","45","41","45","42","41","45","45","42","45","42","45","41","45","41","41","42","42","45","41","41","40","41","41","45","45","45","45","42","42","41","40","45","45","42","41","45","42","41","42","42","45","45","45","40","45","41","41","45","40","42","42","45","42","42","41"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1850597818, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='275057010' class='js-plotly-plot'></div>    <script>
+        var target_275057010 = document.getElementById('275057010');
+        var layout = {
+    title: 'SPEA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["1740357","1740357","1740357","1740357","1722555","1722555","1740357","1740357","1722555","1722555","1740357","1746702","1722555","1810174","1722555","1740357","1810174","1722555","1740357","1746702","1746702","1746702","1740357","1740357","1810174","1810174","1810174","1746702","1722555","1810174","1722555","1810174","1810174","1746702","1722555","1722555","1740357","1722555","1740357","1722555","1722555","1746702","1740357","1746702","1746702","1810174","1810174","1740357","1740357","1740357","1810174","1722555","1722555","1810174","1810174","1810174","1722555","1810174","1722555","1810174","1740357","1746702","1810174","1722555","1810174","1746702","1746702","1810174","1722555","1746702","1722555","1810174","1722555","1746702","1740357","1722555","1810174","1810174","1746702","1722555","1746702","1746702","1746702","1740357","1746702","1810174","1740357","1740357","1746702","1746702","1746702","1746702","1722555","1740357","1740357","1746702","1810174","1810174","1740357","1746702"],
+y: ["43","43","43","43","45","45","43","43","45","45","43","42","45","41","45","43","41","45","43","42","42","42","43","43","41","41","41","42","45","41","45","41","41","42","45","45","43","45","43","45","45","42","43","42","42","41","41","43","43","43","41","45","45","41","41","41","45","41","45","41","43","42","41","45","41","42","42","41","45","42","45","41","45","42","43","45","41","41","42","45","42","42","42","43","42","41","43","43","42","42","42","42","45","43","43","42","41","41","43","42"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_275057010, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='2109219208' class='js-plotly-plot'></div>    <script>
+        var target_2109219208 = document.getElementById('2109219208');
+        var layout = {
+    title: 'GWASFGA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["1738374","1748496","1819360"],
+y: ["43","42","41"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_2109219208, data, layout);            </script>
+</div>
+</div>
+</div>
+<div class='component'>
+<h2>eil101.vrp</h2>
+<div class='grid-container'>
+<div class='grid-item'>
+<div id='567852253' class='js-plotly-plot'></div>    <script>
+        var target_567852253 = document.getElementById('567852253');
+        var layout = {
+    title: 'eil101.vrp',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["ESPEA","NGSAII","MOCell","PESA2","SMSEMOA","SPEA2","GWASFGA"],
+y: [0.05660377358490565, 1.3032592005929997, 2.6215521275528393, 0.314626979029666, 0.2169659417762971, 0.2362070444447768, 1.4644199828540208],
+xaxis: 'x',
+yaxis: 'y',
+type: 'box',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_567852253, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1923634832' class='js-plotly-plot'></div>    <script>
+        var target_1923634832 = document.getElementById('1923634832');
+        var layout = {
+    title: 'ESPEA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["3850","3865"],
+y: ["29","25"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1923634832, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1347016913' class='js-plotly-plot'></div>    <script>
+        var target_1347016913 = document.getElementById('1347016913');
+        var layout = {
+    title: 'NGSAII',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["4055","3812","3932"],
+y: ["29","32","30"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1347016913, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='373544622' class='js-plotly-plot'></div>    <script>
+        var target_373544622 = document.getElementById('373544622');
+        var layout = {
+    title: 'MOCell',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["4276","3915","3879"],
+y: ["27","28","32"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_373544622, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='181078384' class='js-plotly-plot'></div>    <script>
+        var target_181078384 = document.getElementById('181078384');
+        var layout = {
+    title: 'PESA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["4122","4122","3844","3844","4122","3844","3844","3844","4122","3844","3996","4122","3996","3844","4122","3996","3844","3996","3844","4122","3844","3996","3844","3996","4122","3996","3844","3996","3844","3996","3844","3996","4122","3996","3844","3996","4122","3996","3844","3996","4122","3844","3996","3844","3996","3844","3996","4122","3844","3996","4122","3996","4122","3996","4122","3844","4122","3996","4122","3844","4122","3844","4122","3844","4122","3844","4122","3844","4122","3844","4122","3844","3996","3844","4122","3996","4122","3996","4122","3996","4122","3996","4122","3996","3844","3996","3844","3996","4122","3844","3996","4122","3996","3844","4122","3996","4122","3996","4122","3996"],
+y: ["25","25","29","29","25","29","29","29","25","29","28","25","28","29","25","28","29","28","29","25","29","28","29","28","25","28","29","28","29","28","29","28","25","28","29","28","25","28","29","28","25","29","28","29","28","29","28","25","29","28","25","28","25","28","25","29","25","28","25","29","25","29","25","29","25","29","25","29","25","29","25","29","28","29","25","28","25","28","25","28","25","28","25","28","29","28","29","28","25","29","28","25","28","29","25","28","25","28","25","28"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_181078384, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1734184117' class='js-plotly-plot'></div>    <script>
+        var target_1734184117 = document.getElementById('1734184117');
+        var layout = {
+    title: 'SMSEMOA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["3911","3971","3921","4127","3921","3971","3921","3911","3921","3921","3921","3921","3921","3921","3911","3921","3921","3921","3921","3921","3921","3921","3971","3921","3971","4127","3921","3921","3921","3971","3921","3971","3921","3921","3921","3921","3921","3971","4127","3921","3921","3921","4127","3921","3921","3921","3921","3921","3921","3921","3921","3921","3921","3971","4127","3971","3921","3921","3971","4127","3921","3921","3921","3921","3971","3921","3921","3921","3921","3921","3921","3921","3921","3921","3921","3921","3921","3921","3921","3971","3921","3921","3921","3921","3911","3921","4127","4127","4127","3921","3921","3971","3921","4127","3921","3921","4127","3921","3921","3971"],
+y: ["34","29","31","28","31","29","31","34","31","31","31","31","31","31","34","31","31","31","31","31","31","31","29","31","29","28","31","31","31","29","31","29","31","31","31","31","31","29","28","31","31","31","28","31","31","31","31","31","31","31","31","31","31","29","28","29","31","31","29","28","31","31","31","31","29","31","31","31","31","31","31","31","31","31","31","31","31","31","31","29","31","31","31","31","34","31","28","28","28","31","31","29","31","28","31","31","28","31","31","29"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1734184117, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='830864010' class='js-plotly-plot'></div>    <script>
+        var target_830864010 = document.getElementById('830864010');
+        var layout = {
+    title: 'SPEA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","4038","3895","3895","4038","4038","3895","4038","4038","3895","4038","4038","3895","3895","3895","3895","4038","3895","3895","4038","4038","3895","3895","3895","3895","3895","3895","3895","3895","3895","3895","3895","3895","3895","4038","3895","3895","3895","3895","3895","4038","4038","3895","4038","3895","3895","3895","4038","3895","3895","3895","4038","3895","4038","4038","3895","4038","3895","3895","3895","3895","3895","4038","3895","3895","3895","3895","4038","4038","3895","4038","4038","3895","4038","3895","3895","4038","4038"],
+y: ["25","25","25","25","25","25","25","25","25","25","25","25","25","25","25","25","25","25","25","25","25","25","25","25","28","28","25","25","28","25","25","28","25","25","28","28","28","28","25","28","28","25","25","28","28","28","28","28","28","28","28","28","28","28","28","28","25","28","28","28","28","28","25","25","28","25","28","28","28","25","28","28","28","25","28","25","25","28","25","28","28","28","28","28","25","28","28","28","28","25","25","28","25","25","28","25","28","28","25","25"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_830864010, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='198099024' class='js-plotly-plot'></div>    <script>
+        var target_198099024 = document.getElementById('198099024');
+        var layout = {
+    title: 'GWASFGA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["3834","3840","3880","4172"],
+y: ["34","31","30","27"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_198099024, data, layout);            </script>
+</div>
+</div>
+</div>
+<div class='component'>
+<h2>euclidA300.vrp</h2>
+<div class='grid-container'>
+<div class='grid-item'>
+<div id='73698568' class='js-plotly-plot'></div>    <script>
+        var target_73698568 = document.getElementById('73698568');
+        var layout = {
+    title: 'euclidA300.vrp',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["ESPEA","NGSAII","MOCell","PESA2","SMSEMOA","SPEA2","GWASFGA"],
+y: [1.4318760458127453, 1.3054095283546772, 0.4076219347910836, 0.18027952026159913, 0.20694589264164404, 0.0, 0.5408336345419285],
+xaxis: 'x',
+yaxis: 'y',
+type: 'box',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_73698568, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='403598051' class='js-plotly-plot'></div>    <script>
+        var target_403598051 = document.getElementById('403598051');
+        var layout = {
+    title: 'ESPEA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["561569","532208"],
+y: ["38","39"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_403598051, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1752535088' class='js-plotly-plot'></div>    <script>
+        var target_1752535088 = document.getElementById('1752535088');
+        var layout = {
+    title: 'NGSAII',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["544843","578651","545977","545041"],
+y: ["43","36","37","40"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1752535088, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1135935032' class='js-plotly-plot'></div>    <script>
+        var target_1135935032 = document.getElementById('1135935032');
+        var layout = {
+    title: 'MOCell',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["528200","537940","546004"],
+y: ["42","38","37"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1135935032, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='2144067942' class='js-plotly-plot'></div>    <script>
+        var target_2144067942 = document.getElementById('2144067942');
+        var layout = {
+    title: 'PESA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["534753","534753","534753","541936","534753","534753","541936","534753","541936","534753","541936","534753","534753","541936","534753","541936","534753","541936","541936","541936","562232","541936","562232","541936","562232","541936","562232","541936","562232","541936","562232","541936","562232","541936","562232","541936","562232","541936","562232","534753","562232","541936","534753","541936","534753","562232","534753","562232","534753","562232","541936","534753","562232","534753","562232","534753","562232","534753","562232","534753","562232","541936","534753","562232","534753","562232","534753","541936","562232","534753","562232","541936","534753","562232","534753","562232","541936","562232","541936","562232","534753","562232","541936","562232","541936","534753","541936","534753","541936","534753","562232","541936","562232","534753","562232","541936","562232","541936","534753","541936"],
+y: ["42","42","42","39","42","42","39","42","39","42","39","42","42","39","42","39","42","39","39","39","38","39","38","39","38","39","38","39","38","39","38","39","38","39","38","39","38","39","38","42","38","39","42","39","42","38","42","38","42","38","39","42","38","42","38","42","38","42","38","42","38","39","42","38","42","38","42","39","38","42","38","39","42","38","42","38","39","38","39","38","42","38","39","38","39","42","39","42","39","42","38","39","38","42","38","39","38","39","42","39"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_2144067942, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1007660683' class='js-plotly-plot'></div>    <script>
+        var target_1007660683 = document.getElementById('1007660683');
+        var layout = {
+    title: 'SMSEMOA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["529878","573542","554686","554686","554686","573542","554686","554686","529878","573542","554686","529878","554686","529878","554686","554686","529878","554686","554686","554686","529878","529878","554686","529878","554686","554686","554686","529878","529878","554686","554686","529878","529878","554686","529878","554686","554686","554686","529878","554686","529878","554686","529878","554686","529878","554686","554686","573542","529878","554686","554686","573542","529878","529878","554686","554686","554686","554686","554686","573542","554686","529878","573542","529878","554686","529878","554686","554686","554686","554686","529878","554686","554686","529878","554686","554686","554686","573542","554686","529878","554686","554686","554686","554686","573542","554686","554686","554686","529878","529878","554686","554686","554686","529878","554686","554686","554686","573542","554686","529878"],
+y: ["38","36","37","37","37","36","37","37","38","36","37","38","37","38","37","37","38","37","37","37","38","38","37","38","37","37","37","38","38","37","37","38","38","37","38","37","37","37","38","37","38","37","38","37","38","37","37","36","38","37","37","36","38","38","37","37","37","37","37","36","37","38","36","38","37","38","37","37","37","37","38","37","37","38","37","37","37","36","37","38","37","37","37","37","36","37","37","37","38","38","37","37","37","38","37","37","37","36","37","38"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1007660683, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1196963280' class='js-plotly-plot'></div>    <script>
+        var target_1196963280 = document.getElementById('1196963280');
+        var layout = {
+    title: 'SPEA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["527959","527959","527959","527959","527959","527959","527959","527959","527959","527959","527959","527959","527959","536793","527959","527959","536793","536793","536793","536793","536793","527959","536793","536793","536793","536793","536793","527959","527959","527959","536793","527959","527959","527959","536793","536793","527959","536793","536793","527959","536793","527959","536793","536793","536793","536793","536793","536793","527959","527959","536793","536793","527959","536793","536793","527959","536793","536793","527959","536793","527959","536793","536793","527959","527959","527959","536793","536793","536793","536793","536793","527959","527959","527959","536793","527959","536793","527959","527959","536793","527959","527959","527959","527959","536793","536793","536793","527959","536793","536793","536793","536793","527959","527959","527959","536793","536793","536793","527959","527959"],
+y: ["42","42","42","42","42","42","42","42","42","42","42","42","42","34","42","42","34","34","34","34","34","42","34","34","34","34","34","42","42","42","34","42","42","42","34","34","42","34","34","42","34","42","34","34","34","34","34","34","42","42","34","34","42","34","34","42","34","34","42","34","42","34","34","42","42","42","34","34","34","34","34","42","42","42","34","42","34","42","42","34","42","42","42","42","34","34","34","42","34","34","34","34","42","42","42","34","34","34","42","42"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1196963280, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1556162299' class='js-plotly-plot'></div>    <script>
+        var target_1556162299 = document.getElementById('1556162299');
+        var layout = {
+    title: 'GWASFGA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["537092","537288"],
+y: ["42","38"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1556162299, data, layout);            </script>
+</div>
+</div>
+</div>
+<div class='component'>
+<h2>euclidB300.vrp</h2>
+<div class='grid-container'>
+<div class='grid-item'>
+<div id='1023996948' class='js-plotly-plot'></div>    <script>
+        var target_1023996948 = document.getElementById('1023996948');
+        var layout = {
+    title: 'euclidB300.vrp',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["ESPEA","NGSAII","MOCell","PESA2","SMSEMOA","SPEA2","GWASFGA"],
+y: [0.0, 2.55316455203994, 1.8956261711642002, 0.43411067964939976, 0.27741862326764827, 0.5408811981121024, 2.6242343491446007],
+xaxis: 'x',
+yaxis: 'y',
+type: 'box',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1023996948, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='788892585' class='js-plotly-plot'></div>    <script>
+        var target_788892585 = document.getElementById('788892585');
+        var layout = {
+    title: 'ESPEA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["525635","520643"],
+y: ["36","38"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_788892585, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='820677698' class='js-plotly-plot'></div>    <script>
+        var target_820677698 = document.getElementById('820677698');
+        var layout = {
+    title: 'NGSAII',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["549331","528335"],
+y: ["38","39"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_820677698, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1407324685' class='js-plotly-plot'></div>    <script>
+        var target_1407324685 = document.getElementById('1407324685');
+        var layout = {
+    title: 'MOCell',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["535290","555758","556848","532878","531748","539450"],
+y: ["41","38","37","42","46","40"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1407324685, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='711310244' class='js-plotly-plot'></div>    <script>
+        var target_711310244 = document.getElementById('711310244');
+        var layout = {
+    title: 'PESA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["549005","549005","528284","528284","528284","549005","528284","528284","528284","528284","528284","526171","530932","530932","530932","549005","549005","528284","558385","528284","530932","549005","526171","528284","553969","558385","549005","553969","553969","535776","542333","549005","549005","535776","553969","558385","526171","553969","558385","535776","553969","535776","528284","530932","542333","526171","558385","558385","526171","542333","549005","530932","535776","553969","553969","549005","542333","530932","526171","526171","542333","535776","558385","526171","558385","535776","553969","553969","530932","535776","542333","542333","558385","526171","542333","535776","530932","530932","535776","558385","526171","535776","558385","542333","542333","535776","553969","526171","558385","530932","528284","553969","526171","542333","549005","530932","542333","549005","526171","535776"],
+y: ["38","38","43","43","43","38","43","43","43","43","43","46","41","41","41","38","38","43","36","43","41","38","46","43","37","36","38","37","37","40","39","38","38","40","37","36","46","37","36","40","37","40","43","41","39","46","36","36","46","39","38","41","40","37","37","38","39","41","46","46","39","40","36","46","36","40","37","37","41","40","39","39","36","46","39","40","41","41","40","36","46","40","36","39","39","40","37","46","36","41","43","37","46","39","38","41","39","38","46","40"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_711310244, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='407148528' class='js-plotly-plot'></div>    <script>
+        var target_407148528 = document.getElementById('407148528');
+        var layout = {
+    title: 'SMSEMOA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["535659","539884","528755","539635","522008","522008","539884","522008","539884","539884","522008","528755","528755","539884","539884","539884","522008","539884","539884","539884","539884","528755","522008","522008","522008","539884","539635","539884","522008","522008","522008","539635","528755","539884","539884","539884","539884","528755","528755","528755","539884","528755","539884","539884","528755","539884","522008","539884","535659","539635","539884","539635","522008","539884","539884","539884","539884","539884","539884","539635","522008","522008","522008","539884","528755","539884","528755","539884","539884","539884","539884","522008","539884","528755","539884","539884","539884","528755","535659","522008","522008","539884","539884","539884","522008","522008","539884","539884","539884","539884","539884","539884","539884","522008","539884","539635","535659","539884","539884","539884"],
+y: ["39","36","40","38","44","44","36","44","36","36","44","40","40","36","36","36","44","36","36","36","36","40","44","44","44","36","38","36","44","44","44","38","40","36","36","36","36","40","40","40","36","40","36","36","40","36","44","36","39","38","36","38","44","36","36","36","36","36","36","38","44","44","44","36","40","36","40","36","36","36","36","44","36","40","36","36","36","40","39","44","44","36","36","36","44","44","36","36","36","36","36","36","36","44","36","38","39","36","36","36"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_407148528, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='901689725' class='js-plotly-plot'></div>    <script>
+        var target_901689725 = document.getElementById('901689725');
+        var layout = {
+    title: 'SPEA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["552859","552859","552859","552859","540696","540696","552859","540696","540696","552859","565350","540696","565350","565350","540696","565350","552859","552859","565350","540696","540696","552859","565350","532492","565350","540696","532492","565350","552859","565350","540696","532492","565350","565350","532492","532492","565350","552859","552859","532492","565350","552859","540696","565350","532492","532492","565350","532492","532492","565350","540696","532492","565350","540696","540696","540696","552859","552859","552859","540696","532492","565350","532492","565350","532492","540696","540696","565350","532492","532492","540696","552859","540696","552859","552859","565350","565350","552859","532492","565350","552859","532492","552859","532492","532492","552859","540696","552859","565350","532492","532492","540696","565350","532492","540696","552859","532492","532492","540696","540696"],
+y: ["38","38","38","38","40","40","38","40","40","38","37","40","37","37","40","37","38","38","37","40","40","38","37","42","37","40","42","37","38","37","40","42","37","37","42","42","37","38","38","42","37","38","40","37","42","42","37","42","42","37","40","42","37","40","40","40","38","38","38","40","42","37","42","37","42","40","40","37","42","42","40","38","40","38","38","37","37","38","42","37","38","42","38","42","42","38","40","38","37","42","42","40","37","42","40","38","42","42","40","40"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_901689725, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1403716261' class='js-plotly-plot'></div>    <script>
+        var target_1403716261 = document.getElementById('1403716261');
+        var layout = {
+    title: 'GWASFGA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["526531","530295","537417","570071"],
+y: ["46","42","37","36"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1403716261, data, layout);            </script>
+</div>
+</div>
+</div>
+<div class='component'>
+<h2>kroA100 copy.vrp</h2>
+<div class='grid-container'>
+<div class='grid-item'>
+<div id='753426819' class='js-plotly-plot'></div>    <script>
+        var target_753426819 = document.getElementById('753426819');
+        var layout = {
+    title: 'kroA100 copy.vrp',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["ESPEA","NGSAII","MOCell","PESA2","SMSEMOA","SPEA2","GWASFGA"],
+y: [0.7263375117263478, 0.0, 0.7062180192140834, 0.058583021223470706, 0.05770814529864028, 0.0890910292589541, 0.5949034144263787],
+xaxis: 'x',
+yaxis: 'y',
+type: 'box',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_753426819, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1174586056' class='js-plotly-plot'></div>    <script>
+        var target_1174586056 = document.getElementById('1174586056');
+        var layout = {
+    title: 'ESPEA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["162940","173937"],
+y: ["9","7"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1174586056, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='480402534' class='js-plotly-plot'></div>    <script>
+        var target_480402534 = document.getElementById('480402534');
+        var layout = {
+    title: 'NGSAII',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["159162"],
+y: ["7"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_480402534, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1788380081' class='js-plotly-plot'></div>    <script>
+        var target_1788380081 = document.getElementById('1788380081');
+        var layout = {
+    title: 'MOCell',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["170324","172109","165309"],
+y: ["8","7","10"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1788380081, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='859123537' class='js-plotly-plot'></div>    <script>
+        var target_859123537 = document.getElementById('859123537');
+        var layout = {
+    title: 'PESA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670","166670"],
+y: ["7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7","7"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_859123537, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='878991494' class='js-plotly-plot'></div>    <script>
+        var target_878991494 = document.getElementById('878991494');
+        var layout = {
+    title: 'SMSEMOA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["167151","169682","171978","171978","171978","169682","169682","171978","171978","171978","169682","171978","167151","169682","169682","169682","171978","171978","171978","169682","171978","171978","169682","171978","169682","171978","167151","171978","169682","169682","171978","169682","169682","171978","167151","169682","171978","171978","167151","169682","171978","171978","169682","171978","171978","169682","169682","169682","171978","171978","167151","169682","169682","169682","169682","171978","169682","171978","169682","171978","169682","171978","169682","167151","169682","169682","171978","171978","171978","171978","171978","169682","171978","169682","171978","167151","169682","171978","171978","169682","169682","169682","171978","171978","171978","171978","171978","169682","171978","169682","169682","171978","167151","171978","171978","171978","171978","167151","171978","167151"],
+y: ["8","7","5","5","5","7","7","5","5","5","7","5","8","7","7","7","5","5","5","7","5","5","7","5","7","5","8","5","7","7","5","7","7","5","8","7","5","5","8","7","5","5","7","5","5","7","7","7","5","5","8","7","7","7","7","5","7","5","7","5","7","5","7","8","7","7","5","5","5","5","5","7","5","7","5","8","7","5","5","7","7","7","5","5","5","5","5","7","5","7","7","5","8","5","5","5","5","8","5","8"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_878991494, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1623060860' class='js-plotly-plot'></div>    <script>
+        var target_1623060860 = document.getElementById('1623060860');
+        var layout = {
+    title: 'SPEA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["179614","179614","179614","179614","179614","179614","171865","179614","179614","179614","179614","179614","179614","171865","179614","171865","179614","179614","171865","171865","179614","179614","171865","179614","171865","171865","179614","171865","171865","179614","171865","179614","179614","179614","179614","179614","171865","171865","171865","171865","179614","171865","171865","171865","171865","171865","171865","179614","179614","171865","179614","171865","171865","179614","171865","171865","171865","179614","171865","179614","171865","179614","171865","179614","171865","171865","179614","171865","171865","179614","171865","179614","171865","179614","171865","179614","171865","179614","179614","171865","179614","171865","179614","171865","179614","179614","171865","179614","179614","179614","171865","171865","171865","171865","171865","179614","171865","171865","179614","171865"],
+y: ["6","6","6","6","6","6","7","6","6","6","6","6","6","7","6","7","6","6","7","7","6","6","7","6","7","7","6","7","7","6","7","6","6","6","6","6","7","7","7","7","6","7","7","7","7","7","7","6","6","7","6","7","7","6","7","7","7","6","7","6","7","6","7","6","7","7","6","7","7","6","7","6","7","6","7","6","7","6","6","7","6","7","6","7","6","6","7","6","6","6","7","7","7","7","7","6","7","7","6","7"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1623060860, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='727860299' class='js-plotly-plot'></div>    <script>
+        var target_727860299 = document.getElementById('727860299');
+        var layout = {
+    title: 'GWASFGA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["159317","166458","176247"],
+y: ["10","8","6"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_727860299, data, layout);            </script>
+</div>
+</div>
+</div>
+<div class='component'>
+<h2>kroA100.vrp</h2>
+<div class='grid-container'>
+<div class='grid-item'>
+<div id='1709578355' class='js-plotly-plot'></div>    <script>
+        var target_1709578355 = document.getElementById('1709578355');
+        var layout = {
+    title: 'kroA100.vrp',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["ESPEA","NGSAII","MOCell","PESA2","SMSEMOA","SPEA2","GWASFGA"],
+y: [0.39941980678705596, 0.7232206892452415, 2.4056683617190733, 0.16190188698544294, 0.14095832634973735, 0.21921656397179487, 0.37591721082775204],
+xaxis: 'x',
+yaxis: 'y',
+type: 'box',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1709578355, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1598898845' class='js-plotly-plot'></div>    <script>
+        var target_1598898845 = document.getElementById('1598898845');
+        var layout = {
+    title: 'ESPEA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["208620","203541"],
+y: ["25","29"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1598898845, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='496757868' class='js-plotly-plot'></div>    <script>
+        var target_496757868 = document.getElementById('496757868');
+        var layout = {
+    title: 'NGSAII',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["206541","207197"],
+y: ["32","27"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_496757868, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1605989016' class='js-plotly-plot'></div>    <script>
+        var target_1605989016 = document.getElementById('1605989016');
+        var layout = {
+    title: 'MOCell',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["226713","207817","207804"],
+y: ["27","28","31"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1605989016, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1088240022' class='js-plotly-plot'></div>    <script>
+        var target_1088240022 = document.getElementById('1088240022');
+        var layout = {
+    title: 'PESA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802","210802"],
+y: ["27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27","27"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1088240022, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1495161113' class='js-plotly-plot'></div>    <script>
+        var target_1495161113 = document.getElementById('1495161113');
+        var layout = {
+    title: 'SMSEMOA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["208152","210351","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","210351","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152","208152"],
+y: ["30","29","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","29","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30","30"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1495161113, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1228798893' class='js-plotly-plot'></div>    <script>
+        var target_1228798893 = document.getElementById('1228798893');
+        var layout = {
+    title: 'SPEA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["214950","214950","214950","214950","214950","214950","213181","213181","214950","214950","213181","203350","203350","203350","213181","213181","213181","213181","203350","203350","213181","203350","213181","203350","203350","213181","214950","214950","213181","214950","203350","213181","203350","213181","203350","203350","203350","213181","213181","214950","203350","214950","214950","203350","213181","214950","214950","214950","214950","213181","214950","214950","213181","203350","213181","213181","213181","213181","203350","203350","214950","203350","213181","213181","203350","203350","214950","214950","203350","203350","203350","213181","213181","214950","214950","203350","214950","213181","203350","214950","214950","214950","203350","203350","213181","213181","203350","213181","203350","203350","214950","203350","203350","214950","213181","203350","214950","213181","213181","214950"],
+y: ["26","26","26","26","26","26","27","27","26","26","27","29","29","29","27","27","27","27","29","29","27","29","27","29","29","27","26","26","27","26","29","27","29","27","29","29","29","27","27","26","29","26","26","29","27","26","26","26","26","27","26","26","27","29","27","27","27","27","29","29","26","29","27","27","29","29","26","26","29","29","29","27","27","26","26","29","26","27","29","26","26","26","29","29","27","27","29","27","29","29","26","29","29","26","27","29","26","27","27","26"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1228798893, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='2137642416' class='js-plotly-plot'></div>    <script>
+        var target_2137642416 = document.getElementById('2137642416');
+        var layout = {
+    title: 'GWASFGA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["203504","206284"],
+y: ["32","25"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_2137642416, data, layout);            </script>
+</div>
+</div>
+</div>
+<div class='component'>
+<h2>kroB100.vrp</h2>
+<div class='grid-container'>
+<div class='grid-item'>
+<div id='1721046007' class='js-plotly-plot'></div>    <script>
+        var target_1721046007 = document.getElementById('1721046007');
+        var layout = {
+    title: 'kroB100.vrp',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["ESPEA","NGSAII","MOCell","PESA2","SMSEMOA","SPEA2","GWASFGA"],
+y: [0.42636757162866834, 0.30444526178236697, 0.4391634165496206, 0.03217425741293887, 0.0, 0.05838410518540362, 0.4215141785563904],
+xaxis: 'x',
+yaxis: 'y',
+type: 'box',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1721046007, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1716164146' class='js-plotly-plot'></div>    <script>
+        var target_1716164146 = document.getElementById('1716164146');
+        var layout = {
+    title: 'ESPEA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["208056","213666"],
+y: ["33","29"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1716164146, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1233505258' class='js-plotly-plot'></div>    <script>
+        var target_1233505258 = document.getElementById('1233505258');
+        var layout = {
+    title: 'NGSAII',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["205969","216462","215086"],
+y: ["31","26","30"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1233505258, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1377301487' class='js-plotly-plot'></div>    <script>
+        var target_1377301487 = document.getElementById('1377301487');
+        var layout = {
+    title: 'MOCell',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["213013","217319"],
+y: ["32","28"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1377301487, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='2079961271' class='js-plotly-plot'></div>    <script>
+        var target_2079961271 = document.getElementById('2079961271');
+        var layout = {
+    title: 'PESA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["209132","209132","209132","209132","197953","209132","209132","197953","197953","209132","197953","197953","209132","197953","197953","209132","197953","206164","197953","197953","197953","221850","206164","197953","197953","221850","197953","206164","206164","209132","221850","197953","197953","209132","221850","221850","209132","206164","209132","206164","221850","209132","221850","197953","221850","206164","206164","221850","221850","206164","206164","221850","221850","206164","206164","221850","221850","206164","206164","221850","209132","206164","221850","206164","197953","206164","221850","209132","209132","197953","206164","197953","209132","206164","209132","221850","206164","221850","206164","197953","221850","209132","206164","197953","221850","209132","221850","197953","206164","209132","221850","206164","221850","209132","209132","206164","197953","209132","197953","206164"],
+y: ["28","28","28","28","31","28","28","31","31","28","31","31","28","31","31","28","31","29","31","31","31","25","29","31","31","25","31","29","29","28","25","31","31","28","25","25","28","29","28","29","25","28","25","31","25","29","29","25","25","29","29","25","25","29","29","25","25","29","29","25","28","29","25","29","31","29","25","28","28","31","29","31","28","29","28","25","29","25","29","31","25","28","29","31","25","28","25","31","29","28","25","29","25","28","28","29","31","28","31","29"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_2079961271, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='739737533' class='js-plotly-plot'></div>    <script>
+        var target_739737533 = document.getElementById('739737533');
+        var layout = {
+    title: 'SMSEMOA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["205294","219640","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","219640","205294","205294","205294","205294","219640","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","219640","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","219640","205294","205294","205294","205294","205294","205294","219640","205294","205294","205294","205294","205294","219640","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","205294","219640","205294","205294","205294","205294","205294","205294","205294","205294"],
+y: ["26","25","26","26","26","26","26","26","26","26","26","26","26","26","26","26","26","26","26","26","26","26","26","26","26","25","26","26","26","26","25","26","26","26","26","26","26","26","26","26","26","26","26","26","26","25","26","26","26","26","26","26","26","26","26","26","26","26","26","26","26","26","26","26","25","26","26","26","26","26","26","25","26","26","26","26","26","25","26","26","26","26","26","26","26","26","26","26","26","26","26","25","26","26","26","26","26","26","26","26"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_739737533, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1334405583' class='js-plotly-plot'></div>    <script>
+        var target_1334405583 = document.getElementById('1334405583');
+        var layout = {
+    title: 'SPEA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["214071","214071","214071","214071","205871","205871","214071","205871","205871","205871","212454","212454","214071","205871","214071","205871","214071","212454","205871","214071","212454","212454","212454","214071","226702","205871","205871","212454","205871","226702","214071","214071","214071","226702","212454","226702","205871","212454","214071","226702","212454","214071","226702","212454","205871","212454","226702","214071","226702","214071","214071","205871","205871","226702","226702","212454","212454","205871","226702","226702","205871","205871","212454","212454","205871","226702","226702","214071","212454","226702","226702","226702","214071","214071","212454","212454","214071","212454","226702","205871","212454","205871","205871","226702","205871","214071","214071","226702","212454","205871","226702","212454","214071","212454","212454","226702","226702","205871","226702","226702"],
+y: ["27","27","27","27","35","35","27","35","35","35","32","32","27","35","27","35","27","32","35","27","32","32","32","27","26","35","35","32","35","26","27","27","27","26","32","26","35","32","27","26","32","27","26","32","35","32","26","27","26","27","27","35","35","26","26","32","32","35","26","26","35","35","32","32","35","26","26","27","32","26","26","26","27","27","32","32","27","32","26","35","32","35","35","26","35","27","27","26","32","35","26","32","27","32","32","26","26","35","26","26"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1334405583, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='799755038' class='js-plotly-plot'></div>    <script>
+        var target_799755038 = document.getElementById('799755038');
+        var layout = {
+    title: 'GWASFGA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["212446","217065"],
+y: ["31","28"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_799755038, data, layout);            </script>
+</div>
+</div>
+</div>
+<div class='component'>
+<h2>pr124.vrp</h2>
+<div class='grid-container'>
+<div class='grid-item'>
+<div id='299819862' class='js-plotly-plot'></div>    <script>
+        var target_299819862 = document.getElementById('299819862');
+        var layout = {
+    title: 'pr124.vrp',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["ESPEA","NGSAII","MOCell","PESA2","SMSEMOA","SPEA2","GWASFGA"],
+y: [0.6203201052173338, 0.3201688006967918, 0.6901246801750484, 0.06722627383295667, 0.08679808650657642, 0.021738316970598314, 0.2745967418345237],
+xaxis: 'x',
+yaxis: 'y',
+type: 'box',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_299819862, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1990733650' class='js-plotly-plot'></div>    <script>
+        var target_1990733650 = document.getElementById('1990733650');
+        var layout = {
+    title: 'ESPEA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["894145","896138","876279","840828","851524"],
+y: ["31","30","32","34","33"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1990733650, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='2092885155' class='js-plotly-plot'></div>    <script>
+        var target_2092885155 = document.getElementById('2092885155');
+        var layout = {
+    title: 'NGSAII',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["862391","850655","855578"],
+y: ["29","32","31"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_2092885155, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1264674505' class='js-plotly-plot'></div>    <script>
+        var target_1264674505 = document.getElementById('1264674505');
+        var layout = {
+    title: 'MOCell',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["886715","851639","887820","868682"],
+y: ["32","35","29","34"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1264674505, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='732597665' class='js-plotly-plot'></div>    <script>
+        var target_732597665 = document.getElementById('732597665');
+        var layout = {
+    title: 'PESA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742","872742","829948","829948","872742"],
+y: ["29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29","29","31","31","29"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_732597665, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='1288135456' class='js-plotly-plot'></div>    <script>
+        var target_1288135456 = document.getElementById('1288135456');
+        var layout = {
+    title: 'SMSEMOA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["824493","886280","839397","886280","824493","839397","824493","839397","886280","839397","886280","886280","886280","824493","824493","824493","886280","824493","886280","824493","886280","824493","886280","824493","824493","824493","839397","824493","886280","886280","886280","886280","839397","824493","886280","839397","886280","886280","824493","824493","824493","824493","839397","886280","839397","886280","886280","824493","886280","886280","886280","824493","886280","824493","886280","824493","839397","824493","886280","839397","839397","824493","886280","839397","824493","839397","824493","824493","886280","824493","824493","824493","824493","886280","839397","886280","886280","824493","824493","824493","824493","886280","824493","824493","886280","886280","824493","839397","824493","839397","839397","839397","824493","824493","839397","824493","824493","839397","839397","824493"],
+y: ["34","29","30","29","34","30","34","30","29","30","29","29","29","34","34","34","29","34","29","34","29","34","29","34","34","34","30","34","29","29","29","29","30","34","29","30","29","29","34","34","34","34","30","29","30","29","29","34","29","29","29","34","29","34","29","34","30","34","29","30","30","34","29","30","34","30","34","34","29","34","34","34","34","29","30","29","29","34","34","34","34","29","34","34","29","29","34","30","34","30","30","30","34","34","30","34","34","30","30","34"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_1288135456, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='98351999' class='js-plotly-plot'></div>    <script>
+        var target_98351999 = document.getElementById('98351999');
+        var layout = {
+    title: 'SPEA2',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["849415","849415","849415","831065","831065","831065","831065","849415","849415","831065","849415","849415","831065","831065","849415","831065","831065","849415","849415","831065","849415","849415","849415","849415","831065","847490","847490","849415","847490","849415","847490","831065","847490","847490","847490","847490","831065","847490","831065","847490","847490","831065","847490","849415","831065","847490","847490","831065","831065","849415","847490","847490","849415","849415","831065","831065","849415","831065","831065","847490","847490","831065","849415","849415","849415","831065","831065","847490","831065","847490","847490","831065","849415","847490","847490","849415","849415","847490","831065","849415","849415","849415","847490","847490","847490","831065","847490","831065","849415","847490","831065","831065","847490","831065","847490","831065","847490","847490","849415","849415"],
+y: ["28","28","28","33","33","33","33","28","28","33","28","28","33","33","28","33","33","28","28","33","28","28","28","28","33","30","30","28","30","28","30","33","30","30","30","30","33","30","33","30","30","33","30","28","33","30","30","33","33","28","30","30","28","28","33","33","28","33","33","30","30","33","28","28","28","33","33","30","33","30","30","33","28","30","30","28","28","30","33","28","28","28","30","30","30","33","30","33","28","30","33","33","30","33","30","33","30","30","28","28"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_98351999, data, layout);            </script>
+</div>
+<div class='grid-item'>
+<div id='23076454' class='js-plotly-plot'></div>    <script>
+        var target_23076454 = document.getElementById('23076454');
+        var layout = {
+    title: 'GWASFGA',
+    height: 450,
+    width: 700,
+
+
+};
+
+var trace0 =
+{
+x: ["838180","844422"],
+y: ["34","29"],
+mode: 'markers',
+xaxis: 'x',
+yaxis: 'y',
+type: 'scatter',
+name: '',
+};
+
+        var data = [ trace0];
+Plotly.newPlot(target_23076454, data, layout);            </script>
+</div>
+</div>
+</div>
+</body>
+</html>

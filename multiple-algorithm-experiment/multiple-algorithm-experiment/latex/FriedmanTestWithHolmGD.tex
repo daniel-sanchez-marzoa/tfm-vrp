@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{graphicx}
+\title{Results}
+\author{}
+\date{\today}
+\begin{document}
+\oddsidemargin 0in \topmargin 0in\maketitle
+
+\section{Tables}
+\begin{table}[!htp]
+\centering
+\begin{tabular}{c|c|c|c|c}
+Algorithm&Ranking&p-value&Holm&Hypothesis\\
+\hline
+SMSEMOA & 2,091 & 0E0 & 0 & -\\
+SPEA2 & 2,273 & 6,015E-1 & 0,05 & Accepted\\
+PESA2 & 2,455 & 2,963E-1 & 0,025 & Accepted\\
+NGSAII & 4,636 & 2,646E-13 & 0,017 & Rejected\\
+ESPEA & 5,273 & 6,299E-20 & 0,013 & Rejected\\
+GWASFGA & 5,455 & 4,402E-22 & 0,01 & Rejected\\
+MOCell & 5,818 & 9,563E-27 & 0,008 & Rejected\\
+\end{tabular}
+\caption{Average ranking of the algorithms}
+\end{table}
+
+
+Friedman statistic considering reduction performance (distributed according to chi-square with 6 degrees of freedom: 38.80519480519474).
+
+
+\end{document}
