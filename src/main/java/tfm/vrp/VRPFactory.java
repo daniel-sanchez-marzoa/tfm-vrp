@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StreamTokenizer;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
@@ -17,8 +19,9 @@ public class VRPFactory {
 			int depot = getDepot(file);
 			int numberOfVehicles = getNumberOfVehicles(file);
 			double[][] distanceMatrix = getDistanceMatrix(file, numberOfCities);
+			List<List<Integer>> mandatoryPaths = getMandatoryPaths(file);
 
-			return new VRP(name, numberOfCities, distanceMatrix, depot, numberOfVehicles);
+			return new VRP(name, numberOfCities, distanceMatrix, depot, numberOfVehicles, mandatoryPaths);
 		} catch (Exception e) {
 			new JMetalException("VRPFactory.produce(file): error when reading data file " + e);
 
@@ -66,6 +69,36 @@ public class VRPFactory {
 		}
 
 		return distanceMatrix;
+	}
+
+	private static List<List<Integer>> getMandatoryPaths(File file) throws IOException {
+		StreamTokenizer token = FileUtils.getTokens(file);
+		List<List<Integer>> mandatoryPaths = new ArrayList<>();
+
+		// Find the string MANDATORY_PATHS
+		boolean found = false;
+		token.nextToken();
+		while (!found) {
+			if ((token.sval != null) &&
+					((token.sval.compareTo("MANDATORY_PATHS") == 0)))
+				found = true;
+			else
+				token.nextToken();
+		}
+
+		token.nextToken();
+		int i = 0;
+
+		while (token.sval == null) {
+			if (i++ % 2 == 0)
+				mandatoryPaths.add(new ArrayList<>());
+
+			mandatoryPaths.get(mandatoryPaths.size() - 1).add((int) token.nval);
+
+			token.nextToken();
+		}
+
+		return mandatoryPaths;
 	}
 
 	private static int getNumberOfCities(File file) throws IOException {
