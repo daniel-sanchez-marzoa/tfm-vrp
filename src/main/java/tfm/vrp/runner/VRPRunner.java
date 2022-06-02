@@ -9,9 +9,7 @@ import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
 import org.uma.jmetal.lab.visualization.plot.impl.Plot2D;
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
-import org.uma.jmetal.operator.crossover.impl.PMXCrossover;
 import org.uma.jmetal.operator.mutation.MutationOperator;
-import org.uma.jmetal.operator.mutation.impl.PermutationSwapMutation;
 import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.BinaryTournamentSelection;
 import org.uma.jmetal.problem.permutationproblem.PermutationProblem;
@@ -25,6 +23,8 @@ import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import tfm.algorithm.AlgorithmRunner;
+import tfm.crossover.pmxcrossover.PMXAreaCoverageCrossover;
+import tfm.mutation.permutationswap.PermutationSwapAreaCoverageMutation;
 import tfm.vrp.VRPFactory;
 
 /**
@@ -50,7 +50,7 @@ public class VRPRunner {
 
 	private Algorithm<List<PermutationSolution<Integer>>> getAlgorithm() throws FileNotFoundException {
 		PermutationProblem<PermutationSolution<Integer>> problem = VRPFactory.produce(vrpFile);
-		CrossoverOperator<PermutationSolution<Integer>> crossover = new PMXCrossover(crossoverProbability);
+		CrossoverOperator<PermutationSolution<Integer>> crossover = new PMXAreaCoverageCrossover(crossoverProbability);
 		SelectionOperator<List<PermutationSolution<Integer>>, PermutationSolution<Integer>> selection = new BinaryTournamentSelection<PermutationSolution<Integer>>(
 				new RankingAndCrowdingDistanceComparator<PermutationSolution<Integer>>());
 		MutationOperator<PermutationSolution<Integer>> mutation;
@@ -59,7 +59,7 @@ public class VRPRunner {
 		if (mutationProbability == null)
 			mutationProbability = (float) (1.0 / problem.getNumberOfVariables());
 
-		mutation = new PermutationSwapMutation<Integer>(mutationProbability);
+		mutation = new PermutationSwapAreaCoverageMutation<Integer>(mutationProbability);
 
 		algorithm = new NSGAIIBuilder<PermutationSolution<Integer>>(
 				problem, crossover, mutation, populationSize)

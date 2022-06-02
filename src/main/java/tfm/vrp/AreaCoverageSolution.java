@@ -16,18 +16,21 @@ public class AreaCoverageSolution extends AbstractSolution<Integer>
 		implements PermutationSolution<Integer> {
 
 	/** Constructor */
-	public AreaCoverageSolution(int permutationLength, int numberOfObjectives, List<List<Integer>> mandatoryPaths) {
+	public AreaCoverageSolution(int permutationLength, int numberOfObjectives, List<List<Integer>> mandatoryPaths,
+			int numberOfOperators) {
 		super(permutationLength, numberOfObjectives);
 
-		List<Integer> randomSequence = new ArrayList<>(permutationLength);
+		List<Integer> randomSequence = new ArrayList<>(permutationLength - 1);
 
-		for (int j = 0; j < permutationLength; j++) {
+		for (int j = 0; j < permutationLength - 1; j++) {
 			randomSequence.add(j);
 		}
 
 		java.util.Collections.shuffle(randomSequence);
 
-		randomSequence = fixWithMandatoryPaths(permutationLength, mandatoryPaths, randomSequence);
+		randomSequence = fixWithMandatoryPaths(permutationLength - 1, mandatoryPaths, randomSequence);
+
+		randomSequence.add(0, 100 + (int) ((Math.random() * (numberOfOperators - 1)) + 1));
 
 		for (int i = 0; i < permutationLength; i++) {
 			variables().set(i, randomSequence.get(i));

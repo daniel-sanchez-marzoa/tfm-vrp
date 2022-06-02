@@ -18,10 +18,15 @@ public class VRPFactory {
 			int numberOfCities = getNumberOfCities(file);
 			int depot = getDepot(file);
 			int numberOfVehicles = getNumberOfVehicles(file);
+			int numberOfOperators = getNumberOfOperators(file);
+			int setupTime = getSetupTime(file);
+			float droneSpeed = getDroneSpped(file);
 			double[][] distanceMatrix = getDistanceMatrix(file, numberOfCities);
+
 			List<List<Integer>> mandatoryPaths = getMandatoryPaths(file);
 
-			return new VRP(name, numberOfCities, distanceMatrix, depot, numberOfVehicles, mandatoryPaths);
+			return new VRP(name, numberOfCities, distanceMatrix, depot, numberOfVehicles, numberOfOperators, setupTime,
+					droneSpeed, mandatoryPaths);
 		} catch (Exception e) {
 			new JMetalException("VRPFactory.produce(file): error when reading data file " + e);
 
@@ -144,6 +149,60 @@ public class VRPFactory {
 
 		while (!found) {
 			if ((token.sval != null) && ((token.sval.compareTo("DEPOT") == 0)))
+				found = true;
+			else
+				token.nextToken();
+		}
+
+		token.nextToken();
+		token.nextToken();
+
+		return (int) token.nval;
+	}
+
+	private static int getNumberOfOperators(File file) throws IOException {
+		StreamTokenizer token = FileUtils.getTokens(file);
+		boolean found = false;
+		token.nextToken();
+
+		while (!found) {
+			if ((token.sval != null) && ((token.sval.compareTo("NUMBER_OF_OPERATORS") == 0)))
+				found = true;
+			else
+				token.nextToken();
+		}
+
+		token.nextToken();
+		token.nextToken();
+
+		return (int) token.nval;
+	}
+
+	private static int getSetupTime(File file) throws IOException {
+		StreamTokenizer token = FileUtils.getTokens(file);
+		boolean found = false;
+		token.nextToken();
+
+		while (!found) {
+			if ((token.sval != null) && ((token.sval.compareTo("SETUP_TIME") == 0)))
+				found = true;
+			else
+				token.nextToken();
+		}
+
+		token.nextToken();
+		token.nextToken();
+
+		return (int) token.nval;
+	}
+
+	private static float getDroneSpped(File file) throws IOException {
+		StreamTokenizer token = FileUtils.getTokens(file);
+		boolean found = false;
+		token.nextToken();
+
+		while (!found) {
+			if ((token.sval != null) && ((token.sval.compareTo("DRONE_SPEED") == 0)))
 				found = true;
 			else
 				token.nextToken();
