@@ -35,7 +35,7 @@ import tfm.vrp.VRPFactory;
 public class VRPRunner {
 	private final File vrpFile;
 	private int populationSize = 10;
-	private int maxEvaluations = 100;
+	private int maxEvaluations = 1000;
 	private float crossoverProbability = (float) 0.9;
 	private Float mutationProbability = null;
 

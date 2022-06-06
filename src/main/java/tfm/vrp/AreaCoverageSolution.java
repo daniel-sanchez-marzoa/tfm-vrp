@@ -30,7 +30,7 @@ public class AreaCoverageSolution extends AbstractSolution<Integer>
 
 		randomSequence = fixWithMandatoryPaths(permutationLength - 1, mandatoryPaths, randomSequence);
 
-		randomSequence.add(0, 100 + (int) ((Math.random() * (numberOfOperators - 1)) + 1));
+		randomSequence.add(0, (int) ((Math.random() * (numberOfOperators - 1)) + 1));
 
 		for (int i = 0; i < permutationLength; i++) {
 			variables().set(i, randomSequence.get(i));
