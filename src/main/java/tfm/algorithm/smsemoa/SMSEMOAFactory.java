@@ -8,20 +8,20 @@ import java.io.StreamTokenizer;
 import org.uma.jmetal.algorithm.multiobjective.smsemoa.SMSEMOA;
 import org.uma.jmetal.algorithm.multiobjective.smsemoa.SMSEMOABuilder;
 import org.uma.jmetal.problem.Problem;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
 import tfm.crossover.CrossoverFactory;
 import tfm.mutation.MutationFactory;
 import tfm.selection.SelectionFactory;
 import tfm.utils.FileUtils;
+import tfm.vrp.AreaCoverageSolution;
 
 public class SMSEMOAFactory {
-	public static SMSEMOA<PermutationSolution<Integer>> produce(File file,
-			Problem<PermutationSolution<Integer>> problem) throws FileNotFoundException {
+	public static SMSEMOA<AreaCoverageSolution> produce(File file,
+			Problem<AreaCoverageSolution> problem) throws FileNotFoundException {
 		try {
 
-			SMSEMOABuilder<PermutationSolution<Integer>> espeaBuilder = new SMSEMOABuilder<PermutationSolution<Integer>>(
+			SMSEMOABuilder<AreaCoverageSolution> espeaBuilder = new SMSEMOABuilder<AreaCoverageSolution>(
 					problem, CrossoverFactory.produce(file), MutationFactory.produce(file));
 
 			espeaBuilder.setPopulationSize(getPopulationSize(file));

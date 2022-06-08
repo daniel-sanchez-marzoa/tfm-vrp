@@ -1,44 +1,46 @@
 package tfm.mutation.permutationswap;
 
 import org.uma.jmetal.operator.mutation.MutationOperator;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.Check;
 import org.uma.jmetal.util.pseudorandom.BoundedRandomGenerator;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 import org.uma.jmetal.util.pseudorandom.RandomGenerator;
 
-@SuppressWarnings("serial")
-public class PermutationSwapAreaCoverageMutation<T> implements MutationOperator<PermutationSolution<T>> {
+import tfm.vrp.AreaCoverageSolution;
+
+public class PermutationSwapAreaCoverageMutation implements MutationOperator<AreaCoverageSolution> {
 	private double mutationProbability;
 	private RandomGenerator<Double> mutationRandomGenerator;
 	private BoundedRandomGenerator<Integer> positionRandomGenerator;
+	private int maxNumberOfOperators;
 
 	/** Constructor */
-	public PermutationSwapAreaCoverageMutation(double mutationProbability) {
+	public PermutationSwapAreaCoverageMutation(double mutationProbability, int maxNumberOfOperators) {
 		this(
 				mutationProbability,
 				() -> JMetalRandom.getInstance().nextDouble(),
-				(a, b) -> JMetalRandom.getInstance().nextInt(a, b));
+				(a, b) -> JMetalRandom.getInstance().nextInt(a, b), maxNumberOfOperators);
 	}
 
 	/** Constructor */
 	public PermutationSwapAreaCoverageMutation(
-			double mutationProbability, RandomGenerator<Double> randomGenerator) {
+			double mutationProbability, RandomGenerator<Double> randomGenerator, int maxNumberOfOperators) {
 		this(
 				mutationProbability,
 				randomGenerator,
-				BoundedRandomGenerator.fromDoubleToInteger(randomGenerator));
+				BoundedRandomGenerator.fromDoubleToInteger(randomGenerator), maxNumberOfOperators);
 	}
 
 	/** Constructor */
 	public PermutationSwapAreaCoverageMutation(
 			double mutationProbability,
 			RandomGenerator<Double> mutationRandomGenerator,
-			BoundedRandomGenerator<Integer> positionRandomGenerator) {
+			BoundedRandomGenerator<Integer> positionRandomGenerator, int maxNumberOfOperators) {
 		Check.probabilityIsValid(mutationProbability);
 		this.mutationProbability = mutationProbability;
 		this.mutationRandomGenerator = mutationRandomGenerator;
 		this.positionRandomGenerator = positionRandomGenerator;
+		this.maxNumberOfOperators = maxNumberOfOperators;
 	}
 
 	/* Getters */
@@ -52,9 +54,8 @@ public class PermutationSwapAreaCoverageMutation<T> implements MutationOperator<
 		this.mutationProbability = mutationProbability;
 	}
 
-	/* Execute() method */
 	@Override
-	public PermutationSolution<T> execute(PermutationSolution<T> solution) {
+	public AreaCoverageSolution execute(AreaCoverageSolution solution) {
 		Check.notNull(solution);
 
 		doMutation(solution);
@@ -62,7 +63,7 @@ public class PermutationSwapAreaCoverageMutation<T> implements MutationOperator<
 	}
 
 	/** Performs the operation */
-	public void doMutation(PermutationSolution<T> solution) {
+	public void doMutation(AreaCoverageSolution solution) {
 		int permutationLength;
 		permutationLength = solution.variables().size();
 
@@ -78,12 +79,14 @@ public class PermutationSwapAreaCoverageMutation<T> implements MutationOperator<
 						pos2 = positionRandomGenerator.getRandomValue(pos1, permutationLength - 1);
 				}
 
-				T temp = solution.variables().get(pos1);
+				Integer temp = solution.variables().get(pos1);
 				solution.variables().set(pos1, solution.variables().get(pos2));
 				solution.variables().set(pos2, temp);
-			}
 
-			System.out.println("Mutation " + solution.variables());
+				solution.variables().set(0, (int) (Math.random() * (maxNumberOfOperators - 1) + 1));
+
+				solution.fixWithMandatoryPaths();
+			}
 		}
 	}
 }

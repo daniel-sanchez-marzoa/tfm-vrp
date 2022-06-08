@@ -1,0 +1,8 @@
+STUDY_NAME: multiple-algorithm-experiment
+EXPERIMENT_BASE_DIRECTORY: multiple-algorithm-experiment
+PROBLEMS_DIRECTORY: resources/experiments/experiment3/problems
+ALGORITHMS_DIRECTORY: resources/experiments/experiment3/algorithms
+NUMBER_OF_INDEPENDENT_RUNS: 1
+CORES: 4
+EOF
+

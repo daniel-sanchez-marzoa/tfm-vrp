@@ -8,20 +8,20 @@ import java.io.StreamTokenizer;
 import org.uma.jmetal.algorithm.multiobjective.spea2.SPEA2;
 import org.uma.jmetal.algorithm.multiobjective.spea2.SPEA2Builder;
 import org.uma.jmetal.problem.Problem;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
 import tfm.crossover.CrossoverFactory;
 import tfm.mutation.MutationFactory;
 import tfm.selection.SelectionFactory;
 import tfm.utils.FileUtils;
+import tfm.vrp.AreaCoverageSolution;
 
 public class SPEA2Factory {
-	public static SPEA2<PermutationSolution<Integer>> produce(File file,
-			Problem<PermutationSolution<Integer>> problem) throws FileNotFoundException {
+	public static SPEA2<AreaCoverageSolution> produce(File file,
+			Problem<AreaCoverageSolution> problem) throws FileNotFoundException {
 		try {
 
-			SPEA2Builder<PermutationSolution<Integer>> espeaBuilder = new SPEA2Builder<PermutationSolution<Integer>>(
+			SPEA2Builder<AreaCoverageSolution> espeaBuilder = new SPEA2Builder<AreaCoverageSolution>(
 					problem,
 					CrossoverFactory.produce(file),
 					MutationFactory.produce(file));

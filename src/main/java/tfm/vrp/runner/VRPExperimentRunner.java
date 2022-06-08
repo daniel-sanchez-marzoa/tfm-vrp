@@ -25,11 +25,11 @@ import org.uma.jmetal.qualityindicator.impl.GenerationalDistance;
 import org.uma.jmetal.qualityindicator.impl.InvertedGenerationalDistancePlus;
 import org.uma.jmetal.qualityindicator.impl.Spread;
 import org.uma.jmetal.qualityindicator.impl.hypervolume.impl.PISAHypervolume;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import tfm.algorithm.AlgorithmFactory;
+import tfm.vrp.AreaCoverageSolution;
 import tfm.vrp.VRPFactory;
 
 /**
@@ -77,12 +77,12 @@ public class VRPExperimentRunner {
 		if (experimentBaseDirectory.exists())
 			FileUtils.deleteDirectory(experimentBaseDirectory);
 
-		List<ExperimentProblem<PermutationSolution<Integer>>> problems = getProblems();
+		List<ExperimentProblem<AreaCoverageSolution>> problems = getProblems();
 
-		List<ExperimentAlgorithm<PermutationSolution<Integer>, List<PermutationSolution<Integer>>>> algorithms = getAlgorithms(
+		List<ExperimentAlgorithm<AreaCoverageSolution, List<AreaCoverageSolution>>> algorithms = getAlgorithms(
 				problems);
 
-		Experiment<PermutationSolution<Integer>, List<PermutationSolution<Integer>>> experiment = getExperiment(
+		Experiment<AreaCoverageSolution, List<AreaCoverageSolution>> experiment = getExperiment(
 				problems, algorithms);
 
 		// Execute the algorithm
@@ -102,32 +102,32 @@ public class VRPExperimentRunner {
 		new GenerateHtmlPages<>(experiment, StudyVisualizer.TYPE_OF_FRONT_TO_SHOW.MEDIAN).run();
 	}
 
-	private Experiment<PermutationSolution<Integer>, List<PermutationSolution<Integer>>> getExperiment(
-			List<ExperimentProblem<PermutationSolution<Integer>>> problems,
-			List<ExperimentAlgorithm<PermutationSolution<Integer>, List<PermutationSolution<Integer>>>> algorithms) {
-		Experiment<PermutationSolution<Integer>, List<PermutationSolution<Integer>>> experiment = new ExperimentBuilder<PermutationSolution<Integer>, List<PermutationSolution<Integer>>>(
+	private Experiment<AreaCoverageSolution, List<AreaCoverageSolution>> getExperiment(
+			List<ExperimentProblem<AreaCoverageSolution>> problems,
+			List<ExperimentAlgorithm<AreaCoverageSolution, List<AreaCoverageSolution>>> algorithms) {
+		Experiment<AreaCoverageSolution, List<AreaCoverageSolution>> experiment = new ExperimentBuilder<AreaCoverageSolution, List<AreaCoverageSolution>>(
 				studyName)
-						.setExperimentBaseDirectory(experimentBaseDirectory.getAbsolutePath())
-						.setAlgorithmList(algorithms)
-						.setProblemList(problems)
-						.setOutputParetoFrontFileName("FUN")
-						.setOutputParetoSetFileName("VAR")
-						.setReferenceFrontDirectory(
-								new File(experimentBaseDirectory, "referenceFronts").getAbsolutePath())
-						.setIndicatorList(List.of(
-								new Epsilon(),
-								new Spread(),
-								new GenerationalDistance(),
-								new PISAHypervolume(),
-								new InvertedGenerationalDistancePlus()))
-						.setIndependentRuns(numberOfIndependentRuns)
-						.setNumberOfCores(cores)
-						.build();
+				.setExperimentBaseDirectory(experimentBaseDirectory.getAbsolutePath())
+				.setAlgorithmList(algorithms)
+				.setProblemList(problems)
+				.setOutputParetoFrontFileName("FUN")
+				.setOutputParetoSetFileName("VAR")
+				.setReferenceFrontDirectory(
+						new File(experimentBaseDirectory, "referenceFronts").getAbsolutePath())
+				.setIndicatorList(List.of(
+						new Epsilon(),
+						new Spread(),
+						new GenerationalDistance(),
+						new PISAHypervolume(),
+						new InvertedGenerationalDistancePlus()))
+				.setIndependentRuns(numberOfIndependentRuns)
+				.setNumberOfCores(cores)
+				.build();
 		return experiment;
 	}
 
-	private List<ExperimentProblem<PermutationSolution<Integer>>> getProblems() throws FileNotFoundException {
-		List<ExperimentProblem<PermutationSolution<Integer>>> problemList = new ArrayList<>();
+	private List<ExperimentProblem<AreaCoverageSolution>> getProblems() throws FileNotFoundException {
+		List<ExperimentProblem<AreaCoverageSolution>> problemList = new ArrayList<>();
 		File[] problemFiles = problemsDirectory.listFiles();
 
 		for (File problemFile : problemFiles)
@@ -135,13 +135,13 @@ public class VRPExperimentRunner {
 		return problemList;
 	}
 
-	private List<ExperimentAlgorithm<PermutationSolution<Integer>, List<PermutationSolution<Integer>>>> getAlgorithms(
-			List<ExperimentProblem<PermutationSolution<Integer>>> problems) throws FileNotFoundException {
-		List<ExperimentAlgorithm<PermutationSolution<Integer>, List<PermutationSolution<Integer>>>> algorithms = new ArrayList<>();
+	private List<ExperimentAlgorithm<AreaCoverageSolution, List<AreaCoverageSolution>>> getAlgorithms(
+			List<ExperimentProblem<AreaCoverageSolution>> problems) throws FileNotFoundException {
+		List<ExperimentAlgorithm<AreaCoverageSolution, List<AreaCoverageSolution>>> algorithms = new ArrayList<>();
 
 		for (int run = 0; run < numberOfIndependentRuns; run++)
 			for (File algorithmFile : algorithmsDirectory.listFiles())
-				for (ExperimentProblem<PermutationSolution<Integer>> problem : problems)
+				for (ExperimentProblem<AreaCoverageSolution> problem : problems)
 					algorithms.add(AlgorithmFactory.produce(algorithmFile, problem, run));
 
 		return algorithms;

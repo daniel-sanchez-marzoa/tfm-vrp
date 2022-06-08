@@ -1,7 +1,6 @@
 package tfm.vrp.runner;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import org.uma.jmetal.operator.mutation.MutationOperator;
 import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.BinaryTournamentSelection;
 import org.uma.jmetal.problem.permutationproblem.PermutationProblem;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
 import org.uma.jmetal.util.fileoutput.SolutionListOutput;
@@ -25,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 import tfm.algorithm.AlgorithmRunner;
 import tfm.crossover.pmxcrossover.PMXAreaCoverageCrossover;
 import tfm.mutation.permutationswap.PermutationSwapAreaCoverageMutation;
+import tfm.vrp.AreaCoverageSolution;
 import tfm.vrp.VRPFactory;
 
 /**
@@ -34,13 +33,13 @@ import tfm.vrp.VRPFactory;
 @RequiredArgsConstructor
 public class VRPRunner {
 	private final File vrpFile;
-	private int populationSize = 10;
+	private int populationSize = 100;
 	private int maxEvaluations = 1000;
 	private float crossoverProbability = (float) 0.9;
 	private Float mutationProbability = null;
 
 	public void runVRP() throws IOException {
-		Algorithm<List<PermutationSolution<Integer>>> algorithm = getAlgorithm();
+		Algorithm<List<AreaCoverageSolution>> algorithm = getAlgorithm();
 
 		AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm)
 				.execute();
@@ -48,20 +47,21 @@ public class VRPRunner {
 		saveResults(algorithm, algorithmRunner);
 	}
 
-	private Algorithm<List<PermutationSolution<Integer>>> getAlgorithm() throws FileNotFoundException {
-		PermutationProblem<PermutationSolution<Integer>> problem = VRPFactory.produce(vrpFile);
-		CrossoverOperator<PermutationSolution<Integer>> crossover = new PMXAreaCoverageCrossover(crossoverProbability);
-		SelectionOperator<List<PermutationSolution<Integer>>, PermutationSolution<Integer>> selection = new BinaryTournamentSelection<PermutationSolution<Integer>>(
-				new RankingAndCrowdingDistanceComparator<PermutationSolution<Integer>>());
-		MutationOperator<PermutationSolution<Integer>> mutation;
-		Algorithm<List<PermutationSolution<Integer>>> algorithm;
+	private Algorithm<List<AreaCoverageSolution>> getAlgorithm() throws IOException {
+		PermutationProblem<AreaCoverageSolution> problem = VRPFactory.produce(vrpFile);
+		CrossoverOperator<AreaCoverageSolution> crossover = new PMXAreaCoverageCrossover(crossoverProbability);
+		SelectionOperator<List<AreaCoverageSolution>, AreaCoverageSolution> selection = new BinaryTournamentSelection<AreaCoverageSolution>(
+				new RankingAndCrowdingDistanceComparator<AreaCoverageSolution>());
+		MutationOperator<AreaCoverageSolution> mutation;
+		Algorithm<List<AreaCoverageSolution>> algorithm;
 
 		if (mutationProbability == null)
 			mutationProbability = (float) (1.0 / problem.getNumberOfVariables());
 
-		mutation = new PermutationSwapAreaCoverageMutation<Integer>(mutationProbability);
+		mutation = new PermutationSwapAreaCoverageMutation(mutationProbability,
+				VRPFactory.getNumberOfOperators(vrpFile));
 
-		algorithm = new NSGAIIBuilder<PermutationSolution<Integer>>(
+		algorithm = new NSGAIIBuilder<AreaCoverageSolution>(
 				problem, crossover, mutation, populationSize)
 				.setSelectionOperator(selection)
 				.setMaxEvaluations(maxEvaluations)
@@ -70,8 +70,8 @@ public class VRPRunner {
 		return algorithm;
 	}
 
-	private void saveResults(Algorithm<List<PermutationSolution<Integer>>> algorithm, AlgorithmRunner algorithmRunner) {
-		List<PermutationSolution<Integer>> population = algorithm.getResult();
+	private void saveResults(Algorithm<List<AreaCoverageSolution>> algorithm, AlgorithmRunner algorithmRunner) {
+		List<AreaCoverageSolution> population = algorithm.getResult();
 		long computingTime = algorithmRunner.getComputingTime();
 
 		double[][] a = new double[][] { { 1, 2 }, { 2, 2 } };

@@ -6,14 +6,14 @@ import java.io.IOException;
 import java.io.StreamTokenizer;
 
 import org.uma.jmetal.operator.mutation.MutationOperator;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
 import tfm.mutation.permutationswap.PermutationSwapMutationFactory;
 import tfm.utils.FileUtils;
+import tfm.vrp.AreaCoverageSolution;
 
 public class MutationFactory {
-	public static MutationOperator<PermutationSolution<Integer>> produce(File file) throws FileNotFoundException {
+	public static MutationOperator<AreaCoverageSolution> produce(File file) throws FileNotFoundException {
 		try {
 			switch (getMutationType(file)) {
 				case PermutationSwap:

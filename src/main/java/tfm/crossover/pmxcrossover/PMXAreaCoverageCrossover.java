@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 import org.uma.jmetal.util.pseudorandom.BoundedRandomGenerator;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 import org.uma.jmetal.util.pseudorandom.RandomGenerator;
 
+import tfm.vrp.AreaCoverageSolution;
+
 @SuppressWarnings("serial")
 public class PMXAreaCoverageCrossover implements
-		CrossoverOperator<PermutationSolution<Integer>> {
+		CrossoverOperator<AreaCoverageSolution> {
 	private double crossoverProbability = 1.0;
 	private BoundedRandomGenerator<Integer> cuttingPointRandomGenerator;
 	private RandomGenerator<Double> crossoverRandomGenerator;
@@ -61,7 +62,7 @@ public class PMXAreaCoverageCrossover implements
 	 *
 	 * @param parents An object containing an array of two solutions
 	 */
-	public List<PermutationSolution<Integer>> execute(List<PermutationSolution<Integer>> parents) {
+	public List<AreaCoverageSolution> execute(List<AreaCoverageSolution> parents) {
 		if (null == parents) {
 			throw new JMetalException("Null parameter");
 		} else if (parents.size() != 2) {
@@ -78,24 +79,25 @@ public class PMXAreaCoverageCrossover implements
 	 * @param parents     Parents
 	 * @return An array containing the two offspring
 	 */
-	public List<PermutationSolution<Integer>> doCrossover(double probability,
-			List<PermutationSolution<Integer>> parents2) {
-		List<PermutationSolution<Integer>> parents = new ArrayList<>(2);
+	public List<AreaCoverageSolution> doCrossover(double probability,
+			List<AreaCoverageSolution> parents) {
+		List<AreaCoverageSolution> routeParents = new ArrayList<>(2);
 
-		parents.add((PermutationSolution<Integer>) parents2.get(0).copy());
-		parents.add((PermutationSolution<Integer>) parents2.get(1).copy());
+		System.out.println("Parent 0: " + parents.get(0).variables());
+		System.out.println("Parent 1: " + parents.get(1).variables());
 
-		parents.get(0).variables().remove(0);
-		parents.get(1).variables().remove(0);
-		System.out.println("parent 0 " + parents2.get(0).variables());
-		System.out.println("parent 1 " + parents2.get(1).variables());
+		routeParents.add((AreaCoverageSolution) parents.get(0).copy());
+		routeParents.add((AreaCoverageSolution) parents.get(1).copy());
 
-		List<PermutationSolution<Integer>> offspring = new ArrayList<>(2);
+		routeParents.get(0).variables().remove(0);
+		routeParents.get(1).variables().remove(0);
 
-		offspring.add((PermutationSolution<Integer>) parents.get(0).copy());
-		offspring.add((PermutationSolution<Integer>) parents.get(1).copy());
+		List<AreaCoverageSolution> offspring = new ArrayList<>(2);
 
-		int permutationLength = parents.get(0).variables().size();
+		offspring.add((AreaCoverageSolution) routeParents.get(0).copy());
+		offspring.add((AreaCoverageSolution) routeParents.get(1).copy());
+
+		int permutationLength = routeParents.get(0).variables().size();
 
 		if (crossoverRandomGenerator.getRandomValue() < probability) {
 			int cuttingPoint1;
@@ -122,11 +124,11 @@ public class PMXAreaCoverageCrossover implements
 
 			// STEP 3: Interchange
 			for (int i = cuttingPoint1; i <= cuttingPoint2; i++) {
-				offspring.get(0).variables().set(i, parents.get(1).variables().get(i));
-				offspring.get(1).variables().set(i, parents.get(0).variables().get(i));
+				offspring.get(0).variables().set(i, routeParents.get(1).variables().get(i));
+				offspring.get(1).variables().set(i, routeParents.get(0).variables().get(i));
 
-				replacement1[parents.get(1).variables().get(i)] = parents.get(0).variables().get(i);
-				replacement2[parents.get(0).variables().get(i)] = parents.get(1).variables().get(i);
+				replacement1[routeParents.get(1).variables().get(i)] = routeParents.get(0).variables().get(i);
+				replacement2[routeParents.get(0).variables().get(i)] = routeParents.get(1).variables().get(i);
 			}
 
 			// STEP 4: Repair offspring
@@ -134,10 +136,10 @@ public class PMXAreaCoverageCrossover implements
 				if ((i >= cuttingPoint1) && (i <= cuttingPoint2))
 					continue;
 
-				int n1 = parents.get(0).variables().get(i);
+				int n1 = routeParents.get(0).variables().get(i);
 				int m1 = replacement1[n1];
 
-				int n2 = parents.get(1).variables().get(i);
+				int n2 = routeParents.get(1).variables().get(i);
 				int m2 = replacement2[n2];
 
 				while (m1 != -1) {
@@ -155,11 +157,13 @@ public class PMXAreaCoverageCrossover implements
 			}
 		}
 
-		offspring.get(0).variables().add(0, parents2.get(0).variables().get(0));
-		offspring.get(1).variables().add(0, parents2.get(1).variables().get(0));
+		int operatorsOffspring = (parents.get(0).variables().get(0) + parents.get(1).variables().get(0)) / 2;
 
-		System.out.println("offspring 0 " + offspring.get(0).variables());
-		System.out.println("offspring 1 " + offspring.get(1).variables());
+		offspring.get(0).variables().add(0, operatorsOffspring);
+		offspring.get(1).variables().add(0, operatorsOffspring);
+
+		offspring.get(0).fixWithMandatoryPaths();
+		offspring.get(1).fixWithMandatoryPaths();
 
 		return offspring;
 	}

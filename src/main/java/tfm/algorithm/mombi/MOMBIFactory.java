@@ -7,7 +7,6 @@ import java.io.StreamTokenizer;
 
 import org.uma.jmetal.algorithm.multiobjective.mombi.MOMBI;
 import org.uma.jmetal.problem.Problem;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
@@ -15,10 +14,11 @@ import tfm.crossover.CrossoverFactory;
 import tfm.mutation.MutationFactory;
 import tfm.selection.SelectionFactory;
 import tfm.utils.FileUtils;
+import tfm.vrp.AreaCoverageSolution;
 
 public class MOMBIFactory {
-	public static MOMBI<PermutationSolution<Integer>> produce(File file,
-			Problem<PermutationSolution<Integer>> problem) throws FileNotFoundException {
+	public static MOMBI<AreaCoverageSolution> produce(File file,
+			Problem<AreaCoverageSolution> problem) throws FileNotFoundException {
 		try {
 
 			return new MOMBI<>(problem,
@@ -26,7 +26,7 @@ public class MOMBIFactory {
 					CrossoverFactory.produce(file),
 					MutationFactory.produce(file),
 					SelectionFactory.produce(file),
-					new SequentialSolutionListEvaluator<PermutationSolution<Integer>>(),
+					new SequentialSolutionListEvaluator<AreaCoverageSolution>(),
 					"");
 		} catch (Exception e) {
 			new JMetalException("MOMBIFactory.produce(file): error when reading data file " + e);

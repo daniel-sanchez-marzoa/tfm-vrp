@@ -8,19 +8,19 @@ import java.io.StreamTokenizer;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAII;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
 import org.uma.jmetal.problem.Problem;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
 import tfm.crossover.CrossoverFactory;
 import tfm.mutation.MutationFactory;
 import tfm.selection.SelectionFactory;
 import tfm.utils.FileUtils;
+import tfm.vrp.AreaCoverageSolution;
 
 public class NGSAIIFactory {
-	public static NSGAII<PermutationSolution<Integer>> produce(File file,
-			Problem<PermutationSolution<Integer>> problem) throws FileNotFoundException {
+	public static NSGAII<AreaCoverageSolution> produce(File file,
+			Problem<AreaCoverageSolution> problem) throws FileNotFoundException {
 		try {
-			return new NSGAIIBuilder<PermutationSolution<Integer>>(
+			return new NSGAIIBuilder<AreaCoverageSolution>(
 					problem, CrossoverFactory.produce(file), MutationFactory.produce(file), getPopulationSize(file))
 					.setSelectionOperator(SelectionFactory.produce(file))
 					.setMaxEvaluations(getMaxEvaluations(file))

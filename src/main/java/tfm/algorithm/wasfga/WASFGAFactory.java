@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import org.uma.jmetal.algorithm.multiobjective.wasfga.WASFGA;
 import org.uma.jmetal.problem.Problem;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
@@ -16,19 +15,20 @@ import tfm.crossover.CrossoverFactory;
 import tfm.mutation.MutationFactory;
 import tfm.selection.SelectionFactory;
 import tfm.utils.FileUtils;
+import tfm.vrp.AreaCoverageSolution;
 
 public class WASFGAFactory {
-	public static WASFGA<PermutationSolution<Integer>> produce(File file,
-			Problem<PermutationSolution<Integer>> problem) throws FileNotFoundException {
+	public static WASFGA<AreaCoverageSolution> produce(File file,
+			Problem<AreaCoverageSolution> problem) throws FileNotFoundException {
 		try {
-			return new WASFGA<PermutationSolution<Integer>>(
+			return new WASFGA<AreaCoverageSolution>(
 					problem,
 					getPopulationSize(file),
 					getMaxEvaluations(file),
 					CrossoverFactory.produce(file),
 					MutationFactory.produce(file),
 					SelectionFactory.produce(file),
-					new SequentialSolutionListEvaluator<PermutationSolution<Integer>>(),
+					new SequentialSolutionListEvaluator<AreaCoverageSolution>(),
 					0.0,
 					new ArrayList<Double>());
 		} catch (Exception e) {

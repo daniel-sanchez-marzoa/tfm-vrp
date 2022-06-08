@@ -6,14 +6,14 @@ import java.io.IOException;
 import java.io.StreamTokenizer;
 
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
 import tfm.crossover.pmxcrossover.PMXCrossoverFactory;
 import tfm.utils.FileUtils;
+import tfm.vrp.AreaCoverageSolution;
 
 public class CrossoverFactory {
-	public static CrossoverOperator<PermutationSolution<Integer>> produce(File file) throws FileNotFoundException {
+	public static CrossoverOperator<AreaCoverageSolution> produce(File file) throws FileNotFoundException {
 		try {
 			switch (getCrossoverType(file)) {
 				case PMX:

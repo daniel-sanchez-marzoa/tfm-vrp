@@ -8,19 +8,19 @@ import java.io.StreamTokenizer;
 import org.uma.jmetal.algorithm.multiobjective.pesa2.PESA2;
 import org.uma.jmetal.algorithm.multiobjective.pesa2.PESA2Builder;
 import org.uma.jmetal.problem.Problem;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
 import tfm.crossover.CrossoverFactory;
 import tfm.mutation.MutationFactory;
 import tfm.utils.FileUtils;
+import tfm.vrp.AreaCoverageSolution;
 
 public class PESA2Factory {
-	public static PESA2<PermutationSolution<Integer>> produce(File file,
-			Problem<PermutationSolution<Integer>> problem) throws FileNotFoundException {
+	public static PESA2<AreaCoverageSolution> produce(File file,
+			Problem<AreaCoverageSolution> problem) throws FileNotFoundException {
 		try {
 
-			PESA2Builder<PermutationSolution<Integer>> espeaBuilder = new PESA2Builder<PermutationSolution<Integer>>(
+			PESA2Builder<AreaCoverageSolution> espeaBuilder = new PESA2Builder<AreaCoverageSolution>(
 					problem,
 					CrossoverFactory.produce(file),
 					MutationFactory.produce(file));

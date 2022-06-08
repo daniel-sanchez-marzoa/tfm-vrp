@@ -7,7 +7,6 @@ import java.io.StreamTokenizer;
 
 import org.uma.jmetal.algorithm.multiobjective.gwasfga.GWASFGA;
 import org.uma.jmetal.problem.Problem;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
@@ -15,10 +14,11 @@ import tfm.crossover.CrossoverFactory;
 import tfm.mutation.MutationFactory;
 import tfm.selection.SelectionFactory;
 import tfm.utils.FileUtils;
+import tfm.vrp.AreaCoverageSolution;
 
 public class GWASFGAFactory {
-	public static GWASFGA<PermutationSolution<Integer>> produce(File file,
-			Problem<PermutationSolution<Integer>> problem) throws FileNotFoundException {
+	public static GWASFGA<AreaCoverageSolution> produce(File file,
+			Problem<AreaCoverageSolution> problem) throws FileNotFoundException {
 		try {
 			return new GWASFGA<>(
 					problem,
@@ -27,7 +27,7 @@ public class GWASFGAFactory {
 					CrossoverFactory.produce(file),
 					MutationFactory.produce(file),
 					SelectionFactory.produce(file),
-					new SequentialSolutionListEvaluator<PermutationSolution<Integer>>(),
+					new SequentialSolutionListEvaluator<AreaCoverageSolution>(),
 					0.0);
 		} catch (Exception e) {
 			new JMetalException("GWASFGAFactory.produce(file): error when reading data file " + e);

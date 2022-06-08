@@ -7,14 +7,14 @@ import java.io.StreamTokenizer;
 import java.util.List;
 
 import org.uma.jmetal.operator.selection.SelectionOperator;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
 import tfm.selection.binarytournament.BinaryTournamentSelectionFactory;
 import tfm.utils.FileUtils;
+import tfm.vrp.AreaCoverageSolution;
 
 public class SelectionFactory {
-	public static SelectionOperator<List<PermutationSolution<Integer>>, PermutationSolution<Integer>> produce(File file)
+	public static SelectionOperator<List<AreaCoverageSolution>, AreaCoverageSolution> produce(File file)
 			throws FileNotFoundException {
 		try {
 			switch (getSelectionType(file)) {

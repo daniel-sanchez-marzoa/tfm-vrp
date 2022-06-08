@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.uma.jmetal.lab.experiment.util.ExperimentAlgorithm;
 import org.uma.jmetal.lab.experiment.util.ExperimentProblem;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
 import tfm.algorithm.espea.ESPEAFactory;
@@ -21,10 +20,11 @@ import tfm.algorithm.smsemoa.SMSEMOAFactory;
 import tfm.algorithm.spea2.SPEA2Factory;
 import tfm.algorithm.wasfga.WASFGAFactory;
 import tfm.utils.FileUtils;
+import tfm.vrp.AreaCoverageSolution;
 
 public class AlgorithmFactory {
-	public static ExperimentAlgorithm<PermutationSolution<Integer>, List<PermutationSolution<Integer>>> produce(
-			File file, ExperimentProblem<PermutationSolution<Integer>> experimentProblem, int run)
+	public static ExperimentAlgorithm<AreaCoverageSolution, List<AreaCoverageSolution>> produce(
+			File file, ExperimentProblem<AreaCoverageSolution> experimentProblem, int run)
 			throws FileNotFoundException {
 		try {
 			switch (getAlgorithmType(file)) {

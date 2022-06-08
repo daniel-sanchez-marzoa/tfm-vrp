@@ -6,13 +6,12 @@ import java.util.List;
 
 import org.uma.jmetal.problem.AbstractGenericProblem;
 import org.uma.jmetal.problem.permutationproblem.PermutationProblem;
-import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 
 import lombok.Getter;
 
 @Getter
-public class VRP extends AbstractGenericProblem<PermutationSolution<Integer>>
-		implements PermutationProblem<PermutationSolution<Integer>> {
+public class VRP extends AbstractGenericProblem<AreaCoverageSolution>
+		implements PermutationProblem<AreaCoverageSolution> {
 	private int numberOfNodes;
 	/**
 	 * Given in meters
@@ -49,7 +48,7 @@ public class VRP extends AbstractGenericProblem<PermutationSolution<Integer>>
 	}
 
 	@Override
-	public PermutationSolution<Integer> createSolution() {
+	public AreaCoverageSolution createSolution() {
 		return new AreaCoverageSolution(getLength(), getNumberOfObjectives(), mandatoryPaths, numberOfOperators);
 	}
 
@@ -59,12 +58,15 @@ public class VRP extends AbstractGenericProblem<PermutationSolution<Integer>>
 	}
 
 	@Override
-	public PermutationSolution<Integer> evaluate(PermutationSolution<Integer> solution) {
+	public AreaCoverageSolution evaluate(AreaCoverageSolution solution) {
 		List<List<Integer>> routes = separateSolutionIntoRoutes(solution);
 		List<Double> traveledDistances = new ArrayList<>();
 
+		System.out.println("----" + solution.variables());
 		for (List<Integer> route : routes) {
 			traveledDistances.add(0.0);
+
+			System.out.println("Route: " + route);
 
 			for (int i = 0; i < (route.size() - 1); i++) {
 				int x = route.get(i);
@@ -81,14 +83,18 @@ public class VRP extends AbstractGenericProblem<PermutationSolution<Integer>>
 		solution.objectives()[1] = routes.size();
 		solution.objectives()[2] = getNumberOfOperators(solution);
 
+		System.out.println("Objective 1: " + solution.objectives()[0]);
+		System.out.println("Objective 2: " + solution.objectives()[1]);
+		System.out.println("Objective 3: " + solution.objectives()[2]);
+
 		return solution;
 	}
 
-	private Integer getNumberOfOperators(PermutationSolution<Integer> solution) {
+	private Integer getNumberOfOperators(AreaCoverageSolution solution) {
 		return Math.abs(solution.variables().get(0));
 	}
 
-	private double getSetupTime(PermutationSolution<Integer> solution, List<Double> traveledDistances,
+	private double getSetupTime(AreaCoverageSolution solution, List<Double> traveledDistances,
 			double maxDistance) {
 		int operators = getNumberOfOperators(solution);
 
@@ -96,8 +102,8 @@ public class VRP extends AbstractGenericProblem<PermutationSolution<Integer>>
 				* Math.floor((traveledDistances.lastIndexOf(maxDistance)) / operators);
 	}
 
-	private List<List<Integer>> separateSolutionIntoRoutes(PermutationSolution<Integer> solution) {
-		List<Integer> variables = solution.variables().subList(1, solution.variables().size() - 1);
+	private List<List<Integer>> separateSolutionIntoRoutes(AreaCoverageSolution solution) {
+		List<Integer> variables = solution.variables().subList(1, solution.variables().size());
 		List<List<Integer>> routes = new ArrayList<>();
 		routes.add(new ArrayList<>());
 
