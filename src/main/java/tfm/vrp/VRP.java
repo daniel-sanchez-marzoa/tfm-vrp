@@ -49,7 +49,8 @@ public class VRP extends AbstractGenericProblem<AreaCoverageSolution>
 
 	@Override
 	public AreaCoverageSolution createSolution() {
-		return new AreaCoverageSolution(getLength(), getNumberOfObjectives(), mandatoryPaths, numberOfOperators);
+		return new AreaCoverageSolution(getLength(), getNumberOfObjectives(), mandatoryPaths, numberOfOperators, depot,
+				this.numberOfNodes);
 	}
 
 	@Override
@@ -59,14 +60,14 @@ public class VRP extends AbstractGenericProblem<AreaCoverageSolution>
 
 	@Override
 	public AreaCoverageSolution evaluate(AreaCoverageSolution solution) {
-		List<List<Integer>> routes = separateSolutionIntoRoutes(solution);
+		List<List<Integer>> routes = solution.separateSolutionIntoRoutes();
 		List<Double> traveledDistances = new ArrayList<>();
 
-		System.out.println("----" + solution.variables());
+		// System.out.println("----" + solution.variables());
 		for (List<Integer> route : routes) {
 			traveledDistances.add(0.0);
 
-			System.out.println("Route: " + route);
+			// System.out.println("Route: " + route);
 
 			for (int i = 0; i < (route.size() - 1); i++) {
 				int x = route.get(i);
@@ -77,15 +78,19 @@ public class VRP extends AbstractGenericProblem<AreaCoverageSolution>
 			}
 		}
 
-		double maxDistance = traveledDistances.stream().max((d1, d2) -> Double.compare(d1, d2)).get();
+		List<Double> travelTimes = new ArrayList<>();
 
-		solution.objectives()[0] = maxDistance / droneSpeed + getSetupTime(solution, traveledDistances, maxDistance);
+		for (Double travelDistance : traveledDistances) {
+			travelTimes.add(travelDistance / droneSpeed + getSetupTime(solution, traveledDistances, travelDistance));
+		}
+
+		solution.objectives()[0] = travelTimes.stream().max((d1, d2) -> Double.compare(d1, d2)).get();
 		solution.objectives()[1] = routes.size();
 		solution.objectives()[2] = getNumberOfOperators(solution);
 
-		System.out.println("Objective 1: " + solution.objectives()[0]);
-		System.out.println("Objective 2: " + solution.objectives()[1]);
-		System.out.println("Objective 3: " + solution.objectives()[2]);
+		// System.out.println("Objective 1: " + solution.objectives()[0]);
+		// System.out.println("Objective 2: " + solution.objectives()[1]);
+		// System.out.println("Objective 3: " + solution.objectives()[2]);
 
 		return solution;
 	}
@@ -98,39 +103,13 @@ public class VRP extends AbstractGenericProblem<AreaCoverageSolution>
 			double maxDistance) {
 		int operators = getNumberOfOperators(solution);
 
+		// if (operators != 1)
+		// System.out.println("Operators " + operators + " | Index " +
+		// traveledDistances.lastIndexOf(maxDistance)
+		// + " | Div " + Math.floor((traveledDistances.lastIndexOf(maxDistance)) /
+		// operators));
+
 		return setupTime + setupTime
 				* Math.floor((traveledDistances.lastIndexOf(maxDistance)) / operators);
-	}
-
-	private List<List<Integer>> separateSolutionIntoRoutes(AreaCoverageSolution solution) {
-		List<Integer> variables = solution.variables().subList(1, solution.variables().size());
-		List<List<Integer>> routes = new ArrayList<>();
-		routes.add(new ArrayList<>());
-
-		for (Integer solutionVariable : variables) {
-			if (isDelimeter(solutionVariable))
-				routes.add(new ArrayList<>());
-			else if (solutionVariable != depot)
-				routes.get(routes.size() - 1).add(solutionVariable);
-		}
-
-		List<List<Integer>> emptyRoutes = new ArrayList<>();
-
-		for (List<Integer> route : routes) {
-			if (route.isEmpty())
-				emptyRoutes.add(route);
-			else {
-				route.add(0, depot);
-				route.add(depot);
-			}
-		}
-
-		routes.removeAll(emptyRoutes);
-
-		return routes;
-	}
-
-	private boolean isDelimeter(Integer i) {
-		return i >= numberOfNodes;
 	}
 }

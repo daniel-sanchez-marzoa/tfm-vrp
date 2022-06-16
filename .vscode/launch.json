@@ -12,7 +12,7 @@
 		},
 		{
 			"type": "java",
-			"name": "Default VRP - square",
+			"name": "VRP - square",
 			"request": "launch",
 			"mainClass": "tfm.App",
 			"projectName": "tfm-vrp",
@@ -20,27 +20,11 @@
 		},
 		{
 			"type": "java",
-			"name": "Default VRP - kroaA100",
+			"name": "Experiment - area coverage",
 			"request": "launch",
 			"mainClass": "tfm.App",
 			"projectName": "tfm-vrp",
-			"args": "-vrp resources/problems/vrpInstances/kroA100.vrp"
-		},
-		{
-			"type": "java",
-			"name": "Experiment - test",
-			"request": "launch",
-			"mainClass": "tfm.App",
-			"projectName": "tfm-vrp",
-			"args": "-vrpe resources/experiments/experiment1/ngsaii-experiment.txt"
-		},
-		{
-			"type": "java",
-			"name": "Experiment - multiple algorithms",
-			"request": "launch",
-			"mainClass": "tfm.App",
-			"projectName": "tfm-vrp",
-			"args": "-vrpe resources/experiments/experiment2/multiple-algorithm-experiment.txt"
+			"args": "-vrpe resources/experiments/experiment3/multiple-algorithm-experiment.txt"
 		}
 	]
 }

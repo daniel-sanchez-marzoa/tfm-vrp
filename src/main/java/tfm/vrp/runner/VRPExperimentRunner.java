@@ -20,9 +20,7 @@ import org.uma.jmetal.lab.experiment.component.impl.GenerateWilcoxonTestTablesWi
 import org.uma.jmetal.lab.experiment.util.ExperimentAlgorithm;
 import org.uma.jmetal.lab.experiment.util.ExperimentProblem;
 import org.uma.jmetal.lab.visualization.StudyVisualizer;
-import org.uma.jmetal.qualityindicator.impl.Epsilon;
 import org.uma.jmetal.qualityindicator.impl.GenerationalDistance;
-import org.uma.jmetal.qualityindicator.impl.InvertedGenerationalDistancePlus;
 import org.uma.jmetal.qualityindicator.impl.Spread;
 import org.uma.jmetal.qualityindicator.impl.hypervolume.impl.PISAHypervolume;
 
@@ -115,11 +113,12 @@ public class VRPExperimentRunner {
 				.setReferenceFrontDirectory(
 						new File(experimentBaseDirectory, "referenceFronts").getAbsolutePath())
 				.setIndicatorList(List.of(
-						new Epsilon(),
+						// new Epsilon(),
 						new Spread(),
 						new GenerationalDistance(),
-						new PISAHypervolume(),
-						new InvertedGenerationalDistancePlus()))
+						new PISAHypervolume())
+				// new InvertedGenerationalDistancePlus())
+				)
 				.setIndependentRuns(numberOfIndependentRuns)
 				.setNumberOfCores(cores)
 				.build();

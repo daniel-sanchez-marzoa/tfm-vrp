@@ -83,8 +83,8 @@ public class PMXAreaCoverageCrossover implements
 			List<AreaCoverageSolution> parents) {
 		List<AreaCoverageSolution> routeParents = new ArrayList<>(2);
 
-		System.out.println("Parent 0: " + parents.get(0).variables());
-		System.out.println("Parent 1: " + parents.get(1).variables());
+		// System.out.println("Parent 0: " + parents.get(0).variables());
+		// System.out.println("Parent 1: " + parents.get(1).variables());
 
 		routeParents.add((AreaCoverageSolution) parents.get(0).copy());
 		routeParents.add((AreaCoverageSolution) parents.get(1).copy());
@@ -159,8 +159,19 @@ public class PMXAreaCoverageCrossover implements
 
 		int operatorsOffspring = (parents.get(0).variables().get(0) + parents.get(1).variables().get(0)) / 2;
 
-		offspring.get(0).variables().add(0, operatorsOffspring);
-		offspring.get(1).variables().add(0, operatorsOffspring);
+		int numberOfDrones = offspring.get(0).separateSolutionIntoRoutes().size();
+
+		if (operatorsOffspring > numberOfDrones)
+			offspring.get(0).variables().add(0, numberOfDrones);
+		else
+			offspring.get(0).variables().add(0, operatorsOffspring);
+
+		numberOfDrones = offspring.get(1).separateSolutionIntoRoutes().size();
+
+		if (operatorsOffspring > numberOfDrones)
+			offspring.get(1).variables().add(0, numberOfDrones);
+		else
+			offspring.get(1).variables().add(0, operatorsOffspring);
 
 		offspring.get(0).fixWithMandatoryPaths();
 		offspring.get(1).fixWithMandatoryPaths();

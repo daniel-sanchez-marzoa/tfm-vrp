@@ -13,7 +13,6 @@ import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.BinaryTournamentSelection;
 import org.uma.jmetal.problem.permutationproblem.PermutationProblem;
 import org.uma.jmetal.util.JMetalLogger;
-import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
 import org.uma.jmetal.util.fileoutput.SolutionListOutput;
 import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
@@ -23,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 import tfm.algorithm.AlgorithmRunner;
 import tfm.crossover.pmxcrossover.PMXAreaCoverageCrossover;
 import tfm.mutation.permutationswap.PermutationSwapAreaCoverageMutation;
+import tfm.selection.comparators.AreaCoverageDominanceComparator;
 import tfm.vrp.AreaCoverageSolution;
 import tfm.vrp.VRPFactory;
 
@@ -33,10 +33,10 @@ import tfm.vrp.VRPFactory;
 @RequiredArgsConstructor
 public class VRPRunner {
 	private final File vrpFile;
-	private int populationSize = 100;
-	private int maxEvaluations = 1000;
+	private int populationSize = 5000;
+	private int maxEvaluations = 500000;
 	private float crossoverProbability = (float) 0.9;
-	private Float mutationProbability = null;
+	private Float mutationProbability = (float) 0.05;
 
 	public void runVRP() throws IOException {
 		Algorithm<List<AreaCoverageSolution>> algorithm = getAlgorithm();
@@ -51,7 +51,7 @@ public class VRPRunner {
 		PermutationProblem<AreaCoverageSolution> problem = VRPFactory.produce(vrpFile);
 		CrossoverOperator<AreaCoverageSolution> crossover = new PMXAreaCoverageCrossover(crossoverProbability);
 		SelectionOperator<List<AreaCoverageSolution>, AreaCoverageSolution> selection = new BinaryTournamentSelection<AreaCoverageSolution>(
-				new RankingAndCrowdingDistanceComparator<AreaCoverageSolution>());
+				new AreaCoverageDominanceComparator<AreaCoverageSolution>());
 		MutationOperator<AreaCoverageSolution> mutation;
 		Algorithm<List<AreaCoverageSolution>> algorithm;
 
