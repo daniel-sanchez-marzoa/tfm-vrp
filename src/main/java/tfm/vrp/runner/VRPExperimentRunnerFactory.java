@@ -17,8 +17,12 @@ public class VRPExperimentRunnerFactory {
 
 			runner.setCores(getCores(file));
 
+			System.out.println("VRPExperimentRunner - produce" + runner);
+
 			return runner;
 		} catch (Exception e) {
+			System.out.println("VRPExperimentRunner - produce - exception" + e.getMessage());
+			e.printStackTrace();
 			new JMetalException("AlgorithmFactory.produce(file): error when reading data file " + e);
 
 			return null;

@@ -24,6 +24,7 @@ public final class App {
 			CommandLine cmd = parser.parse(options, args);
 
 			if (cmd.hasOption("vrpe")) {
+				System.out.println("App - vrpe");
 				VRPExperimentRunner runner = VRPExperimentRunnerFactory
 						.produce((File) cmd.getParsedOptionValue("vrpe"));
 
