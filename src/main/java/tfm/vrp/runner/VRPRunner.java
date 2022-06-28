@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.uma.jmetal.algorithm.Algorithm;
-import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
+import org.uma.jmetal.algorithm.multiobjective.spea2.SPEA2;
 import org.uma.jmetal.lab.visualization.plot.impl.Plot2D;
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
 import org.uma.jmetal.operator.mutation.MutationOperator;
@@ -13,6 +13,7 @@ import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.BinaryTournamentSelection;
 import org.uma.jmetal.problem.permutationproblem.PermutationProblem;
 import org.uma.jmetal.util.JMetalLogger;
+import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 import org.uma.jmetal.util.fileoutput.SolutionListOutput;
 import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
@@ -33,8 +34,8 @@ import tfm.vrp.VRPFactory;
 @RequiredArgsConstructor
 public class VRPRunner {
 	private final File vrpFile;
-	private int populationSize = 5000;
-	private int maxEvaluations = 500000;
+	private int populationSize = 1000;
+	private int maxEvaluations = 5000;
 	private float crossoverProbability = (float) 0.9;
 	private Float mutationProbability = (float) 0.05;
 
@@ -61,11 +62,14 @@ public class VRPRunner {
 		mutation = new PermutationSwapAreaCoverageMutation(mutationProbability,
 				VRPFactory.getNumberOfOperators(vrpFile));
 
-		algorithm = new NSGAIIBuilder<AreaCoverageSolution>(
-				problem, crossover, mutation, populationSize)
-				.setSelectionOperator(selection)
-				.setMaxEvaluations(maxEvaluations)
-				.build();
+		// algorithm = new NSGAIIBuilder<AreaCoverageSolution>(
+		// problem, crossover, mutation, populationSize)
+		// .setSelectionOperator(selection)
+		// .setMaxEvaluations(maxEvaluations)
+		// .build();
+
+		algorithm = new SPEA2<AreaCoverageSolution>(problem, maxEvaluations, populationSize, crossover,
+				mutation, selection, new SequentialSolutionListEvaluator<AreaCoverageSolution>(), 1);
 
 		return algorithm;
 	}
