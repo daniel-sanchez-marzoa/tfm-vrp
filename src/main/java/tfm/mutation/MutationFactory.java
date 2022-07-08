@@ -10,7 +10,7 @@ import org.uma.jmetal.util.errorchecking.JMetalException;
 
 import tfm.mutation.permutationswap.PermutationSwapMutationFactory;
 import tfm.utils.FileUtils;
-import tfm.vrp.AreaCoverageSolution;
+import tfm.problem.vrp.AreaCoverageSolution;
 
 public class MutationFactory {
 	public static MutationOperator<AreaCoverageSolution> produce(File file) throws FileNotFoundException {

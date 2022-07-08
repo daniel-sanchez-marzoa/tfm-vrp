@@ -14,7 +14,7 @@ import tfm.crossover.CrossoverFactory;
 import tfm.mutation.MutationFactory;
 import tfm.selection.SelectionFactory;
 import tfm.utils.FileUtils;
-import tfm.vrp.AreaCoverageSolution;
+import tfm.problem.vrp.AreaCoverageSolution;
 
 public class NGSAIIFactory {
 	public static NSGAII<AreaCoverageSolution> produce(File file,

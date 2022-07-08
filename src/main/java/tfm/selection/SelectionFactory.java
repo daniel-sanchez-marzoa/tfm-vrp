@@ -11,7 +11,7 @@ import org.uma.jmetal.util.errorchecking.JMetalException;
 
 import tfm.selection.binarytournament.BinaryTournamentSelectionFactory;
 import tfm.utils.FileUtils;
-import tfm.vrp.AreaCoverageSolution;
+import tfm.problem.vrp.AreaCoverageSolution;
 
 public class SelectionFactory {
 	public static SelectionOperator<List<AreaCoverageSolution>, AreaCoverageSolution> produce(File file)

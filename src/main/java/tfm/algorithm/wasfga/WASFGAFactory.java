@@ -15,7 +15,7 @@ import tfm.crossover.CrossoverFactory;
 import tfm.mutation.MutationFactory;
 import tfm.selection.SelectionFactory;
 import tfm.utils.FileUtils;
-import tfm.vrp.AreaCoverageSolution;
+import tfm.problem.vrp.AreaCoverageSolution;
 
 public class WASFGAFactory {
 	public static WASFGA<AreaCoverageSolution> produce(File file,

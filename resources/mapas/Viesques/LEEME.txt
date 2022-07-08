@@ -1,0 +1,5 @@
+viesques.plot: script GNUPlot para pintar los barridos y la CS del campo de vuelo de viesques (desde GNUPlot: load "viesques.plot")
+
+viesques-CS.csv: Coordenadas geográficas de la CS
+
+viesques-Swepts.csv: coordenadas geográficas de los barridos del campo de vuelo

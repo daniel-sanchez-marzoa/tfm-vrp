@@ -10,7 +10,7 @@ import org.uma.jmetal.util.errorchecking.JMetalException;
 
 import tfm.crossover.pmxcrossover.PMXCrossoverFactory;
 import tfm.utils.FileUtils;
-import tfm.vrp.AreaCoverageSolution;
+import tfm.problem.vrp.AreaCoverageSolution;
 
 public class CrossoverFactory {
 	public static CrossoverOperator<AreaCoverageSolution> produce(File file) throws FileNotFoundException {

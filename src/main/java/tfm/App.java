@@ -11,135 +11,197 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import tfm.vrp.runner.VRPExperimentRunner;
-import tfm.vrp.runner.VRPExperimentRunnerFactory;
-import tfm.vrp.runner.VRPRunner;
+import tfm.problem.sweep.runner.SweepCoverageRunner;
+import tfm.problem.vrp.runner.VRPExperimentRunner;
+import tfm.problem.vrp.runner.VRPExperimentRunnerFactory;
+import tfm.problem.vrp.runner.VRPRunner;
 
 public final class App {
-	public static void main(String[] args) {
-		Options options = getProgramOptions();
+    public static void main(String[] args) {
+        Options options = getProgramOptions();
 
-		try {
-			CommandLineParser parser = new DefaultParser();
-			CommandLine cmd = parser.parse(options, args);
+        try {
+            CommandLineParser parser = new DefaultParser();
+            CommandLine cmd = parser.parse(options, args);
 
-			if (cmd.hasOption("vrpe")) {
-				System.out.println("App - vrpe");
-				VRPExperimentRunner runner = VRPExperimentRunnerFactory
-						.produce((File) cmd.getParsedOptionValue("vrpe"));
+            if (cmd.hasOption("vrpe")) {
+                System.out.println("App - vrpe");
+                VRPExperimentRunner runner = VRPExperimentRunnerFactory
+                    .produce((File) cmd.getParsedOptionValue("vrpe"));
 
-				runner.runExperiment();
-			} else if (cmd.hasOption("vrp")) {
-				VRPRunner runner = setupVRPRunner(options, args);
+                runner.runExperiment();
+            } else if (cmd.hasOption("vrp")) {
+                VRPRunner runner = setupVRPRunner(options, args);
 
-				runner.runVRP();
-			} else {
-				String header = "VRP problem solver using jMetal\n\n";
-				String footer = "";
+                runner.run();
+            } else if (cmd.hasOption("sweep")) {
+                SweepCoverageRunner runner = setupSweepCoverageProblemRunner(options, args);
 
-				new HelpFormatter().printHelp("tfm-vrp", header, options, footer, true);
-			}
+                runner.run();
+            } else {
+                String header = "VRP problem solver using jMetal\n\n";
+                String footer = "";
 
-		} catch (IOException | ParseException e) {
-			e.printStackTrace();
-		}
-	}
+                new HelpFormatter().printHelp("tfm-vrp", header, options, footer, true);
+            }
 
-	/**
-	 * Reads the parameters passed in the command-line to setup a runner for a VRP
-	 * problem
-	 * 
-	 * @param options options of the VRP problem and used algorithm
-	 * @param args    arguments passed in the command-line for the given options
-	 * @return a runner for the VRP problem
-	 */
-	private static VRPRunner setupVRPRunner(Options options, String[] args) {
-		try {
-			CommandLineParser parser = new DefaultParser();
-			CommandLine cmd = parser.parse(options, args);
-			VRPRunner runner = new VRPRunner((File) cmd.getParsedOptionValue("vrp"));
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
-			Integer populationSize = (Integer) cmd.getParsedOptionValue("p");
-			Integer maxEvaluations = (Integer) cmd.getParsedOptionValue("e");
-			Float crossoverProbability = (Float) cmd.getParsedOptionValue("cp");
+    /**
+     * Reads the parameters passed in the command-line to setup a runner for a VRP
+     * problem
+     *
+     * @param options options of the VRP problem and used algorithm
+     * @param args    arguments passed in the command-line for the given options
+     * @return a runner for the VRP problem
+     */
+    private static VRPRunner setupVRPRunner(Options options, String[] args) {
+        try {
+            CommandLineParser parser = new DefaultParser();
+            CommandLine cmd = parser.parse(options, args);
+            VRPRunner runner = new VRPRunner((File) cmd.getParsedOptionValue("vrp"));
 
-			if (populationSize != null)
-				runner.setPopulationSize(populationSize);
+            Integer populationSize = (Integer) cmd.getParsedOptionValue("p");
+            Integer maxEvaluations = (Integer) cmd.getParsedOptionValue("e");
+            Float crossoverProbability = (Float) cmd.getParsedOptionValue("cp");
 
-			if (maxEvaluations != null)
-				runner.setMaxEvaluations(maxEvaluations);
+            if (populationSize != null)
+                runner.setPopulationSize(populationSize);
 
-			if (crossoverProbability != null)
-				runner.setCrossoverProbability(crossoverProbability);
+            if (maxEvaluations != null)
+                runner.setMaxEvaluations(maxEvaluations);
 
-			return runner;
-		} catch (ParseException e) {
-			System.out.println(e.getMessage());
-			HelpFormatter formatter = new HelpFormatter();
-			formatter.printHelp("utility-name", options);
+            if (crossoverProbability != null)
+                runner.setCrossoverProbability(crossoverProbability);
 
-			System.exit(1);
-		}
+            return runner;
+        } catch (ParseException e) {
+            System.out.println(e.getMessage());
+            HelpFormatter formatter = new HelpFormatter();
+            formatter.printHelp("utility-name", options);
 
-		return null;
-	}
+            System.exit(1);
+        }
 
-	/**
-	 * get the avaiable command-line options for the current application
-	 * 
-	 * @return the avaiable command-line options
-	 */
-	private static Options getProgramOptions() {
-		Options options = new Options();
+        return null;
+    }
 
-		options.addOption(Option.builder()
-				.option("vrpe")
-				.longOpt("vrp-experiment")
-				.hasArg()
-				.desc("File containing a vrp experiment.")
-				.type(File.class)
-				.build());
+    /**
+     * Reads the parameters passed in the command-line to setup a runner for a Sweep Coverage
+     * problem
+     *
+     * @param options options of the Sweep Coverage problem and used algorithm
+     * @param args    arguments passed in the command-line for the given options
+     * @return a runner for the VRP problem
+     */
+    private static SweepCoverageRunner setupSweepCoverageProblemRunner(Options options, String[] args) {
+        try {
+            CommandLineParser parser = new DefaultParser();
+            CommandLine cmd = parser.parse(options, args);
+            SweepCoverageRunner runner = new SweepCoverageRunner((File) cmd.getParsedOptionValue("sweep"));
 
-		options.addOption(Option.builder()
-				.option("vrp")
-				.longOpt("vrp-file")
-				.hasArg()
-				.desc("File containing a vrp intance. These files can be created from tsp instances from TSPLIB, by adding two parameters: 'DEPOT' (index of the depot location) and 'NUMBER_OF_VEHICLES' (integer indicating the maximum number of vehicles to be used)\n'http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/'")
-				.type(File.class)
-				.build());
+            Integer populationSize = (Integer) cmd.getParsedOptionValue("p");
+            Integer maxEvaluations = (Integer) cmd.getParsedOptionValue("e");
+            Float crossoverProbability = (Float) cmd.getParsedOptionValue("cp");
 
-		options.addOption(Option.builder()
-				.option("p")
-				.longOpt("population-size")
-				.hasArg()
-				.desc("Size of the genetic algorithm's population. Default = 100")
-				.type(Integer.class)
-				.build());
+            if (populationSize != null)
+                runner.setPopulationSize(populationSize);
+            else
+                populationSize = 100;
 
-		options.addOption(Option.builder()
-				.option("e")
-				.longOpt("max-evaluations")
-				.hasArg()
-				.desc("Maximum number of evaluations (iterations) for the algorithm. Default = 1000")
-				.type(Integer.class)
-				.build());
+            if (maxEvaluations != null)
+                runner.setMaxIterations(maxEvaluations / populationSize);
 
-		options.addOption(Option.builder()
-				.option("cp")
-				.longOpt("crossover-probability")
-				.hasArg()
-				.desc("Probability of applying crossover operation to a pair of individuals. Default = 0.9")
-				.type(Float.class)
-				.build());
+            if (crossoverProbability != null)
+                runner.setCrossoverProbability(crossoverProbability);
 
-		options.addOption(Option.builder()
-				.option("mp")
-				.longOpt("mutation-probability")
-				.hasArg()
-				.desc("Probability of applying mutation operation to an individual. Default = 1/number_of_variables_in_solution")
-				.type(Float.class)
-				.build());
+            runner.setInitializePopulation(cmd.hasOption("i"));
 
-		return options;
-	}
+            return runner;
+        } catch (ParseException e) {
+            System.out.println(e.getMessage());
+            HelpFormatter formatter = new HelpFormatter();
+            formatter.printHelp("utility-name", options);
+
+            System.exit(1);
+        }
+
+        return null;
+    }
+
+    /**
+     * get the avaiable command-line options for the current application
+     *
+     * @return the avaiable command-line options
+     */
+    private static Options getProgramOptions() {
+        Options options = new Options();
+
+        options.addOption(Option.builder()
+            .option("vrpe")
+            .longOpt("vrp-experiment")
+            .hasArg()
+            .desc("File containing a vrp experiment.")
+            .type(File.class)
+            .build());
+
+        options.addOption(Option.builder()
+            .option("vrp")
+            .longOpt("vrp-file")
+            .hasArg()
+            .desc("File containing a vrp intance. These files can be created from tsp instances from TSPLIB, by adding two parameters: 'DEPOT' (index of the depot location) and 'NUMBER_OF_VEHICLES' (integer indicating the maximum number of vehicles to be used)\n'http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/'")
+            .type(File.class)
+            .build());
+
+        options.addOption(Option.builder()
+            .option("sweep")
+            .longOpt("sweep-file")
+            .hasArg()
+            .desc("File containing a sweep coverage intance.")
+            .type(File.class)
+            .build());
+
+        options.addOption(Option.builder()
+            .option("i")
+            .longOpt("initialize-population")
+            .desc("Initializes the population with one individual per number of drones and the rest of the population is random")
+            .build());
+
+        options.addOption(Option.builder()
+            .option("p")
+            .longOpt("population-size")
+            .hasArg()
+            .desc("Size of the genetic algorithm's population. Default = 100")
+            .type(Integer.class)
+            .build());
+
+        options.addOption(Option.builder()
+            .option("e")
+            .longOpt("max-evaluations")
+            .hasArg()
+            .desc("Maximum number of evaluations (iterations) for the algorithm. Default = 1000")
+            .type(Integer.class)
+            .build());
+
+        options.addOption(Option.builder()
+            .option("cp")
+            .longOpt("crossover-probability")
+            .hasArg()
+            .desc("Probability of applying crossover operation to a pair of individuals. Default = 0.9")
+            .type(Float.class)
+            .build());
+
+        options.addOption(Option.builder()
+            .option("mp")
+            .longOpt("mutation-probability")
+            .hasArg()
+            .desc("Probability of applying mutation operation to an individual. Default = 1/number_of_variables_in_solution")
+            .type(Float.class)
+            .build());
+
+        return options;
+    }
 }

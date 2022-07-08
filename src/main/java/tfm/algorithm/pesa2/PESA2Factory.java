@@ -13,7 +13,7 @@ import org.uma.jmetal.util.errorchecking.JMetalException;
 import tfm.crossover.CrossoverFactory;
 import tfm.mutation.MutationFactory;
 import tfm.utils.FileUtils;
-import tfm.vrp.AreaCoverageSolution;
+import tfm.problem.vrp.AreaCoverageSolution;
 
 public class PESA2Factory {
 	public static PESA2<AreaCoverageSolution> produce(File file,

@@ -1,4 +1,4 @@
-package tfm.vrp.runner;
+package tfm.problem.vrp.runner;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,8 +27,8 @@ import org.uma.jmetal.qualityindicator.impl.hypervolume.impl.PISAHypervolume;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import tfm.algorithm.AlgorithmFactory;
-import tfm.vrp.AreaCoverageSolution;
-import tfm.vrp.VRPFactory;
+import tfm.problem.vrp.AreaCoverageSolution;
+import tfm.problem.vrp.VRPFactory;
 
 /**
  * This class executes jMetal experiments, running multiple algorithms against
@@ -68,7 +68,7 @@ public class VRPExperimentRunner {
 	 * results
 	 * </ul>
 	 * </ul>
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	public void runExperiment() throws IOException {

@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
 import tfm.mutation.MutationFactoryUtils;
-import tfm.vrp.VRPFactory;
+import tfm.problem.vrp.VRPFactory;
 
 public class PermutationSwapMutationFactory {
 	public static PermutationSwapAreaCoverageMutation produce(File file) throws FileNotFoundException {

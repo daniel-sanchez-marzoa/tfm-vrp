@@ -1,4 +1,4 @@
-package tfm.vrp;
+package tfm.problem.vrp;
 
 import java.util.ArrayList;
 import java.util.HashMap;

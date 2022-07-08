@@ -20,7 +20,7 @@ import tfm.algorithm.smsemoa.SMSEMOAFactory;
 import tfm.algorithm.spea2.SPEA2Factory;
 import tfm.algorithm.wasfga.WASFGAFactory;
 import tfm.utils.FileUtils;
-import tfm.vrp.AreaCoverageSolution;
+import tfm.problem.vrp.AreaCoverageSolution;
 
 public class AlgorithmFactory {
 	public static ExperimentAlgorithm<AreaCoverageSolution, List<AreaCoverageSolution>> produce(

@@ -1,4 +1,4 @@
-package tfm.vrp;
+package tfm.problem.vrp;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,0 +1,7 @@
+valdebueyes.xlsm: excel con la descripción de la discretización de Valdebueyes en barridos
+
+valdebueyes.plot: script GNUPlot para pintar los barridos y la CS del campo de vuelo de viesques (desde GNUPlot: load "valdebueyes.plot")
+
+valdebueyes-CS.csv: Coordenadas cartesianas de la CS
+
+valdebueyes.csv: coordenadas cartesianas de los barridos de Valdebueyes

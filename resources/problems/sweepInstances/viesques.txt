@@ -1,0 +1,7 @@
+NAME: Valdebueyes 2
+TYPE: SWEEP
+COMMENT: Valdebueyes 2
+DEPOT_FILE: resources/mapas/Viesques/viesques-CS.csv
+SWEEPS_FILE: resources/mapas/Viesques/viesques-Swepts.csv
+NUMBER_OF_VEHICLES: 10
+EOF

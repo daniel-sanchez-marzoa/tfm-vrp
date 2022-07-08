@@ -1,14 +1,14 @@
 # tfm-vrp
 
-This aplication uses [jMetal](https://github.com/jMetal/jMetal) to solve the VRP problem. It can execute an algorithm against a single problem or use the jMetal [Experiment](https://github.com/jMetal/jMetal/blob/master/jmetal-lab/src/main/java/org/uma/jmetal/lab/experiment/Experiment.java) class to run a series of algorithms against a list of problems and generate metrics to compare the results.
+This aplication uses [jMetal](https://github.com/jMetal/jMetal) to solve the problem covering an area with a set of drones. It can execute an algorithm against a single problem or use the jMetal [Experiment](https://github.com/jMetal/jMetal/blob/master/jmetal-lab/src/main/java/org/uma/jmetal/lab/experiment/Experiment.java) class to run a series of algorithms against a list of problems and generate metrics to compare the results.
 
-The application tries to optimize the number of vehicles used and the distance of the routes taken by them.
+The application tries to optimize the number of vehicles used and the distance of the longest route taken by them, thus minimizing the time of coverage of the given area.
 
 ## Command line use
 
 Running the program without arguments will print all the avaiable arguments with a brief explanation for each one.
 
-Out of all the arguments, the most important is '-vrpe', which is used to run the already mentioned jMetal experiments. The argument accepts a file containing the configuration for the experiment. 
+Out of all the arguments, the most important is '-vrpe', which is used to run the already mentioned jMetal experiments. The argument accepts a file containing the configuration for the experiment.
 
 The resources directory contains configurations for different experiments, algorithms and problems.
 

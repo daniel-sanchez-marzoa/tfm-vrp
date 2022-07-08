@@ -20,38 +20,6 @@
 		},
 		{
 			"type": "java",
-			"name": "VRP - square1",
-			"request": "launch",
-			"mainClass": "tfm.App",
-			"projectName": "tfm-vrp",
-			"args": "-vrp resources/problems/vrpInstances/square1.vrp"
-		},
-		{
-			"type": "java",
-			"name": "VRP - square2",
-			"request": "launch",
-			"mainClass": "tfm.App",
-			"projectName": "tfm-vrp",
-			"args": "-vrp resources/problems/vrpInstances/square2.vrp"
-		},
-		{
-			"type": "java",
-			"name": "VRP - square3",
-			"request": "launch",
-			"mainClass": "tfm.App",
-			"projectName": "tfm-vrp",
-			"args": "-vrp resources/problems/vrpInstances/square3.vrp"
-		},
-		{
-			"type": "java",
-			"name": "VRP - square4",
-			"request": "launch",
-			"mainClass": "tfm.App",
-			"projectName": "tfm-vrp",
-			"args": "-vrp resources/problems/vrpInstances/square4.vrp"
-		},
-		{
-			"type": "java",
 			"name": "Experiment - area coverage",
 			"request": "launch",
 			"mainClass": "tfm.App",
