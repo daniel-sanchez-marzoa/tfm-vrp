@@ -1,0 +1,7 @@
+NAME: Valdebueyes 2 reordenado
+TYPE: SWEEP
+COMMENT: Valdebueyes 2 reordenado
+DEPOT_FILE: resources/mapas/Valdebueyes/valdebueyes2-CS.csv
+SWEEPS_FILE: resources/mapas/Valdebueyes/valdebueyes2-reordenado_distinta_longitud_barridos.csv
+NUMBER_OF_VEHICLES: 10
+EOF

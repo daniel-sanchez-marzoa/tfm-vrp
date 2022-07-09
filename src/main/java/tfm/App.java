@@ -106,6 +106,9 @@ public final class App {
             Integer populationSize = (Integer) cmd.getParsedOptionValue("p");
             Integer maxEvaluations = (Integer) cmd.getParsedOptionValue("e");
             Float crossoverProbability = (Float) cmd.getParsedOptionValue("cp");
+            Integer lengthModificationPercentage = cmd.getParsedOptionValue("l") != null ?
+                ((Number) cmd.getParsedOptionValue("l")).intValue()
+                : null;
 
             if (populationSize != null)
                 runner.setPopulationSize(populationSize);
@@ -118,7 +121,11 @@ public final class App {
             if (crossoverProbability != null)
                 runner.setCrossoverProbability(crossoverProbability);
 
+            if (lengthModificationPercentage != null)
+                runner.setLengthModificationPercentage(lengthModificationPercentage);
+
             runner.setInitializePopulation(cmd.hasOption("i"));
+            runner.setShuffleSweeps(cmd.hasOption("s"));
 
             return runner;
         } catch (ParseException e) {
@@ -171,11 +178,25 @@ public final class App {
             .build());
 
         options.addOption(Option.builder()
+            .option("s")
+            .longOpt("shuffle-sweeps")
+            .desc("Shuffles the sweeps to get a new instance of the problem. The new sweeps are saved in the shuffledSweeps.csv")
+            .build());
+
+        options.addOption(Option.builder()
+            .option("l")
+            .longOpt("modify-length")
+            .hasArg()
+            .desc("Modifies the length of the sweeps randomly inside the given percentage.")
+            .type(Number.class)
+            .build());
+
+        options.addOption(Option.builder()
             .option("p")
             .longOpt("population-size")
             .hasArg()
             .desc("Size of the genetic algorithm's population. Default = 100")
-            .type(Integer.class)
+            .type(Number.class)
             .build());
 
         options.addOption(Option.builder()
@@ -183,7 +204,7 @@ public final class App {
             .longOpt("max-evaluations")
             .hasArg()
             .desc("Maximum number of evaluations (iterations) for the algorithm. Default = 1000")
-            .type(Integer.class)
+            .type(Number.class)
             .build());
 
         options.addOption(Option.builder()

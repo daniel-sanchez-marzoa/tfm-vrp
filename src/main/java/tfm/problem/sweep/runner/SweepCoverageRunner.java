@@ -41,7 +41,9 @@ import java.util.List;
 public class SweepCoverageRunner {
     private final File sweepCoverageProblemFile;
     private boolean initializePopulation;
-    private int populationSize = 50;
+    private boolean shuffleSweeps;
+    private Integer lengthModificationPercentage;
+    private int populationSize = 750;
     private int maxIterations = 10000;
     private float crossoverProbability = (float) 0.9;
     private Float mutationProbability = (float) 0.05;
@@ -55,7 +57,7 @@ public class SweepCoverageRunner {
     }
 
     private Algorithm<List<SweepCoverageSolution>> getAlgorithm() throws IOException {
-        SweepCoverageProblem problem = SweepCoverageProblemFactory.produce(sweepCoverageProblemFile);
+        SweepCoverageProblem problem = SweepCoverageProblemFactory.produce(sweepCoverageProblemFile, shuffleSweeps, lengthModificationPercentage);
         CrossoverOperator crossover = new PMXCrossover(crossoverProbability);
         SelectionOperator<List<SweepCoverageSolution>, SweepCoverageSolution> selection = new BinaryTournamentSelection<>(
             new AreaCoverageDominanceComparator<>());

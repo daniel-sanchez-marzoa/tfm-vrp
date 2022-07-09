@@ -69,6 +69,7 @@ public class SweepCoverageSolution extends AbstractSolution<Integer>
             }
         } else
             java.util.Collections.shuffle(randomSequence);
+
         return randomSequence;
     }
 

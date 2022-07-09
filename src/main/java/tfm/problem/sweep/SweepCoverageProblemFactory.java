@@ -7,19 +7,56 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class SweepCoverageProblemFactory {
-    public static SweepCoverageProblem produce(File file) throws FileNotFoundException {
+    public static SweepCoverageProblem produce(File file, boolean shuffleSweeps, Integer lengthModificationPercentage) throws FileNotFoundException {
         try {
             String name = getName(file);
             List<Sweep> sweeps = getSweeps(file);
             Coordinate depot = getDepot(file);
             int numberOfDrones = getNumberOfVehicles(file);
 
+            if (shuffleSweeps) {
+                java.util.Collections.shuffle(sweeps);
+
+                saveSweeps("shuffledSweeps.csv", sweeps);
+            }
+
+            if (lengthModificationPercentage != null) {
+                int percentageModifier = ThreadLocalRandom.current().nextInt(
+                    lengthModificationPercentage > 99 ? -99 : -lengthModificationPercentage,
+                    lengthModificationPercentage + 1);
+
+                for (Sweep sweep : sweeps) {
+                    sweep.getB().setX(sweep.getB().getX() + (sweep.getB().getX() * percentageModifier / 100));
+                    sweep.getB().setY(sweep.getB().getY() + (sweep.getB().getY() * percentageModifier / 100));
+                }
+
+                saveSweeps("modifiedLengthSweeps.csv", sweeps);
+            }
 
             return new SweepCoverageProblem(name, sweeps, depot, numberOfDrones);
         } catch (Exception e) {
             throw new JMetalException("VRPFactory.produce(file): error when reading data file " + e);
+        }
+    }
+
+    private static void saveSweeps(String fileName, List<Sweep> sweeps) {
+        try {
+            File sweepsFile = new File(fileName);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(sweepsFile));
+
+            writer.write("X1\tY1\tX2\tY2\n");
+
+            for (Sweep sweep : sweeps) {
+                writer.write(sweep.getA().getX() + "\t" + sweep.getA().getY() + "\t" + sweep.getB().getX() + "\t" + sweep.getB().getY() + "\n");
+            }
+
+            writer.close();
+
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
         }
     }
 
@@ -255,9 +292,9 @@ public class SweepCoverageProblemFactory {
         token.nextToken();
         token.nextToken();
 
-        File depotFile = new File(token.sval);
+        File sweepsFile = new File(token.sval);
 
-        BufferedReader reader = new BufferedReader(new FileReader(depotFile));
+        BufferedReader reader = new BufferedReader(new FileReader(sweepsFile));
         String line;
         List<Sweep> sweeps = new ArrayList<>();
 
