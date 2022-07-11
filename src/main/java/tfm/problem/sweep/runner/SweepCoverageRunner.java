@@ -2,6 +2,7 @@ package tfm.problem.sweep.runner;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.FileUtils;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.lab.visualization.plot.impl.Plot2D;
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
@@ -10,8 +11,6 @@ import org.uma.jmetal.operator.mutation.MutationOperator;
 import org.uma.jmetal.operator.mutation.impl.PermutationSwapMutation;
 import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.BinaryTournamentSelection;
-import org.uma.jmetal.problem.permutationproblem.PermutationProblem;
-import org.uma.jmetal.solution.Solution;
 import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.comparator.DominanceComparator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
@@ -40,10 +39,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SweepCoverageRunner {
     private final File sweepCoverageProblemFile;
+    private File resultsDirectory = new File("");
     private boolean initializePopulation;
     private boolean shuffleSweeps;
     private Integer lengthModificationPercentage;
-    private int populationSize = 750;
+    private int populationSize = 100;
     private int maxIterations = 10000;
     private float crossoverProbability = (float) 0.9;
     private Float mutationProbability = (float) 0.05;
@@ -64,7 +64,7 @@ public class SweepCoverageRunner {
         MutationOperator<SweepCoverageSolution> mutation;
         NSGAIISweepMeasures algorithm;
 
-        createConvergencyFile(problem);
+        createConvergenceFile(problem);
 
         if (mutationProbability == null)
             mutationProbability = (float) (1.0 / problem.getNumberOfVariables());
@@ -88,7 +88,7 @@ public class SweepCoverageRunner {
             measureManager.<List<SweepCoverageSolution>>getPushMeasure("nonDominatedFront");
 //        CountingMeasure iterationMeasure = (CountingMeasure) measureManager.<Long>getPushMeasure("currentIteration");
 
-        solutionListMeasure.register(new SolutionListener(problem.getNumberOfDrones()));
+        solutionListMeasure.register(new SolutionListener(maxIterations - 1, resultsDirectory, problem.getNumberOfDrones()));
 //        iterationMeasure.register(new IterationListener());
 
 //        new NSGAIIBuilder<SweepCoverageSolution>(problem, crossover, mutation, populationSize)
@@ -100,8 +100,11 @@ public class SweepCoverageRunner {
         return algorithm;
     }
 
-    private void createConvergencyFile(SweepCoverageProblem problem) throws IOException {
-        File csv = new File("convergencia.csv");
+    private void createConvergenceFile(SweepCoverageProblem problem) throws IOException {
+        File csv = new File(resultsDirectory, "convergencia.csv");
+
+        if (!resultsDirectory.exists())
+            resultsDirectory.mkdirs();
 
         if (csv.exists()) csv.delete();
 
@@ -118,21 +121,21 @@ public class SweepCoverageRunner {
 
     private void saveResults(Algorithm<List<SweepCoverageSolution>> algorithm, AlgorithmRunner algorithmRunner) {
         List<SweepCoverageSolution> population = algorithm.getResult();
-        long computingTime = algorithmRunner.getComputingTime();
+//        long computingTime = algorithmRunner.getComputingTime();
 
-        double[][] a = new double[][]{{1, 2}, {2, 2}};
+//        double[][] a = new double[][]{{1, 2}, {2, 2}};
 
-        Plot2D plot = new Plot2D(a, algorithm.getName());
-        plot.plot();
+//        Plot2D plot = new Plot2D(a, algorithm.getName());
+//        plot.plot();
 
         new SolutionListOutput(population)
-            .setVarFileOutputContext(new DefaultFileOutputContext("VAR.tsv"))
-            .setFunFileOutputContext(new DefaultFileOutputContext("FUN.tsv"))
+            .setVarFileOutputContext(new DefaultFileOutputContext(resultsDirectory.getAbsolutePath() + File.separator + "VAR.tsv"))
+            .setFunFileOutputContext(new DefaultFileOutputContext(resultsDirectory.getAbsolutePath() + File.separator + "FUN.tsv"))
             .print();
 
-        JMetalLogger.logger.info("Total execution time: " + computingTime + "ms");
-        JMetalLogger.logger.info("Random seed: " + JMetalRandom.getInstance().getSeed());
-        JMetalLogger.logger.info("Objectives values have been written to file FUN.tsv");
-        JMetalLogger.logger.info("Variables values have been written to file VAR.tsv");
+//        JMetalLogger.logger.info("Total execution time: " + computingTime + "ms");
+//        JMetalLogger.logger.info("Random seed: " + JMetalRandom.getInstance().getSeed());
+//        JMetalLogger.logger.info("Objectives values have been written to file FUN.tsv");
+//        JMetalLogger.logger.info("Variables values have been written to file VAR.tsv");
     }
 }

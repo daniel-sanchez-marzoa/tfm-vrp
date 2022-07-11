@@ -1,25 +1,24 @@
 package tfm.problem.sweep.runner;
 
+import lombok.Data;
 import org.uma.jmetal.util.measure.MeasureListener;
 import tfm.problem.sweep.SweepCoverageSolution;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Data
 public class SolutionListener implements MeasureListener<List<SweepCoverageSolution>> {
-
     private int iteration = 0;
-    private int numberOfDrones;
-    private List<SweepCoverageSolution> previousNonDominatedFrontObjectives = new ArrayList<>();
-
-    public SolutionListener(int numberOfDrones) {
-        this.numberOfDrones = numberOfDrones;
-    }
+    private int progress = 0;
+    private final int numberOfIterations;
+    private final File resultsDirectory ;
+    private final int numberOfDrones;
+//    private List<SweepCoverageSolution> previousNonDominatedFrontObjectives = new ArrayList<>();
 
     @Override
     synchronized public void measureGenerated(List<SweepCoverageSolution> solutions) {
@@ -27,8 +26,11 @@ public class SolutionListener implements MeasureListener<List<SweepCoverageSolut
 
         Map<Double, Double> frontValues = new HashMap<>();
         iteration++;
-        if (iteration % 100 == 0 || iteration == 9999)
-            System.out.println("Iteración " + iteration);
+
+        if ((int) (((float) iteration / numberOfIterations) * 100) != progress) {
+            progress = (int) (((float) iteration / numberOfIterations) * 100);
+            System.out.print("\r" + progress + "%");
+        }
 
         for (SweepCoverageSolution solution : solutions) {
 //            System.out.println("Distancia: " + objectives[0]);
@@ -70,7 +72,7 @@ public class SolutionListener implements MeasureListener<List<SweepCoverageSolut
 
         while (!written) {
             try {
-                File csv = new File("convergencia.csv");
+                File csv = new File(resultsDirectory, "convergencia.csv");
                 BufferedWriter writer = new BufferedWriter(new FileWriter(csv, true));
                 writer.append("\n").append(String.valueOf(iteration)).append(",");
 
@@ -89,6 +91,6 @@ public class SolutionListener implements MeasureListener<List<SweepCoverageSolut
             }
         }
 
-        previousNonDominatedFrontObjectives = solutions;
+//        previousNonDominatedFrontObjectives = solutions;
     }
 }
