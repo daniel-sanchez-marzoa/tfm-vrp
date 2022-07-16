@@ -2,6 +2,7 @@ package tfm.algorithm;
 
 public enum AlgorithmType {
 	NGSAII,
+    NGSAIII,
 	ESPEA,
 	WASFGA,
 	MOCell,

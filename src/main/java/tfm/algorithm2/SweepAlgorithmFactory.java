@@ -1,11 +1,13 @@
 package tfm.algorithm2;
 
+import org.uma.jmetal.algorithm.multiobjective.nsgaiii.NSGAIIIBuilder;
 import org.uma.jmetal.lab.experiment.util.ExperimentAlgorithm;
 import org.uma.jmetal.lab.experiment.util.ExperimentProblem;
 import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 import tfm.algorithm.AlgorithmType;
 import tfm.algorithm2.ngsaii.NGSAIIFactory;
+import tfm.algorithm2.nsgaiii.NGSAIIIFactory;
 import tfm.problem.sweep.SweepCoverageProblem;
 import tfm.problem.sweep.SweepCoverageSolution;
 import tfm.utils.FileUtils;
@@ -25,6 +27,13 @@ public class SweepAlgorithmFactory {
             switch (getAlgorithmType(file)) {
                 case NGSAII:
                     return new ExperimentAlgorithm<>(NGSAIIFactory.produce(
+                        file,
+                        (SweepCoverageProblem) experimentProblem.getProblem()),
+                        getAlgorithmName(file),
+                        experimentProblem,
+                        run);
+                case NGSAIII:
+                    return new ExperimentAlgorithm<>(NGSAIIIFactory.produce(
                         file,
                         (SweepCoverageProblem) experimentProblem.getProblem()),
                         getAlgorithmName(file),
