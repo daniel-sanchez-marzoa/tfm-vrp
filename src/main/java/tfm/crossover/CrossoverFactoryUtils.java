@@ -8,7 +8,7 @@ import tfm.utils.FileUtils;
 
 public class CrossoverFactoryUtils {
 
-	public static int getCrossoverProbability(File file) throws IOException {
+	public static double getCrossoverProbability(File file) throws IOException {
 		StreamTokenizer token = FileUtils.getTokens(file);
 		boolean found = false;
 		token.nextToken();
@@ -23,6 +23,6 @@ public class CrossoverFactoryUtils {
 		token.nextToken();
 		token.nextToken();
 
-		return (int) token.nval;
+		return (double) token.nval;
 	}
 }

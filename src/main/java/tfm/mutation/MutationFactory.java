@@ -4,31 +4,30 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StreamTokenizer;
+import java.util.Arrays;
 
 import org.uma.jmetal.operator.mutation.MutationOperator;
+import org.uma.jmetal.solution.permutationsolution.PermutationSolution;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
 import tfm.mutation.permutationswap.PermutationSwapMutationFactory;
+import tfm.problem.sweep.SweepCoverageSolution;
 import tfm.utils.FileUtils;
 import tfm.problem.vrp.AreaCoverageSolution;
 
 public class MutationFactory {
-	public static MutationOperator<AreaCoverageSolution> produce(File file) throws FileNotFoundException {
+	public static MutationOperator<SweepCoverageSolution> produce(File file) throws FileNotFoundException {
 		try {
 			switch (getMutationType(file)) {
 				case PermutationSwap:
 					return PermutationSwapMutationFactory.produce(file);
 				default:
-					new JMetalException(
+                    throw new JMetalException(
 							"MutationFactory.produce(file): unrecognized mutation type. Check parameter MUTATION_TYPE to ensure it has one of the following values: "
-									+ MutationType.values());
-
-					return null;
+									+ Arrays.toString(MutationType.values()));
 			}
 		} catch (Exception e) {
-			new JMetalException("MutationFactory.produce(file): error when reading data file " + e);
-
-			return null;
+            throw new JMetalException("MutationFactory.produce(file): error when reading data file " + e);
 		}
 	}
 

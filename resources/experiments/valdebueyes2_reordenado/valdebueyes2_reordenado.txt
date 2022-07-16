@@ -1,0 +1,7 @@
+STUDY_NAME: valdebueyes2_reordenado
+EXPERIMENT_BASE_DIRECTORY: valdebueyes2_reordenado_results
+PROBLEMS_DIRECTORY: resources/experiments/valdebueyes2_reordenado/problems
+ALGORITHMS_DIRECTORY: resources/experiments/valdebueyes2_reordenado/algorithms
+NUMBER_OF_INDEPENDENT_RUNS: 30
+CORES: 4
+EOF

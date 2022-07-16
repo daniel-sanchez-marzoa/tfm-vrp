@@ -29,71 +29,71 @@ public class AlgorithmFactory {
 		try {
 			switch (getAlgorithmType(file)) {
 				case NGSAII:
-					return new ExperimentAlgorithm<>(NGSAIIFactory.produce(
-							file,
-							experimentProblem.getProblem()),
-							getAlgorithmName(file),
-							experimentProblem,
-							run);
+//					return new ExperimentAlgorithm<>(NGSAIIFactory.produce(
+//							file,
+//							experimentProblem.getProblem()),
+//							getAlgorithmName(file),
+//							experimentProblem,
+//							run);
 				case ESPEA:
-					return new ExperimentAlgorithm<>(ESPEAFactory.produce(
-							file,
-							experimentProblem.getProblem()),
-							getAlgorithmName(file),
-							experimentProblem,
-							run);
+//					return new ExperimentAlgorithm<>(ESPEAFactory.produce(
+//							file,
+//							experimentProblem.getProblem()),
+//							getAlgorithmName(file),
+//							experimentProblem,
+//							run);
 				case WASFGA:
 					// TODO check parameters of WASFGA
-					return new ExperimentAlgorithm<>(WASFGAFactory.produce(
-							file,
-							experimentProblem.getProblem()),
-							getAlgorithmName(file),
-							experimentProblem,
-							run);
+//					return new ExperimentAlgorithm<>(WASFGAFactory.produce(
+//							file,
+//							experimentProblem.getProblem()),
+//							getAlgorithmName(file),
+//							experimentProblem,
+//							run);
 				case MOCell:
-					return new ExperimentAlgorithm<>(MOCellFactory.produce(
-							file,
-							experimentProblem.getProblem()),
-							getAlgorithmName(file),
-							experimentProblem,
-							run);
+//					return new ExperimentAlgorithm<>(MOCellFactory.produce(
+//							file,
+//							experimentProblem.getProblem()),
+//							getAlgorithmName(file),
+//							experimentProblem,
+//							run);
 				case MOMBI:
 					// TODO check parameters of MOMBI
-					return new ExperimentAlgorithm<>(MOMBIFactory.produce(
-							file,
-							experimentProblem.getProblem()),
-							getAlgorithmName(file),
-							experimentProblem,
-							run);
+//					return new ExperimentAlgorithm<>(MOMBIFactory.produce(
+//							file,
+//							experimentProblem.getProblem()),
+//							getAlgorithmName(file),
+//							experimentProblem,
+//							run);
 				case PESA2:
 					// TODO check parameters of PESA2
-					return new ExperimentAlgorithm<>(PESA2Factory.produce(
-							file,
-							experimentProblem.getProblem()),
-							getAlgorithmName(file),
-							experimentProblem,
-							run);
+//					return new ExperimentAlgorithm<>(PESA2Factory.produce(
+//							file,
+//							experimentProblem.getProblem()),
+//							getAlgorithmName(file),
+//							experimentProblem,
+//							run);
 				case SMSEMOA:
-					return new ExperimentAlgorithm<>(SMSEMOAFactory.produce(
-							file,
-							experimentProblem.getProblem()),
-							getAlgorithmName(file),
-							experimentProblem,
-							run);
+//					return new ExperimentAlgorithm<>(SMSEMOAFactory.produce(
+//							file,
+//							experimentProblem.getProblem()),
+//							getAlgorithmName(file),
+//							experimentProblem,
+//							run);
 				case SPEA2:
-					return new ExperimentAlgorithm<>(SPEA2Factory.produce(
-							file,
-							experimentProblem.getProblem()),
-							getAlgorithmName(file),
-							experimentProblem,
-							run);
+//					return new ExperimentAlgorithm<>(SPEA2Factory.produce(
+//							file,
+//							experimentProblem.getProblem()),
+//							getAlgorithmName(file),
+//							experimentProblem,
+//							run);
 				case GWASFGA:
-					return new ExperimentAlgorithm<>(GWASFGAFactory.produce(
-							file,
-							experimentProblem.getProblem()),
-							getAlgorithmName(file),
-							experimentProblem,
-							run);
+//					return new ExperimentAlgorithm<>(GWASFGAFactory.produce(
+//							file,
+//							experimentProblem.getProblem()),
+//							getAlgorithmName(file),
+//							experimentProblem,
+//							run);
 				default:
 					new JMetalException(
 							"AlgorithmFactory.produce(file): unrecognized algorithm type. Check parameter ALGORITHM_TYPE to ensure it has one of the following values: "

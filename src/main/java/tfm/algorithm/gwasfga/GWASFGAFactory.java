@@ -17,58 +17,58 @@ import tfm.utils.FileUtils;
 import tfm.problem.vrp.AreaCoverageSolution;
 
 public class GWASFGAFactory {
-	public static GWASFGA<AreaCoverageSolution> produce(File file,
-			Problem<AreaCoverageSolution> problem) throws FileNotFoundException {
-		try {
-			return new GWASFGA<>(
-					problem,
-					getPopulationSize(file),
-					getMaxEvaluations(file),
-					CrossoverFactory.produce(file),
-					MutationFactory.produce(file),
-					SelectionFactory.produce(file),
-					new SequentialSolutionListEvaluator<AreaCoverageSolution>(),
-					0.0);
-		} catch (Exception e) {
-			new JMetalException("GWASFGAFactory.produce(file): error when reading data file " + e);
-
-			return null;
-		}
-	}
-
-	private static int getPopulationSize(File file) throws IOException {
-		StreamTokenizer token = FileUtils.getTokens(file);
-		boolean found = false;
-		token.nextToken();
-
-		while (!found) {
-			if ((token.sval != null) && ((token.sval.compareTo("POPULATION_SIZE") == 0)))
-				found = true;
-			else
-				token.nextToken();
-		}
-
-		token.nextToken();
-		token.nextToken();
-
-		return (int) token.nval;
-	}
-
-	private static int getMaxEvaluations(File file) throws IOException {
-		StreamTokenizer token = FileUtils.getTokens(file);
-		boolean found = false;
-		token.nextToken();
-
-		while (!found) {
-			if ((token.sval != null) && ((token.sval.compareTo("MAX_EVALUATIONS") == 0)))
-				found = true;
-			else
-				token.nextToken();
-		}
-
-		token.nextToken();
-		token.nextToken();
-
-		return (int) token.nval;
-	}
+//	public static GWASFGA<AreaCoverageSolution> produce(File file,
+//			Problem<AreaCoverageSolution> problem) throws FileNotFoundException {
+//		try {
+//			return new GWASFGA<>(
+//					problem,
+//					getPopulationSize(file),
+//					getMaxEvaluations(file),
+//					CrossoverFactory.produce(file),
+//					MutationFactory.produce(file),
+//					SelectionFactory.produce(file),
+//					new SequentialSolutionListEvaluator<AreaCoverageSolution>(),
+//					0.0);
+//		} catch (Exception e) {
+//			new JMetalException("GWASFGAFactory.produce(file): error when reading data file " + e);
+//
+//			return null;
+//		}
+//	}
+//
+//	private static int getPopulationSize(File file) throws IOException {
+//		StreamTokenizer token = FileUtils.getTokens(file);
+//		boolean found = false;
+//		token.nextToken();
+//
+//		while (!found) {
+//			if ((token.sval != null) && ((token.sval.compareTo("POPULATION_SIZE") == 0)))
+//				found = true;
+//			else
+//				token.nextToken();
+//		}
+//
+//		token.nextToken();
+//		token.nextToken();
+//
+//		return (int) token.nval;
+//	}
+//
+//	private static int getMaxEvaluations(File file) throws IOException {
+//		StreamTokenizer token = FileUtils.getTokens(file);
+//		boolean found = false;
+//		token.nextToken();
+//
+//		while (!found) {
+//			if ((token.sval != null) && ((token.sval.compareTo("MAX_EVALUATIONS") == 0)))
+//				found = true;
+//			else
+//				token.nextToken();
+//		}
+//
+//		token.nextToken();
+//		token.nextToken();
+//
+//		return (int) token.nval;
+//	}
 }

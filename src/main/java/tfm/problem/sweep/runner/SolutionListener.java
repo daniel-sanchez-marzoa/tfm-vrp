@@ -16,13 +16,15 @@ public class SolutionListener implements MeasureListener<List<SweepCoverageSolut
     private int iteration = 0;
     private int progress = 0;
     private final int numberOfIterations;
-    private final File resultsDirectory ;
+    private final File resultsDirectory;
     private final int numberOfDrones;
 //    private List<SweepCoverageSolution> previousNonDominatedFrontObjectives = new ArrayList<>();
 
     @Override
     synchronized public void measureGenerated(List<SweepCoverageSolution> solutions) {
 //        List<double[]> nonDominatedFrontObjectives = solutions.stream().map(Solution::objectives).collect(Collectors.toList());
+
+        if (resultsDirectory == null) return;
 
         Map<Double, Double> frontValues = new HashMap<>();
         iteration++;

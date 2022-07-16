@@ -16,60 +16,60 @@ import tfm.utils.FileUtils;
 import tfm.problem.vrp.AreaCoverageSolution;
 
 public class PESA2Factory {
-	public static PESA2<AreaCoverageSolution> produce(File file,
-			Problem<AreaCoverageSolution> problem) throws FileNotFoundException {
-		try {
-
-			PESA2Builder<AreaCoverageSolution> espeaBuilder = new PESA2Builder<AreaCoverageSolution>(
-					problem,
-					CrossoverFactory.produce(file),
-					MutationFactory.produce(file));
-
-			espeaBuilder.setPopulationSize(getPopulationSize(file));
-			// espeaBuilder.setSelectionOperator(SelectionFactory.produce(file));
-			espeaBuilder.setMaxEvaluations(getMaxEvaluations(file));
-
-			return espeaBuilder.build();
-		} catch (Exception e) {
-			new JMetalException("PESA2Factory.produce(file): error when reading data file " + e);
-
-			return null;
-		}
-	}
-
-	private static int getPopulationSize(File file) throws IOException {
-		StreamTokenizer token = FileUtils.getTokens(file);
-		boolean found = false;
-		token.nextToken();
-
-		while (!found) {
-			if ((token.sval != null) && ((token.sval.compareTo("POPULATION_SIZE") == 0)))
-				found = true;
-			else
-				token.nextToken();
-		}
-
-		token.nextToken();
-		token.nextToken();
-
-		return (int) token.nval;
-	}
-
-	private static int getMaxEvaluations(File file) throws IOException {
-		StreamTokenizer token = FileUtils.getTokens(file);
-		boolean found = false;
-		token.nextToken();
-
-		while (!found) {
-			if ((token.sval != null) && ((token.sval.compareTo("MAX_EVALUATIONS") == 0)))
-				found = true;
-			else
-				token.nextToken();
-		}
-
-		token.nextToken();
-		token.nextToken();
-
-		return (int) token.nval;
-	}
+//	public static PESA2<AreaCoverageSolution> produce(File file,
+//			Problem<AreaCoverageSolution> problem) throws FileNotFoundException {
+//		try {
+//
+//			PESA2Builder<AreaCoverageSolution> espeaBuilder = new PESA2Builder<AreaCoverageSolution>(
+//					problem,
+//					CrossoverFactory.produce(file),
+//					MutationFactory.produce(file));
+//
+//			espeaBuilder.setPopulationSize(getPopulationSize(file));
+//			// espeaBuilder.setSelectionOperator(SelectionFactory.produce(file));
+//			espeaBuilder.setMaxEvaluations(getMaxEvaluations(file));
+//
+//			return espeaBuilder.build();
+//		} catch (Exception e) {
+//			new JMetalException("PESA2Factory.produce(file): error when reading data file " + e);
+//
+//			return null;
+//		}
+//	}
+//
+//	private static int getPopulationSize(File file) throws IOException {
+//		StreamTokenizer token = FileUtils.getTokens(file);
+//		boolean found = false;
+//		token.nextToken();
+//
+//		while (!found) {
+//			if ((token.sval != null) && ((token.sval.compareTo("POPULATION_SIZE") == 0)))
+//				found = true;
+//			else
+//				token.nextToken();
+//		}
+//
+//		token.nextToken();
+//		token.nextToken();
+//
+//		return (int) token.nval;
+//	}
+//
+//	private static int getMaxEvaluations(File file) throws IOException {
+//		StreamTokenizer token = FileUtils.getTokens(file);
+//		boolean found = false;
+//		token.nextToken();
+//
+//		while (!found) {
+//			if ((token.sval != null) && ((token.sval.compareTo("MAX_EVALUATIONS") == 0)))
+//				found = true;
+//			else
+//				token.nextToken();
+//		}
+//
+//		token.nextToken();
+//		token.nextToken();
+//
+//		return (int) token.nval;
+//	}
 }
